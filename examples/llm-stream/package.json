@@ -1,0 +1,26 @@
+{
+  "name": "llm-stream",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "bot:dev": "tsnd --respawn --watch src,settings,.env settings/launch",
+    "serve": "npm run bot:dev",
+    "start": "npm run bot:dev",
+    "dev": "npm run bot:dev",
+    "bot:debug": "npx envinfo@7.11.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@axflow/models": "^0.0.22"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.3",
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.3",
+    "ts-node": "^8.10.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^3.8.3"
+  }
+}
