@@ -15,6 +15,9 @@
     }
   },
   "devDependencies": {
+    "adaptivecards": "2.11.1",
+    "element-plus": "^2.3.10",
+    "monaco-editor": "^0.41.0",
     "@types/jest": "^29.1.2",
     "@types/minimist": "^1.2.5",
     "@types/node": "^18.8.4",
