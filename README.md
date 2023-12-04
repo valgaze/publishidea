@@ -3,6 +3,7 @@
 - deploy.yml: npm i >> npm ci
 - package.json has "@rollup/rollup-linux-x64-gnu": "latest"
 - package-lock.json has "@rollup/rollup-linux-x64-gnu": "latest" from npm i --force
+- TODO: swap the base on config.mts: base: "/publishidea/", // repo name
 
 # SpeedyBot 2.0
 
