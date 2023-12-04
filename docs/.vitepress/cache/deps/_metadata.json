@@ -1,29 +1,29 @@
 {
-  "hash": "32c2d7d8",
-  "browserHash": "8f58a819",
+  "hash": "79e427a1",
+  "browserHash": "8938edd5",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "190ed57b",
+      "fileHash": "f7d251b4",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "1bfbec16",
+      "fileHash": "52dc5538",
       "needsInterop": false
     },
     "adaptivecards": {
       "src": "../../../../node_modules/adaptivecards/lib/adaptivecards.js",
       "file": "adaptivecards.js",
-      "fileHash": "6c7e597b",
+      "fileHash": "f59cf624",
       "needsInterop": true
     },
     "element-plus": {
       "src": "../../../../node_modules/element-plus/es/index.mjs",
       "file": "element-plus.js",
-      "fileHash": "31d7a6cd",
+      "fileHash": "596e728a",
       "needsInterop": false
     }
   },

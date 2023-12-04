@@ -32,7 +32,8 @@
     "typescript": "^4.7.2",
     "vite": "^4.3.9",
     "vitepress": "^1.0.0-rc.31",
-    "vitest": "^0.32.2"
+    "vitest": "^0.32.2",
+    "@rollup/rollup-linux-x64-gnu": "latest"
   },
   "scripts": {
     "dist:example": "tee examples/worker/settings/bot.ts examples/i18n/settings/bot.ts   < examples/bot.sample.ts >/dev/null",
@@ -50,7 +51,8 @@
     "test:nowatch": "vitest run",
     "docs:dev": "vitepress dev docs --host",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "docs:localbuild": "npm run docs:build && cd docs/.vitepress/dist && npx serve -p 1337"
   },
   "engines": {
     "node": ">=18.11.0"
