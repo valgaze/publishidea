@@ -5,3 +5,4 @@ deploy/
 dist/
 .env
 abc.ts
+.vitepress/cache

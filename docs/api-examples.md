@@ -4,6 +4,7 @@ outline: deep
 
 <Img />
 
+<MonacoEditor />
 # Runtime API Examples
 
 This page demonstrates usage of some of the runtime APIs provided by VitePress.
@@ -34,8 +35,16 @@ const { theme, page, frontmatter } = useData()
 
 <script setup>
 import { useData } from 'vitepress'
+import { inBrowser } from 'vitepress';
+import { defineAsyncComponent } from 'vue';
 
 const { site, theme, page, frontmatter } = useData()
+
+import Img from './.vitepress/components/Img.vue'
+
+const MonacoEditor = inBrowser
+  ? defineAsyncComponent(() => import('.vitepress/components/monaco.vue'))
+  : () => null;
 </script>
 
 ## Results
@@ -55,7 +64,3 @@ const { site, theme, page, frontmatter } = useData()
 ## More
 
 Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
-
-<script>
-import Img from './.vitepress/components/Img.vue'
-</script>
