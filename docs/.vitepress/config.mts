@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: "/publishidea/", // repo name
+  // base: "/publishidea/", // repo name
   title: "SpeedyBot",
   description: "Rich conversation agents, the speedy and easy way",
   themeConfig: {
@@ -29,14 +29,14 @@ export default defineConfig({
   vite: {
     build: {
       rollupOptions: {
-        external: ["element-plus", "adaptivecards"],
+        external: ["adaptivecards"],
       },
     },
     ssr: {
       noExternal: ["monaco-editor"],
     },
     optimizeDeps: {
-      include: ["adaptivecards"],
+      include: ["adaptivecards", "element-plus"],
     },
   },
 });

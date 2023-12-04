@@ -2,6 +2,8 @@
 outline: deep
 ---
 
+<Img />
+
 # Runtime API Examples
 
 This page demonstrates usage of some of the runtime APIs provided by VitePress.
@@ -44,7 +46,6 @@ const { site, theme, page, frontmatter } = useData()
 
 ### Page Data
 
-<Img />
 <pre>{{ page }}</pre>
 
 ### Page Frontmatter
