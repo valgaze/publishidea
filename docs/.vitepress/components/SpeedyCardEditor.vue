@@ -53,11 +53,19 @@ const rootRef = ref(null);
 let editorRef = null;
 const handleChange = (data) => {
   try {
+    // const resultold = eval(`
+    // (() => {
+    //         ${data}
+    //         return card.build()
+    //   })()`);
+
     const result = eval(`
-    (() => {
-            ${data}
-            return card.build()
-      })()`);
+      (SpeedyBot) => {
+        ${data}
+        return card.build();
+      }
+    `)(SpeedyBot);
+
     jsonData.value = result;
     // jsonData.value = JSON.parse(result)
   } catch (_) {
