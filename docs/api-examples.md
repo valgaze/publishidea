@@ -65,7 +65,7 @@ import Img from './.vitepress/components/Img.vue'
 import TokenInput from './.vitepress/components/token_handler.vue'
 import { useCustomStore } from './.vitepress/util/store'
 
-import Blur from './.vitepress/components/blur.vue'
+import Blur from './.vitepress/components/Blur.vue'
 // import SendMsg from './.vitepress/components/SendMsg.vue'
 // import Img from './docs/.vitepress/components/Img.vue'
 // import SpeedyCardEditor from './docs/.vitepress/components/SpeedyCardEditor.vue'

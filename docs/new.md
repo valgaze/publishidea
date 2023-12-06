@@ -248,13 +248,13 @@ bunx create-speedybot init --project=default --token=**REPLACE**WITH\_\_TOKEN --
 
 <script setup>
 import { ref, watch } from 'vue'
+import { useData } from 'vitepress'
 import { useCustomStore } from "./.vitepress/util/store";
 import TokenInput from './.vitepress/components/token_handler.vue'
-import Blur from './.vitepress/components/blur.vue'
+import Blur from './.vitepress/components/Blur.vue'
 import SendMsg from './.vitepress/components/SendMsg.vue'
 import Img from './.vitepress/components/Img.vue'
 import SpeedyCardEditor from './.vitepress/components/SpeedyCardEditor.vue'
-import { useData } from 'vitepress'
 
 const { isDark } = useData()
 const store = useCustomStore()
