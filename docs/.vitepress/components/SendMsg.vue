@@ -21,7 +21,7 @@
           <CompactPicker
             :show-recents="showRecents"
             @valChanged="handleValChange"
-            :roomList="store.roomList"
+            :roomList="store.state.roomList"
           ></CompactPicker>
         </el-form-item>
         <el-form-item label="Message Content">

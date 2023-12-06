@@ -4,6 +4,8 @@
 - package.json has "@rollup/rollup-linux-x64-gnu": "latest"
 - package-lock.json has "@rollup/rollup-linux-x64-gnu": "latest" from npm i --force
 - TODO: swap the base on config.mts: base: "/publishidea/", // repo name
+- Find: speedybot & terrifabot tokens
+- Change Speedybot card pathing (once speedybot.js.org/speedycard?card=abc is 1000% working) and add to intro bot
 
 ## other stuff
 
