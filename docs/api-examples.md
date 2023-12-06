@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-<TokenInput />
+<TokenInput :showInfo="true" />
 <Img />
 
 <MonacoEditor v-if="store.state.tokenValid"/>
