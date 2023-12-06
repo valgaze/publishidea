@@ -4,8 +4,11 @@ layout: home
 
 hero:
   name: "SpeedyBot"
-  text: "Rich conversation agents, the speedy and easy way"
-  tagline: My great project tagline
+  text: "Rich conversation systems, the speedy and easy way"
+  # tagline: Efficiently design, deploy, and secure rich conversation systems in enterprises and large teams
+  image:
+    src: ./assets/download.png
+    alt: SpeedyBot
   actions:
     - theme: brand
       text: Get Started
