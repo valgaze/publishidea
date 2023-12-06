@@ -10,8 +10,11 @@ ref="rootRef"
 :labelValuePairs="samples"
 @selected="handleSelected"></compact-select>
 
+<Blur :shouldBlur="!pageReady" class="blur-transition">
+
 <el-tabs v-model="activeName" :class="{'is-dark': isDark}">
 <el-tab-pane label="SpeedyCard editor" name="editor">
+
 <MonacoEditor @editorReady="initParent" @valChanged="handleChange" :isDark="isDark"/>
 
 The editor above is "live" & has type hints so you can dive in and get started with SpeedyCard. If you need some inspiration, <b><a @click="rootRef.rollDice()">
@@ -51,6 +54,8 @@ Heads up-- a personal access token will self-destruct after 12 hours
 </el-tab-pane>
 </el-tabs>
 
+</Blur>
+
 <script setup>
 import { SpeedyBot } from './../src/index.ts'
 import { defineAsyncComponent, ref, watch, onMounted} from 'vue';
@@ -58,6 +63,7 @@ import { inBrowser } from 'vitepress';
 import { useData } from 'vitepress'
 import { SpeedyCard } from './../src/cards.ts'
 import AdaptiveCardRender from './.vitepress/components/adaptivecard.vue'
+import Blur from './.vitepress/components/Blur.vue'
 import SendMsg from './.vitepress/components/SendMsg.vue'
 import CompactSelect from './.vitepress/components/CompactSelect.vue';
 import { getRandomSpeedyCard, samples, cardRoster} from './.vitepress/util/samples'
@@ -87,6 +93,7 @@ const handleChange = (data) => {
       }
     }
 }
+const pageReady = ref(false)
 const jsonData = ref({})
 const activeName = ref('editor')
 const { isDark, } = useData()
@@ -101,6 +108,8 @@ const initParent = (editor) => {
     const paramToIdx = cardRoster.findIndex(x => x === card)
     rootRef.value.rollDice(paramToIdx)
   }
+
+  pageReady.value = true
 }
 const handleSelected = (codeSnippet) => {
   if (editorRef) {

@@ -7,8 +7,9 @@
  * TODO:
  * adaptiveCard.onExecuteAction
  * subCard
- *
- *
+ * Cool stuff:
+ * - https://amdesigner.azurewebsites.net/
+ * - https://messagecardplayground.azurewebsites.net/
  */
 import * as AdaptiveCards from "adaptivecards";
 import { ref, onMounted, watch } from "vue";
