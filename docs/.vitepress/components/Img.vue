@@ -1,6 +1,4 @@
 <template>
-  ![Random Image]({{ url }})
-
   <img
     v-if="url"
     :src="url"

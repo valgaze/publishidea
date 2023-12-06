@@ -10,8 +10,14 @@ Before all that though, let's keep things straightforward with a quick 3-step se
 
 The flow to get a token will look roughly like this:
 
+Raw markdown:
 ![Random Image](./assets/build_a_bot.gif)
 
+Normal image:
+
+<img src="./assets/build_a_bot.gif" />
+
+Dopey IMG component:
 <Img url="./assets/build_a_bot.gif" />
 
 ### Validate Token
