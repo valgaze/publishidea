@@ -44,6 +44,8 @@ import CompactPicker from "./CompactPicker.vue";
 import { useCustomStore } from "./../util/store";
 
 const store = useCustomStore();
+
+console.log("oh no it doesnt sync does it darn", store);
 const activeName = ref("");
 const list = ref([]);
 const body = ref("");

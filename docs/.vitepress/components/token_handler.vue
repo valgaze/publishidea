@@ -68,8 +68,6 @@ const omg = async (tokenCandidate: string) => {
     await store.validateToken(tokenCandidate);
     if (store.state.tokenValid) {
       emit("tokenValidated", { valid: true });
-      const beer = await store.getRecentRooms();
-      console.log("bb", beer);
     }
   }
 };
