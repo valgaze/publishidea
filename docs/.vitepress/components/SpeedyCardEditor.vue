@@ -58,7 +58,6 @@ const handleChange = (data) => {
             ${data}
             return card.build()
       })()`);
-    console.log("reshoudle,", result);
     jsonData.value = result;
     // jsonData.value = JSON.parse(result)
   } catch (_) {

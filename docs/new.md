@@ -10,6 +10,8 @@ Before all that though, let's keep things straightforward with a quick 3-step se
 
 The flow to get a token will look roughly like this:
 
+![Random Image](./assets/build_a_bot.gif)
+
 <Img url="./assets/build_a_bot.gif" />
 
 ### Validate Token
