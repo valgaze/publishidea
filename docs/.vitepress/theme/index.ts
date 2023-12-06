@@ -6,7 +6,7 @@ import "./style.css";
 import { install } from "element-plus";
 import "element-plus/dist/index.css";
 import "element-plus/theme-chalk/dark/css-vars.css";
-
+import { storeHelper } from "../util/store";
 export default {
   extends: DefaultTheme,
   Layout: () => {
@@ -16,5 +16,6 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     install(app);
+    app.provide("storeBoi", storeHelper);
   },
 } satisfies Theme;

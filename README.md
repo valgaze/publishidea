@@ -5,6 +5,12 @@
 - package-lock.json has "@rollup/rollup-linux-x64-gnu": "latest" from npm i --force
 - TODO: swap the base on config.mts: base: "/publishidea/", // repo name
 
+## other stuff
+
+- Update announcement card to use nice pathing to speedybot.js.org/speedycard?card=ah-rth
+- Update annoucnemen card to say
+- SERVERLESS: Finally, WebEx bots w/o a running serve (but you can definitely put it on a traditional server)
+
 # SpeedyBot 2.0
 
 <p align="center">

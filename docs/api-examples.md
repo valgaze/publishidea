@@ -4,7 +4,8 @@ outline: deep
 
 <Img />
 
-<MonacoEditor />
+<MonacoEditor v-if="store.state.tokenValid"/>
+
 # Runtime API Examples
 
 This page demonstrates usage of some of the runtime APIs provided by VitePress.
@@ -33,20 +34,6 @@ const { theme, page, frontmatter } = useData()
 <pre>{{ frontmatter }}</pre>
 ```
 
-<script setup>
-import { useData } from 'vitepress'
-import { inBrowser } from 'vitepress';
-import { defineAsyncComponent } from 'vue';
-
-const { site, theme, page, frontmatter } = useData()
-
-import Img from './.vitepress/components/Img.vue'
-
-const MonacoEditor = inBrowser
-  ? defineAsyncComponent(() => import('.vitepress/components/monaco.vue'))
-  : () => null;
-</script>
-
 ## Results
 
 ### Theme Data
@@ -64,3 +51,24 @@ const MonacoEditor = inBrowser
 ## More
 
 Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+
+<script setup>
+import { useData } from 'vitepress'
+import { inBrowser } from 'vitepress';
+import { defineAsyncComponent, inject, onMounted } from 'vue';
+const store = inject('storeBoi');
+
+const { site, theme, page, frontmatter } = useData()
+import Img from './.vitepress/components/Img.vue'
+
+const MonacoEditor = inBrowser
+  ? defineAsyncComponent(() => import('.vitepress/components/monaco.vue'))
+  : () => null;
+
+
+
+onMounted(async () => {
+  await store.validateToken('NjVkMWYyMmItOGE4NC00MTUwLTg3MTktNTJiMjdkN2E4MmNiZDIyZDM2NzItMjhl_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f')
+});
+
+</script>
