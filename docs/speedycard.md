@@ -37,6 +37,16 @@ Note: Afer you send the card to someone, if you want to collect the data from <a
 <el-tab-pane label="Send Msg" name="sendmessage">
 <SendMsg :msg="jsonData">
 
+::: details 📌 Sending Adaptive Cards: Personal Access Token
+
+Did you know there's a nifty way to send adaptive cards using a your own accont instead of your bot's?
+
+Check out the process here: <a href="https://developer.webex.com/docs/getting-your-personal-access-token" style="color:#646cff;text-decoration: bold;">https://developer.webex.com/docs/getting-your-personal-access-token</a>
+
+Heads up-- a personal access token will self-destruct after 12 hours
+
+:::
+
 </SendMsg>
 </el-tab-pane>
 </el-tabs>
@@ -99,11 +109,3 @@ const handleSelected = (codeSnippet) => {
   }
 }
 </script>
-
-```
-
-```
-
-```
-
-```

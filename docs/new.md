@@ -143,7 +143,7 @@ Turn off your bot by tapping CTRL-C, to
 
 Follow the steps below to run a listener on your local machine
 
-::: details Sending Adaptive Cards: Personal Access Token
+::: details 📌 Sending Adaptive Cards: Personal Access Token
 
 Did you know there's a nifty way to send adaptive cards using a your own accont instead of your bot's?
 
