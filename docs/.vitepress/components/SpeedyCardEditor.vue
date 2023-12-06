@@ -1,28 +1,30 @@
 <template>
-  <!-- <a @click="rootRef.rollDice()" href="#/"> pick random 🎲</a> -->
-  <compact-select
-    ref="rootRef"
-    :labelValuePairs="samples"
-    @selected="handleSelected"
-  ></compact-select>
+  <client-only>
+    <!-- <a @click="rootRef.rollDice()" href="#/"> pick random 🎲</a> -->
+    <compact-select
+      ref="rootRef"
+      :labelValuePairs="samples"
+      @selected="handleSelected"
+    ></compact-select>
 
-  <el-tabs v-model="activeName" :class="{ 'is-dark': isDark }">
-    <el-tab-pane label="SpeedyCard editor" name="editor">
-      <MonacoEditor
-        @editorReady="initParent"
-        @valChanged="handleChange"
-        :isDark="isDark"
-      />
-    </el-tab-pane>
-    <el-tab-pane label="Preview" name="preview">
-      <el-card class="box-card">
-        <AdaptiveCardRender :jsonData="jsonData" />
-      </el-card>
-    </el-tab-pane>
-    <el-tab-pane label="Send Message" name="sendmessage">
-      <SendMsg :msg="jsonData" :showRecents="false" />
-    </el-tab-pane>
-  </el-tabs>
+    <el-tabs v-model="activeName" :class="{ 'is-dark': isDark }">
+      <el-tab-pane label="SpeedyCard editor" name="editor">
+        <MonacoEditor
+          @editorReady="initParent"
+          @valChanged="handleChange"
+          :isDark="isDark"
+        />
+      </el-tab-pane>
+      <el-tab-pane label="Preview" name="preview">
+        <el-card class="box-card">
+          <AdaptiveCardRender :jsonData="jsonData" />
+        </el-card>
+      </el-tab-pane>
+      <el-tab-pane label="Send Message" name="sendmessage">
+        <SendMsg :msg="jsonData" :showRecents="false" />
+      </el-tab-pane>
+    </el-tabs>
+  </client-only>
 </template>
 
 <style scoped>
