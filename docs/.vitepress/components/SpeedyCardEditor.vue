@@ -43,7 +43,7 @@ import { useCustomStore } from "./../util/store";
 import SendMsg from "./SendMsg.vue";
 
 import CompactSelect from "./CompactSelect.vue";
-import { SpeedyBot, SpeedyCard } from "../../../src";
+import { SpeedyBot } from "../../../src"; // use speedybot for eval
 import { getRandomSpeedyCard, samples } from "./../util/samples";
 const store = useCustomStore();
 const MonacoEditor = inBrowser
@@ -63,7 +63,6 @@ const handleChange = (data) => {
   } catch (_) {
     // if raw json, attempt to parse
     try {
-      console.log(`parser`, _, data);
       jsonData.value = JSON.parse(data);
     } catch (e) {
       console.log("Error", e, "\n--\n");

@@ -288,7 +288,6 @@ import TokenInput from './.vitepress/components/token_handler.vue'
 import Blur from './.vitepress/components/Blur.vue'
 import SendMsg from './.vitepress/components/SendMsg.vue'
 import SpeedyCardEditor from './.vitepress/components/SpeedyCardEditor.vue'
-
 const { isDark } = useData()
 const store = useCustomStore()
 
