@@ -10,7 +10,6 @@ Before all that though, let's keep things straightforward with a quick 3-step se
 
 The flow to get a token will look roughly like this:
 
-DEBUG: isDark: {{ isDark }}
 <img
     src="./assets/build_a_bot.gif"
     :style="{ filter: isDark ? 'invert(1)' : 'none' }"
