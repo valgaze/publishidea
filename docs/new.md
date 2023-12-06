@@ -190,15 +190,6 @@ SpeedyBot does **NOT** log/persist or do anything (except what you intstruct it 
 
 :::
 
-<Blur :shouldBlur="!store.state.tokenValid">
-
-## Step 3: Send a test message
-
-<SendMsg :autofocus="false" />
-Enter your account's name and send yourself a test message
-
-</Blur>
-
 Tip: we sent the message as your bot to you.
 
 ## Step 1: Get your bot's token
@@ -286,7 +277,6 @@ import { useData } from 'vitepress'
 import { useCustomStore } from "./.vitepress/util/store";
 import TokenInput from './.vitepress/components/token_handler.vue'
 import Blur from './.vitepress/components/Blur.vue'
-import SendMsg from './.vitepress/components/SendMsg.vue'
 import SpeedyCardEditor from './.vitepress/components/SpeedyCardEditor.vue'
 const { isDark } = useData()
 const store = useCustomStore()
