@@ -21,12 +21,3 @@ import { useData } from "vitepress";
 const { isDark } = useData();
 const { url } = defineProps(["url"]);
 </script>
-
-<style scoped>
-.blurred {
-  cursor: not-allowed;
-  padding: 1px 0;
-  filter: blur(1.15px);
-  pointer-events: none;
-}
-</style>

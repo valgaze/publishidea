@@ -10,15 +10,19 @@ Before all that though, let's keep things straightforward with a quick 3-step se
 
 The flow to get a token will look roughly like this:
 
-Raw markdown:
-![Random Image](./assets/build_a_bot.gif)
-
-Normal image:
-
-<img src="./assets/build_a_bot.gif" />
-
-Dopey IMG component:
-<Img url="./assets/build_a_bot.gif" />
+<img
+    src="./assets/build_a_bot.gif"
+    :style="{ filter: isDark ? 'invert(1)' : 'none' }"
+    style="
+      margin: 1rem 0px;
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+    "
+  />
 
 ### Validate Token
 
@@ -34,7 +38,19 @@ SpeedyBot does **NOT** log/persist or do anything (except what you tell it to do
 
 **REMEMBER:** If your agent's access token is ever compromised/exposed, you can always invalidate it + get a new one by tapping "Regenerate Access Token" under your agent's <a href="https://developer.webex.com/my-apps" style="color:#646cff;text-decoration: bold;">settings page</a>
 
-<Img url="./assets/regen_token.gif" />
+<img
+    src="./assets/regen_token.gif"
+    :style="{ filter: isDark ? 'invert(1)' : 'none' }"
+    style="
+      margin: 1rem 0px;
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+    "
+  />
 
 :::
 
@@ -54,7 +70,19 @@ SpeedyBot does **NOT** log/persist or do anything (except what you tell it to do
     description="You may have noticed that if you tried to submit any data back from a card-- nothing happens "
   />
 
-<Img url="./assets/card_nosubmit.gif" />
+<img
+    src="./assets/card_nosubmit.gif"
+    :style="{ filter: isDark ? 'invert(1)' : 'none' }"
+    style="
+      margin: 1rem 0px;
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+    "
+  />
 
 - In fact, any user interaction with {{ store.state.userData?.emails[0] ?? 'your bot'}} right now— be it a message, SpeedyCard submission, or file upload, results in icy radio silence
 
@@ -104,8 +132,6 @@ However you set up your system, make sure to run `node -v` in your terminal to v
 :::
 
 If all went well, you should see something like this in your terminal:
-
-<Img url="./assets/launch_local.png" />
 
 Now send a message to your bot and you'll see a welcome screen with buttons and cards
 
@@ -261,7 +287,6 @@ import { useCustomStore } from "./.vitepress/util/store";
 import TokenInput from './.vitepress/components/token_handler.vue'
 import Blur from './.vitepress/components/Blur.vue'
 import SendMsg from './.vitepress/components/SendMsg.vue'
-import Img from './.vitepress/components/Img.vue'
 import SpeedyCardEditor from './.vitepress/components/SpeedyCardEditor.vue'
 
 const { isDark } = useData()
