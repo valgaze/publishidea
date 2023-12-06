@@ -6,3 +6,4 @@ dist/
 .env
 abc.ts
 .vitepress/cache
+docs/.vitepress/cache

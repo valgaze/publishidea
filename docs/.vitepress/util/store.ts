@@ -1,4 +1,4 @@
-import { ref, reactive } from "vue";
+import { inject, provide, InjectionKey, reactive, ref } from "vue";
 import { SpeedyBot } from "./../../../src/speedybot";
 import { ElLoading } from "element-plus";
 import { Webhook } from "../../../src";
@@ -117,3 +117,19 @@ export const storeHelper = {
   validateToken,
   cycle,
 };
+
+const storeSymbol: InjectionKey<typeof storeHelper> = Symbol("customStore");
+
+export function provideCustomStore(appRef) {
+  appRef.provide(storeSymbol, storeHelper);
+}
+
+export function useCustomStore() {
+  const customStore = inject(storeSymbol);
+  if (!customStore) {
+    throw new Error(
+      "useCustomStore() must be used within a component that provides the custom store"
+    );
+  }
+  return customStore;
+}

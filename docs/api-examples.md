@@ -2,6 +2,7 @@
 outline: deep
 ---
 
+<TokenInput />
 <Img />
 
 <MonacoEditor v-if="store.state.tokenValid"/>
@@ -56,19 +57,16 @@ Check out the documentation for the [full list of runtime APIs](https://vitepres
 import { useData } from 'vitepress'
 import { inBrowser } from 'vitepress';
 import { defineAsyncComponent, inject, onMounted } from 'vue';
-const store = inject('storeBoi');
+import Img from './.vitepress/components/Img.vue'
+import TokenInput from './.vitepress/components/token_handler.vue'
+import { useCustomStore } from './.vitepress/util/store'
+// const { } = useCustomStore()
+const store = useCustomStore();
 
 const { site, theme, page, frontmatter } = useData()
-import Img from './.vitepress/components/Img.vue'
 
 const MonacoEditor = inBrowser
   ? defineAsyncComponent(() => import('.vitepress/components/monaco.vue'))
   : () => null;
-
-
-
-onMounted(async () => {
-  await store.validateToken('NjVkMWYyMmItOGE4NC00MTUwLTg3MTktNTJiMjdkN2E4MmNiZDIyZDM2NzItMjhl_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f')
-});
 
 </script>

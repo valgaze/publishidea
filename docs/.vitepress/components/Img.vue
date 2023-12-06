@@ -1,9 +1,18 @@
 <template>
-  <el-alert
-    title="😥 Token is INVALID (generate a new token and try again)"
-    type="error"
-  >
-  </el-alert>
+  <img
+    v-if="url"
+    :src="url"
+    :style="{ filter: isDark ? 'invert(1)' : 'none' }"
+    style="
+      margin: 1rem 0px;
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+    "
+  />
 </template>
 
 <script setup>
