@@ -26,7 +26,7 @@
         plain
         @click="promptNewWebhook"
         :icon="CirclePlusFilled"
-        :disabled="!store.tokenValid"
+        :disabled="!store.state.tokenValid"
         >Add New Webhook</el-button
       >
       <el-button
@@ -34,14 +34,14 @@
         :icon="Download"
         plain
         @click="webhooksFetch"
-        :disabled="!store.tokenValid"
+        :disabled="!store.state.tokenValid"
         >Fetch Webhooks</el-button
       >
       <el-button
         type="danger"
         plain
         @click="webhooksDeleteAll"
-        :disabled="!store.tokenValid"
+        :disabled="!store.state.tokenValid"
         >🔥 Delete All Webhooks</el-button
       >
     </el-row>
@@ -77,11 +77,10 @@ v-if="tokenStatus"
 
 <script lang="ts" setup>
 import { ref, watch, onMounted } from "vue";
-import { useCustomStore } from "../theme/store";
-import { CirclePlusFilled, Download } from "@element-plus/icons-vue";
+import { useCustomStore } from "../util/store";
 import { Webhook } from "./../../../src/types";
 import { ElLoading, ElMessage, ElMessageBox } from "element-plus";
-
+import { CirclePlusFilled, Download } from "@element-plus/icons-vue";
 const store = useCustomStore();
 const showWebhooksForm = ref(false);
 const webhooksForm = ref({
@@ -172,7 +171,7 @@ const submit = async () => {
 };
 
 watch(
-  () => store.tokenValid,
+  () => store.state.tokenValid,
   async (v) => {
     if (v === true) {
       const loading = ElLoading.service({
@@ -187,7 +186,7 @@ watch(
 );
 
 onMounted(async () => {
-  if (store.tokenValid) {
+  if (store.state.tokenValid) {
     const loading = ElLoading.service({
       lock: true,
       text: "Loading",
