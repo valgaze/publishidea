@@ -43,7 +43,6 @@ import { useData } from "vitepress";
 import AdaptiveCardRender from "./adaptivecard.vue";
 import { useCustomStore } from "./../util/store";
 import SendMsg from "./SendMsg.vue";
-
 import CompactSelect from "./CompactSelect.vue";
 import { SpeedyBot } from "../../../src"; // use speedybot for eval
 import { getRandomSpeedyCard, samples } from "./../util/samples";

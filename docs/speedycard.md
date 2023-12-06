@@ -76,18 +76,17 @@ const handleChange = (data) => {
     `)(SpeedyBot);
       jsonData.value = result
       // jsonData.value = JSON.parse(result)
-    }catch(_) {
+    } catch(_) {
       // if raw json, attempt to parse
       try {
         jsonData.value = JSON.parse(data)
-      }catch(e) {
+      } catch(e) {
         console.log('Error', e, '\n--\n')
         // Treat it as simple string
         jsonData.value = String(data)
       }
     }
 }
-
 const jsonData = ref({})
 const activeName = ref('editor')
 const { isDark, } = useData()
