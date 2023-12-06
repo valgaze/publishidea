@@ -5,7 +5,11 @@ outline: deep
 <TokenInput :showInfo="true" />
 <Img />
 
-<MonacoEditor v-if="store.state.tokenValid"/>
+<Blur :shouldBlur="!store.state.tokenValid">
+  <MonacoEditor />
+</Blur>
+
+<!-- <SendMsg /> -->
 
 # Runtime API Examples
 
@@ -60,7 +64,13 @@ import { defineAsyncComponent, inject, onMounted } from 'vue';
 import Img from './.vitepress/components/Img.vue'
 import TokenInput from './.vitepress/components/token_handler.vue'
 import { useCustomStore } from './.vitepress/util/store'
-// const { } = useCustomStore()
+
+import Blur from './.vitepress/components/blur.vue'
+// import SendMsg from './.vitepress/components/SendMsg.vue'
+// import Img from './docs/.vitepress/components/Img.vue'
+// import SpeedyCardEditor from './docs/.vitepress/components/SpeedyCardEditor.vue'
+
+
 const store = useCustomStore();
 
 const { site, theme, page, frontmatter } = useData()
