@@ -27,11 +27,11 @@ export default defineConfig({
     ],
   },
   vite: {
-    build: {
-      rollupOptions: {
-        external: ["adaptivecards"],
-      },
-    },
+    // build: {
+    //   rollupOptions: {
+    //     external: ["adaptivecards"],
+    //   },
+    // },
     ssr: {
       noExternal: ["monaco-editor"],
     },
