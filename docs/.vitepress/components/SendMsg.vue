@@ -1,38 +1,40 @@
 <template>
-  <div v-if="showToken">
-    <el-alert
-      title="Paste your bot token in the field below to get started"
-      type="info"
-      show-icon
-      v-if="!store.state.tokenValid"
-    ></el-alert>
-    <TokenInput
-      v-if="!store.state.tokenValid && showToken"
-      :autofocus="autofocus"
-    />
-  </div>
+  <client-only>
+    <div v-if="showToken">
+      <el-alert
+        title="Paste your bot token in the field below to get started"
+        type="info"
+        show-icon
+        v-if="!store.state.tokenValid"
+      ></el-alert>
+      <TokenInput
+        v-if="!store.state.tokenValid && showToken"
+        :autofocus="autofocus"
+      />
+    </div>
 
-  <slot v-if="!store.state.tokenValid"></slot>
+    <slot v-if="!store.state.tokenValid"></slot>
 
-  <blur :should-blur="!store.state.tokenValid">
-    <el-form label-position="left">
-      <el-form-item label="Destination" prop="message">
-        <CompactPicker
-          :show-recents="showRecents"
-          @valChanged="handleValChange"
-          :roomList="store.roomList"
-        ></CompactPicker>
-      </el-form-item>
-      <el-form-item label="Message Content">
-        <el-input v-model="body" type="textarea" rows="6" />
-      </el-form-item>
-      <el-form-item>
-        <div style="display: flex; justify-content: flex-end; width: 100%">
-          <el-button type="primary" @click="send">💬 Send</el-button>
-        </div>
-      </el-form-item>
-    </el-form>
-  </blur>
+    <blur :should-blur="!store.state.tokenValid">
+      <el-form label-position="left">
+        <el-form-item label="Destination" prop="message">
+          <CompactPicker
+            :show-recents="showRecents"
+            @valChanged="handleValChange"
+            :roomList="store.roomList"
+          ></CompactPicker>
+        </el-form-item>
+        <el-form-item label="Message Content">
+          <el-input v-model="body" type="textarea" rows="6" />
+        </el-form-item>
+        <el-form-item>
+          <div style="display: flex; justify-content: flex-end; width: 100%">
+            <el-button type="primary" @click="send">💬 Send</el-button>
+          </div>
+        </el-form-item>
+      </el-form>
+    </blur>
+  </client-only>
 </template>
 
 <script setup>
