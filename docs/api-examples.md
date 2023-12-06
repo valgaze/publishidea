@@ -3,7 +3,6 @@ outline: deep
 ---
 
 <TokenInput :showInfo="true" />
-<Img />
 
 <Blur :shouldBlur="!store.state.tokenValid">
   <MonacoEditor />
@@ -61,7 +60,6 @@ Check out the documentation for the [full list of runtime APIs](https://vitepres
 import { useData } from 'vitepress'
 import { inBrowser } from 'vitepress';
 import { defineAsyncComponent, inject, onMounted } from 'vue';
-import Img from './.vitepress/components/Img.vue'
 import TokenInput from './.vitepress/components/token_handler.vue'
 import { useCustomStore } from './.vitepress/util/store'
 
