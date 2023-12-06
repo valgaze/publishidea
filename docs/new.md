@@ -1,7 +1,5 @@
 # "I'm new here" 🐣
 
-Whether you're just starting out on your conversation design journey or a seasoned pro, this quickstart guide has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](./docs/patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./docs/patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./docs/speedycard.md)**, **[ask for a user's location in a privacy-respecting way](./examples/location/README.md)**, and much more.
-
 Before all that though, let's keep things straightforward with a quick 3-step setup:
 
 ## Step I: Acquiring Your Access Token
@@ -28,13 +26,13 @@ SpeedyBot does **NOT** log/persist or do anything (except what you tell it to do
 
 **REMEMBER:** If your agent's access token is ever compromised/exposed, you can always invalidate it + get a new one by tapping "Regenerate Access Token" under your agent's <a href="https://developer.webex.com/my-apps" style="color:#646cff;text-decoration: bold;">settings page</a>
 
-<Img url="./docs/assets/regen_token.gif" />
+<Img url="./assets/regen_token.gif" />
 
 :::
 
 ## Step II: Send a Test Message with Your Access Token
 
-- Let's test out your bot access token by sending a **[SpeedyCard](./docs/speedycard.md)** to you as a direct message (tap the 🎲 to shuffle through some examples)
+- Let's test out your bot access token by sending a **[SpeedyCard](#im-new-here-🐣)** to you as a direct message (tap the 🎲 to shuffle through some examples)
 
   <SpeedyCardEditor></SpeedyCardEditor>
 
@@ -58,7 +56,7 @@ SpeedyBot does **NOT** log/persist or do anything (except what you tell it to do
 
 - You need SpeedyBot to "listen" for incoming messages (card, text, file, whatever) and to do that you'll need to turn on
 
-- To keep things simple to start, we'll run the bot from your machine (ie when your computer is off your bot is off) but later if you need to, you can deploy it to virtually **[any standard server-ful or scalable serverless cloud infrastructure you want](./docs/deployment.md)**
+- To keep things simple to start, we'll run the bot from your machine (ie when your computer is off your bot is off) but later if you need to, you can deploy it to virtually **[any standard server-ful or scalable serverless cloud infrastructure you want](#im-new-here-🐣d)**
 
 Copy the commands below.
 
@@ -138,13 +136,13 @@ To keep things simple, setup is broken up into two steps:
 
 - Create a new bot and copy its access token from here: **[https://developer.webex.com/my-apps/new/bot](https://developer.webex.com/my-apps/new/bot)**
 
-<img src="./docs/assets/build_a_bot.gif" :style="{ filter: isDark ? 'invert(1)' : 'none' }" style="display: inline-block; max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding:10px;" />
+<img src="./assets/build_a_bot.gif" :style="{ filter: isDark ? 'invert(1)' : 'none' }" style="display: inline-block; max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding:10px;" />
 
 ## Step 2: Validate your bot's token
 
 Once you have a token, you can validate it below:
 
-<img src="./docs/assets/regen_token.gif" :style="{ filter: isDark ? 'invert(1)' : 'none' }" style="display: inline-block; max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding:10px;" />
+<img src="./assets/regen_token.gif" :style="{ filter: isDark ? 'invert(1)' : 'none' }" style="display: inline-block; max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding:10px;" />
 
 <TokenInput :showInfo="true" :autofocus="false"/>
 
@@ -250,12 +248,12 @@ bunx create-speedybot init --project=default --token=**REPLACE**WITH\_\_TOKEN --
 
 <script setup>
 import { ref, watch } from 'vue'
-import { useCustomStore } from "./docs/.vitepress/theme/store";
-import TokenInput from './docs/.vitepress/components/token_handler.vue'
-import Blur from './docs/.vitepress/components/blur.vue'
-import SendMsg from './docs/.vitepress/components/SendMsg.vue'
-import Img from './docs/.vitepress/components/Img.vue'
-import SpeedyCardEditor from './docs/.vitepress/components/SpeedyCardEditor.vue'
+import { useCustomStore } from "./.vitepress/util/store";
+import TokenInput from './.vitepress/components/token_handler.vue'
+import Blur from './.vitepress/components/blur.vue'
+import SendMsg from './.vitepress/components/SendMsg.vue'
+import Img from './.vitepress/components/Img.vue'
+import SpeedyCardEditor from './.vitepress/components/SpeedyCardEditor.vue'
 
 
 import { useData } from 'vitepress'
@@ -266,15 +264,5 @@ const store = useCustomStore()
 
 const currentStep = ref(0)
 const type = ref(1)
-const isMac = /(Mac|iPhone)/i.test(window?.navigator?.platform);
 
-if (!isMac) {
-    type.value = 2;
-}
 </script>
-
-We'll break this up into 2 sections:
-
-- Section I (this page) is where we'll get you signed up with a bot and send a test message using **[SpeedyCards](./docs/cards.md)**
-
-- Section II will be all about setup and getting your access token

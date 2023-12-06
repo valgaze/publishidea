@@ -41,7 +41,7 @@ import { ElLoading, ElMessage } from "element-plus";
 import Blur from "./Blur.vue";
 import TokenInput from "./token_handler.vue";
 import CompactPicker from "./CompactPicker.vue";
-import { useCustomStore } from "./.vitepress/util/store";
+import { useCustomStore } from "./../util/store";
 
 const store = useCustomStore();
 const activeName = ref("");

@@ -109,6 +109,7 @@ function cycle(index?: number) {
 }
 
 export const storeHelper = {
+  Bot: BotInst,
   state: store,
   getRecentRooms,
   setRecentRooms,

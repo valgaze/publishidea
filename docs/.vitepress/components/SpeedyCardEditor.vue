@@ -39,11 +39,12 @@ import { defineAsyncComponent, ref, watch, onMounted } from "vue";
 import { inBrowser } from "vitepress";
 import { useData } from "vitepress";
 import AdaptiveCardRender from "./adaptivecard.vue";
-import { useCustomStore } from "./../theme/store";
-import SendMsg from "./sendMsg.vue";
+import { useCustomStore } from "./../util/store";
+import SendMsg from "./SendMsg.vue";
+
 import CompactSelect from "./CompactSelect.vue";
 import { SpeedyBot, SpeedyCard } from "../../../src";
-import { getRandomSpeedyCard, samples } from "./../theme/samples";
+import { getRandomSpeedyCard, samples } from "./../util/samples";
 const store = useCustomStore();
 const MonacoEditor = inBrowser
   ? defineAsyncComponent(() => import("./monaco.vue"))
