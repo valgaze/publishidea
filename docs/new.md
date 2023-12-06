@@ -10,7 +10,7 @@ Before all that though, let's keep things straightforward with a quick 3-step se
 
 The flow to get a token will look roughly like this:
 
-<Img url="./docs/assets/build_a_bot.gif" />
+<Img url="./assets/build_a_bot.gif" />
 
 ### Validate Token
 
@@ -46,7 +46,7 @@ SpeedyBot does **NOT** log/persist or do anything (except what you tell it to do
     description="You may have noticed that if you tried to submit any data back from a card-- nothing happens "
   />
 
-<Img url="./docs/assets/card_nosubmit.gif" />
+<Img url="./assets/card_nosubmit.gif" />
 
 - In fact, any user interaction with {{ store.state.userData?.emails[0] ?? 'your bot'}} right now— be it a message, SpeedyCard submission, or file upload, results in icy radio silence
 
@@ -97,7 +97,7 @@ However you set up your system, make sure to run `node -v` in your terminal to v
 
 If all went well, you should see something like this in your terminal:
 
-<Img url="./docs/assets/launch_local.png" />
+<Img url="./assets/launch_local.png" />
 
 Now send a message to your bot and you'll see a welcome screen with buttons and cards
 
@@ -254,12 +254,9 @@ import Blur from './.vitepress/components/blur.vue'
 import SendMsg from './.vitepress/components/SendMsg.vue'
 import Img from './.vitepress/components/Img.vue'
 import SpeedyCardEditor from './.vitepress/components/SpeedyCardEditor.vue'
-
-
 import { useData } from 'vitepress'
 
 const { isDark } = useData()
-
 const store = useCustomStore()
 
 const currentStep = ref(0)
