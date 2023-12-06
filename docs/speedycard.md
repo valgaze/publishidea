@@ -48,11 +48,9 @@ import { inBrowser } from 'vitepress';
 import { useData } from 'vitepress'
 import { SpeedyCard } from './../src/cards.ts'
 import AdaptiveCardRender from './.vitepress/components/adaptivecard.vue'
-// import { useCustomStore } from './.vitepress/util/store'
-import SendMsg from './.vitepress/components/sendMsg.vue'
+import SendMsg from './.vitepress/components/SendMsg.vue'
 import CompactSelect from './.vitepress/components/CompactSelect.vue';
 import { getRandomSpeedyCard, samples, cardRoster} from './.vitepress/util/samples'
-// const store = useCustomStore()
 const MonacoEditor = inBrowser
   ? defineAsyncComponent(() => import('./.vitepress/components/monaco.vue'))
   : () => null;
