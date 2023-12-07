@@ -161,7 +161,7 @@ import { ref } from 'vue'
 const jsonData = ref({})
 const shouldBlur = ref(true)
 import Webhooks from './.vitepress/components/webhooks.vue'
-import Blur from './.vitepress/components/blur.vue'
+import Blur from './.vitepress/components/Blur.vue'
 import TokenInput from './.vitepress/components/token_handler.vue'
 
 import { useCustomStore } from "./.vitepress/util/store";
