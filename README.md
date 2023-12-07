@@ -8,6 +8,7 @@
 - `swap the base on config.mts: base: "/publishidea/", // repo name
 - Find: speedybot & terrifabot tokens
 - Change Speedybot card pathing (once speedybot.js.org/speedycard?card=abc is 1000% working) and add to intro bot
+- I think we'll want a cli that can clone (w/o git) the zip and pluck out a path
 
 ## other stuff
 
