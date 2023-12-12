@@ -10,3 +10,5 @@ tsconfig.json
 build_tricks
 abc.ts
 bin/
+coverage/
+todo.md

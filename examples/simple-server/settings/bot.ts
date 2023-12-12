@@ -9,6 +9,7 @@ Bot.addStep(async ($) => {
     await $.send(
       `You uploaded "${name}", a *.${extension} file [${contentType}]`
     );
+
     // Fetch raw bytes (which you can send to database or send to external system)
     // const TheData = await $.file.getData(); // do something w/ the contents/bytes
   }

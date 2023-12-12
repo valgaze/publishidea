@@ -8,7 +8,7 @@ Grab an example and see the included README for instructions on how to quickly g
 
 | Platform                                                                                                                                       | Needs server? | Needs webhooks? |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------- |
-| **[🔌 Local dev (websockets)](https://github.com/valgaze/speedybot-mini/blob/deploy/examples/speedybot-startert5/README.md)**                  | ❌            | ❌              |
+| **[🔌 Local dev (websockets)](https://github.com/valgaze/speedybot-mini/blob/deploy/examples/speedybot-starter/README.md)**                    | ❌            | ❌              |
 | **[💻 Deploy to Simple Express Server](https://github.com/valgaze/speedybot-mini/blob/deploy/examples/simple-server/README.md)**               | ✅            | ✅              |
 | **[λ Deploy to AWS Lamda](https://github.com/valgaze/speedybot-mini/blob/deploy/examples/lambda/README.md)** using **[SST](https://sst.dev/)** | ❌            | ✅              |
 | **[🔥 Deploy to Worker](https://github.com/valgaze/speedybot-mini/blob/deploy/examples/worker/README.md)**                                     | ❌            | ✅              |

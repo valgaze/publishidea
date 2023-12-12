@@ -5,8 +5,7 @@ outline: deep
 
 ## Webhooks
 
-Webhooks are the "glue" that connect your agent to your users. You will need
-your server's publically-accessible hostname in order to register a webhook.
+Webhooks are the "glue" that connect your agent to your users. Note that to use webhooks (rather than websockets), you will need a publically-accessible hostname in order to register a webhook.
 
 If you use a **[secret](https://developer.webex.com/blog/using-a-webhook-secret)** with your webhook (which you should), see **[Securing Webhooks](#securing-webhooks)** for information about how to validate the secret passed on payloads.
 
@@ -38,10 +37,10 @@ Note: All of the samples in the **[examples directory](./examples/README.md)** o
 
 ::: code-group
 
-```ts [validateSignature.ts]
+```ts [validateWebhook.ts]
 import crypto from "crypto";
 
-export const validateSignature = <T = any>(
+export const validateWebhook = <T = any>(
   signature: string,
   secret: string,
   requestBody: T
@@ -57,7 +56,7 @@ export const validateSignature = <T = any>(
 };
 ```
 
-```js [validateWebhook.js (plain js)]
+```js [validateWebhook.js (plain/common js)]
 const crypto = require("crypto");
 
 // validate signature
@@ -99,7 +98,7 @@ console.log("is valid?", res);
 ## Web Crypto (for "Workers", V8 Isolates)
 
 ```js
-const validateSignature = async (secret, signature, requestData) => {
+const validateWebhook = async (secret, signature, requestData) => {
   const stringyBody =
     typeof requestData !== "string" ? JSON.stringify(requestData) : requestData;
   const algo = {
@@ -143,7 +142,7 @@ const requestBody = {
 };
 const secret = "myBongoSecret";
 
-const res = validateSignature(
+const res = validateWebhook(
   secret,
   requestBody.signature,
   requestBody.data

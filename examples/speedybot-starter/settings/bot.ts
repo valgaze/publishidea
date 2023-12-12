@@ -169,19 +169,13 @@ Bot.addStep(async ($) => {
       name: $.author.name,
     };
     await $.send($.fillTemplate(utterances, template));
-    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/${Bot.pickRandom(
-      [
-        "logo.jpeg",
-        "logo2.jpeg",
-        "logo3.jpeg",
-        "logo4.jpeg",
-        "logo5.jpeg",
-        "logo6.jpeg",
-        "logo7.jpeg",
-        "logo8.jpeg",
-        "logo9.jpeg",
-      ]
-    )}`;
+
+    Bot;
+
+    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo${$.pickRandom(
+      1,
+      34
+    )}.jpeg}`;
 
     const introCard = $.card()
       .addHeader("🤖 SpeedyBot")

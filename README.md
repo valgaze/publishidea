@@ -1,21 +1,3 @@
-## Deployment bug
-
-- deploy.yml: npm i >> npm ci
-- package.json has "@rollup/rollup-linux-x64-gnu": "latest"
-- package-lock.json has "@rollup/rollup-linux-x64-gnu": "latest" from npm i --force
-
-- TODO:
-- `swap the base on config.mts: base: "/publishidea/", // repo name
-- Find: speedybot & terrifabot tokens
-- Change Speedybot card pathing (once speedybot.js.org/speedycard?card=abc is 1000% working) and add to intro bot
-- I think we'll want a cli that can clone (w/o git) the zip and pluck out a path
-
-## other stuff
-
-- Update announcement card code to use nice pathing to speedybot.js.org/speedycard?card=ah-rth
-- Update annoucnemen card to say
-- SERVERLESS: Finally, WebEx bots w/o a running server (but you can definitely put it on a traditional server)
-
 # SpeedyBot 2.0
 
 <p align="center">

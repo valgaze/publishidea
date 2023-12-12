@@ -7,3 +7,5 @@ dist/
 abc.ts
 .vitepress/cache
 docs/.vitepress/cache
+coverage/
+todo.md

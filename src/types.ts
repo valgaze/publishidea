@@ -114,6 +114,9 @@ export type $Magic<T = AttachedData> = {
   sendURL: (url: string, fallbackText: string) => Promise<MessageResponse>;
   card: (config?: Partial<AbbreviatedSpeedyCard>) => SpeedyCard;
   edit: (m: MessageResponse, e: string) => Promise<MessageResponse>;
+  pickRandom<P>(list: P[]): P;
+  pickRandom<P>(min: number, max: number): number;
+  pickRandom<P>(listOrMin: P[] | number, max?: number): P | number;
   sendFile: <T = unknown>(
     data: T,
     fileExtension: string

@@ -465,6 +465,15 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
 \`\`\``;
           return msg;
         },
+        pickRandom: <T>(listOrMin: T[] | number, max?: number): T | number => {
+          if (Array.isArray(listOrMin)) {
+            const items = listOrMin as T[];
+            return items[Math.floor(Math.random() * items.length)];
+          } else {
+            const min = listOrMin as number;
+            return Math.floor(Math.random() * (max! - min + 1)) + min;
+          }
+        },
         async sendFile<T = unknown>(data: T, fileExtension: string) {
           return botInst.sendFileTo(roomId, data, fileExtension);
         },
@@ -1379,13 +1388,6 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
     return res;
   }
 
-  public pickRandom(list: any[] = []) {
-    if (!Array.isArray(list) || list.length === 0) {
-      return "";
-    }
-    return list[Math.floor(Math.random() * list.length)];
-  }
-
   fuzzyMatch(candidate: string, options: string[]): boolean {
     const lowerCaseCandidate = candidate.toLowerCase();
     return options.some((option) =>
@@ -1426,3 +1428,22 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
     return this.card().addHeader(appName, { iconURL: logoUrl, ...config });
   }
 }
+
+function pickRandom<T>(list: T[]): T;
+function pickRandom<T>(min: number, max: number): number;
+function pickRandom<T>(listOrMin: T[] | number, max?: number): T | number {
+  if (Array.isArray(listOrMin)) {
+    const items = listOrMin as T[];
+    return items[Math.floor(Math.random() * items.length)];
+  } else {
+    const min = listOrMin as number;
+    return Math.floor(Math.random() * (max! - min + 1)) + min;
+  }
+}
+
+// Examples
+const randomFromList = pickRandom(["a", "b", { a: 555 }, 5]); // string | number
+const randomNumberInRange = pickRandom(0, 10); // number
+console.log("randomFromList", randomFromList);
+
+console.log("randomNumberInRange", randomNumberInRange);
