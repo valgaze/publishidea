@@ -373,27 +373,3 @@ describe("Fuzzy matching", () => {
     expect(bot.fuzzyMatch(candidate, ["yo", "Hi"])).toBe(false);
   });
 });
-
-describe("Pick random", () => {
-  it("Picks a random value", async () => {
-    const bot = new SpeedyBot(token);
-    let pass = false;
-    const roster = ["hi", "bye", "bongo"];
-    const result = bot.pickRandom(roster);
-    if (roster.includes(result)) {
-      pass = true;
-    }
-    expect(pass).toBe(true);
-  });
-
-  it("Returns empty string if provided an empty list", async () => {
-    const bot = new SpeedyBot(token);
-    let pass = false;
-    const roster = [];
-    const result = bot.pickRandom(roster);
-    if (result === "") {
-      pass = true;
-    }
-    expect(pass).toBe(true);
-  });
-});

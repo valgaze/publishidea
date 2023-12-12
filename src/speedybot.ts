@@ -137,6 +137,19 @@ export class SpeedyBot<S extends string = string> {
     this.topMiddleware = middleware;
   }
 
+  pickRandom<P>(list: P[]): P;
+  pickRandom<P>(min: number, max: number): number;
+  pickRandom<P>(listOrMin: P[] | number, max?: number): P | number;
+  pickRandom<P>(listOrMin: P[] | number, max?: number): P | number {
+    if (Array.isArray(listOrMin)) {
+      const items = listOrMin as P[];
+      return items[Math.floor(Math.random() * items.length)];
+    } else {
+      const min = listOrMin as number;
+      return Math.floor(Math.random() * (max! - min + 1)) + min;
+    }
+  }
+
   /**
    * Core middleware, it MUST return true (continues chain) or false
    * 
@@ -504,7 +517,7 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
         ) {
           let payload;
           if (typeof utterances !== "string") {
-            payload = botInst.pickRandom(utterances) || "";
+            payload = this.pickRandom(utterances) || "";
           } else {
             payload = utterances;
           }
@@ -1428,22 +1441,3 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
     return this.card().addHeader(appName, { iconURL: logoUrl, ...config });
   }
 }
-
-function pickRandom<T>(list: T[]): T;
-function pickRandom<T>(min: number, max: number): number;
-function pickRandom<T>(listOrMin: T[] | number, max?: number): T | number {
-  if (Array.isArray(listOrMin)) {
-    const items = listOrMin as T[];
-    return items[Math.floor(Math.random() * items.length)];
-  } else {
-    const min = listOrMin as number;
-    return Math.floor(Math.random() * (max! - min + 1)) + min;
-  }
-}
-
-// Examples
-const randomFromList = pickRandom(["a", "b", { a: 555 }, 5]); // string | number
-const randomNumberInRange = pickRandom(0, 10); // number
-console.log("randomFromList", randomFromList);
-
-console.log("randomNumberInRange", randomNumberInRange);

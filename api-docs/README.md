@@ -2,6 +2,18 @@ speedybot / [Exports](modules.md)
 
 # SpeedyBot 2.0
 
+<p align="center">
+  <a href="https://www.npmjs.org/package/element-plus">
+    <img src="https://img.shields.io/npm/v/speedybot.svg" />
+  </a>
+  <a href="https://github.com/element-plus/element-plus">
+    <img src="https://img.shields.io/badge/node-%20%3E%3D%2016-47c219" />
+  </a>
+  <a href="https://npmcharts.com/compare/element-plus?minimal=true">
+    <img src="https://img.shields.io/npm/dm/speedybot.svg" />
+  </a>
+</p>
+
 <img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg?raw=true" />
 
 ## Setup
