@@ -51,7 +51,7 @@
     "test:coverage:ui": "npm run test:coverage && cd coverage && npx serve -p 8001",
     "test:nowatch": "vitest run",
     "docs:dev": "vitepress dev docs --host",
-    "docs:build": "npm run docs:copy && vitepress build docs",
+    "docs:build": "vitepress build docs",
     "docs:copy": "ts-node build_tricks/copy_rewrite.ts",
     "docs:preview": "vitepress preview docs",
     "docs:localbuild": "npm run docs:build && cd docs/.vitepress/dist && npx serve -p 1337"
