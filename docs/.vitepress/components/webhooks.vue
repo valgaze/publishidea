@@ -1,71 +1,76 @@
 <template>
   <div>
     <client-only>
-      <el-dialog title="Register Webhook" v-model="showWebhooksForm">
-        <el-form :model="webhooksForm">
-          <el-form-item label="URL" prop="url">
-            <el-input
-              v-model="webhooksForm.url"
-              placeholder="https://username.abc.com/endpoint"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="(optional) secret" prop="secret">
-            <el-input
-              v-model="webhooksForm.secret"
-              placeholder="secret"
-            ></el-input>
-          </el-form-item>
-          <el-button @click="showWebhooksForm = false">Cancel</el-button>
-          <el-button type="primary" @click="submit">Confirm</el-button>
-        </el-form>
-      </el-dialog>
+      <Blur :should-blur="!store.state.tokenValid">
+        <el-dialog title="Register Webhook" v-model="showWebhooksForm">
+          <el-form :model="webhooksForm">
+            <el-form-item label="URL" prop="url">
+              <el-input
+                v-model="webhooksForm.url"
+                placeholder="https://username.abc.com/endpoint"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="(optional) secret" prop="secret">
+              <el-input
+                v-model="webhooksForm.secret"
+                placeholder="secret"
+              ></el-input>
+            </el-form-item>
+            <el-button @click="showWebhooksForm = false">Cancel</el-button>
+            <el-button type="primary" @click="submit">Confirm</el-button>
+          </el-form>
+        </el-dialog>
+        <el-row>
+          <el-button
+            type="primary"
+            plain
+            @click="promptNewWebhook"
+            :icon="CirclePlusFilled"
+            :disabled="!store.state.tokenValid"
+            >Add New Webhook</el-button
+          >
+          <el-button
+            type="primary"
+            :icon="Download"
+            plain
+            @click="webhooksFetch"
+            :disabled="!store.state.tokenValid"
+            >Fetch Webhooks</el-button
+          >
+          <el-button
+            type="danger"
+            plain
+            @click="webhooksDeleteAll"
+            :disabled="!store.state.tokenValid"
+            >🔥 Delete All Webhooks</el-button
+          >
+        </el-row>
+        <el-container
+          element-loading-text="Performing webhook operation..."
+          style="border: 1px solid #eee"
+        >
+          <el-table :data="webhooksList" stripe>
+            <el-table-column prop="name" label="Name"></el-table-column>
+            <el-table-column prop="url" label="url"></el-table-column>
+            <el-table-column prop="resource" label="Resource"></el-table-column>
+            <el-table-column
+              prop="hasSecret"
+              label="Has Secret?"
+            ></el-table-column>
+            <el-table-column label="Delete">
+              <template #default="scope">
+                <el-button
+                  size="small"
+                  type="danger"
+                  @click="handleDelete(scope.row)"
+                  >Delete</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-container>
+      </Blur>
     </client-only>
-    <el-row>
-      <el-button
-        type="primary"
-        plain
-        @click="promptNewWebhook"
-        :icon="CirclePlusFilled"
-        :disabled="!store.state.tokenValid"
-        >Add New Webhook</el-button
-      >
-      <el-button
-        type="primary"
-        :icon="Download"
-        plain
-        @click="webhooksFetch"
-        :disabled="!store.state.tokenValid"
-        >Fetch Webhooks</el-button
-      >
-      <el-button
-        type="danger"
-        plain
-        @click="webhooksDeleteAll"
-        :disabled="!store.state.tokenValid"
-        >🔥 Delete All Webhooks</el-button
-      >
-    </el-row>
-    <el-container
-      element-loading-text="Performing webhook operation..."
-      style="border: 1px solid #eee"
-    >
-      <el-table :data="webhooksList" stripe>
-        <el-table-column prop="name" label="Name"></el-table-column>
-        <el-table-column prop="url" label="url"></el-table-column>
-        <el-table-column prop="resource" label="Resource"></el-table-column>
-        <el-table-column prop="hasSecret" label="Has Secret?"></el-table-column>
-        <el-table-column label="Delete">
-          <template #default="scope">
-            <el-button
-              size="small"
-              type="danger"
-              @click="handleDelete(scope.row)"
-              >Delete</el-button
-            >
-          </template>
-        </el-table-column>
-      </el-table>
-    </el-container>
   </div>
 </template>
 
@@ -78,7 +83,8 @@ v-if="tokenStatus"
 <script lang="ts" setup>
 import { ref, watch, onMounted } from "vue";
 import { useCustomStore } from "../util/store";
-import { Webhook } from "./../../../src/types";
+// import { Webhook } from "./../../../src/types";
+import Blur from "./Blur.vue";
 import { ElLoading, ElMessage, ElMessageBox } from "element-plus";
 import { CirclePlusFilled, Download } from "@element-plus/icons-vue";
 const store = useCustomStore();

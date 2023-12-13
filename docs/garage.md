@@ -44,12 +44,7 @@ Note: Afer you send the card to someone, if you want to collect the data from <a
 <SendMsg  :skipTokenCheck="true" :msg="jsonData" />
 </el-tab-pane>
 <el-tab-pane label="Webhooks" name="webhook">
-<Blur :shouldBlur="!store.state.tokenValid">
-
 <Webhooks> </Webhooks>
-
-</Blur>
-
 </el-tab-pane>
 </el-tabs>
 
