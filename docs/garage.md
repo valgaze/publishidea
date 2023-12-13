@@ -60,7 +60,7 @@ import { inBrowser } from 'vitepress';
 import { useData } from 'vitepress'
 import TokenInput from './.vitepress/components/token_handler.vue'
 import Webhooks from './.vitepress/components/webhooks.vue'
-import Blur from './.vitepress/components/blur.vue'
+import Blur from './.vitepress/components/Blur.vue'
 import AdaptiveCardRender from './.vitepress/components/adaptivecard.vue'
 import { useCustomStore } from './.vitepress/util/store'
 import SendMsg from './.vitepress/components/sendMsg.vue'
