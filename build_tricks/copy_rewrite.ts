@@ -1,40 +1,47 @@
-const fs = require("fs-extra");
-const path = require("path");
+import * as fs from "fs-extra";
+import * as path from "path";
 
-const sourceDir = "src/examples";
-const destinationDir = "src/docs/examples";
+const sourceDir = path.resolve(__dirname, "../examples");
+const destinationDir = path.resolve(__dirname, "../docs/examples");
 
-// Function to update asset paths in a given file
-const updateAssetPaths = (filePath) => {
-  const content = fs.readFileSync(filePath, "utf-8");
-  const updatedContent = content.replace(
-    /\.\.\/\.\.\/assets\//g,
-    "../../assets/"
-  );
-  fs.writeFileSync(filePath, updatedContent);
+const updateAssetPaths = async (filePath: string): Promise<void> => {
+  try {
+    const content = await fs.readFile(filePath, "utf-8");
+    const updatedContent = content.replace(
+      /\.\.\/\.\.\/assets\//g,
+      "../../assets/"
+    );
+    await fs.writeFile(filePath, updatedContent);
+  } catch (err) {
+    console.error("Error updating asset paths:", err);
+  }
 };
 
-// Function to copy and update files in a directory
-const copyAndUpdateFiles = async () => {
+const copyAndUpdateFiles = async (): Promise<void> => {
   try {
     const files = await fs.readdir(sourceDir);
-
+    console.log("#", files);
     // Create destination directory if it doesn't exist
     await fs.ensureDir(destinationDir);
 
     // Copy and update each file
-    for (const file of files) {
-      const sourcePath = path.join(sourceDir, file);
-      const destinationPath = path.join(
-        destinationDir,
-        file.replace(/\.md$/, "/index.md")
-      );
+    await Promise.all(
+      files.map(async (file) => {
+        const sourcePath = path.resolve(sourceDir, file);
+        const destinationPath = path.resolve(
+          destinationDir,
+          file.replace(/\.md$/, "/index.md")
+        );
 
-      await fs.copy(sourcePath, destinationPath);
+        const stats = await fs.stat(sourcePath);
 
-      // Update asset paths in the copied file
-      updateAssetPaths(destinationPath);
-    }
+        if (stats.isFile()) {
+          // Copy and update only if it's a file
+          await fs.copy(sourcePath, destinationPath);
+          await updateAssetPaths(destinationPath);
+        }
+      })
+    );
 
     console.log("Files copied and updated successfully.");
   } catch (err) {
