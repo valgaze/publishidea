@@ -111,6 +111,7 @@ const initParent = (editor) => {
 }
 const handleSelected = async (codeSnippet) => {
   if (!pageReady.value) {
+    console.log('yar',pageReady.value)
       pageReady.value = true
   }
   if (editorRef) {
