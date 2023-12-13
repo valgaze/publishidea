@@ -112,8 +112,12 @@ const initParent = (editor) => {
   pageReady.value = true
 }
 const handleSelected = (codeSnippet) => {
+  console.log('wah!', codeSnippet)
   if (editorRef) {
-    editorRef.setValue(codeSnippet)
+    setTimeout(() => {
+          editorRef.setValue(codeSnippet)
+    })
+
   }
 }
 </script>
