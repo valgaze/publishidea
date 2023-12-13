@@ -58,7 +58,7 @@ Heads up-- a personal access token will self-destruct after 12 hours
 
 <script setup>
 import { SpeedyBot } from './../src/index.ts'
-import { defineAsyncComponent, ref, nextTick, watch, onMounted} from 'vue';
+import { defineAsyncComponent, ref, watch, onMounted} from 'vue';
 import { inBrowser } from 'vitepress';
 import { useData } from 'vitepress'
 import { SpeedyCard } from './../src/cards.ts'
@@ -115,7 +115,7 @@ const handleSelected = async (codeSnippet) => {
       pageReady.value = true
   }
   if (editorRef) {
-    await nextTick()
+    // await nextTick()
     editorRef.setValue(codeSnippet)
   }
 }
