@@ -22,6 +22,7 @@
     "@vitest/ui": "^0.32.2",
     "adaptivecards": "2.11.1",
     "element-plus": "^2.3.10",
+    "fs-extra": "^11.2.0",
     "monaco-editor": "^0.41.0",
     "ts-jest": "^29.0.3",
     "ts-node-dev": "^2.0.0",
@@ -50,7 +51,8 @@
     "test:coverage:ui": "npm run test:coverage && cd coverage && npx serve -p 8001",
     "test:nowatch": "vitest run",
     "docs:dev": "vitepress dev docs --host",
-    "docs:build": "vitepress build docs",
+    "docs:build": "npm run docs:copy && vitepress build docs",
+    "docs:copy": "cp examples/lambda/README.md docs/examples/lambda/index.md && cp examples/llm-stream/README.md docs/examples/llm-stream/index.md && cp examples/simple-server/README.md docs/examples/simple-server/index.md && cp examples/speedybot-starter/README.md docs/examples/speedybot-starter/index.md && cp examples/voiceflow/README.md docs/examples/voiceflow/index.md && cp examples/voiceflow-kb/README.md docs/examples/voiceflow-kb/index.md && cp examples/worker/README.md docs/examples/worker/index.md && cp examples/deno/README.md docs/examples/deno/index.md",
     "docs:preview": "vitepress preview docs",
     "docs:localbuild": "npm run docs:build && cd docs/.vitepress/dist && npx serve -p 1337"
   },

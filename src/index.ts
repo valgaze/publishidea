@@ -21,6 +21,7 @@ export const CONSTANTS = {
 export type { SurveyQuestion, SurveyQuestionType } from "./cards";
 
 export const botTokenKey = "BOT_TOKEN";
+export const botPlaceholder = "__REPLACE__ME__";
 
 import { RequestOps } from "./types";
 
