@@ -1,41 +1,41 @@
 {
-  "hash": "4747f0a8",
-  "browserHash": "e5570253",
+  "hash": "3f111208",
+  "browserHash": "99d436f3",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "593e55b8",
+      "fileHash": "1cbc4048",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "33d32de9",
+      "fileHash": "709fd148",
       "needsInterop": false
     },
     "adaptivecards": {
       "src": "../../../../node_modules/adaptivecards/lib/adaptivecards.js",
       "file": "adaptivecards.js",
-      "fileHash": "617857c3",
+      "fileHash": "12eb6130",
       "needsInterop": true
     },
     "element-plus": {
       "src": "../../../../node_modules/element-plus/es/index.mjs",
       "file": "element-plus.js",
-      "fileHash": "47b36f07",
-      "needsInterop": false
-    },
-    "monaco-editor": {
-      "src": "../../../../node_modules/monaco-editor/esm/vs/editor/editor.main.js",
-      "file": "monaco-editor.js",
-      "fileHash": "e44ea3c4",
+      "fileHash": "4aa33d2a",
       "needsInterop": false
     },
     "@element-plus/icons-vue": {
       "src": "../../../../node_modules/@element-plus/icons-vue/dist/index.js",
       "file": "@element-plus_icons-vue.js",
-      "fileHash": "6066434b",
+      "fileHash": "b073d7a0",
+      "needsInterop": false
+    },
+    "monaco-editor": {
+      "src": "../../../../node_modules/monaco-editor/esm/vs/editor/editor.main.js",
+      "file": "monaco-editor.js",
+      "fileHash": "be1edcc5",
       "needsInterop": false
     }
   },
