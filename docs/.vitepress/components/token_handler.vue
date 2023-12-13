@@ -3,7 +3,7 @@
     <div>
       <el-input
         v-model="store.state.token"
-        @input="omg(store.state.token)"
+        @input="checkToken(store.state.token)"
         placeholder="ex. MjhM5ZDVs3VJnsmMzVjYz..."
         show-password
         :autofocus="autofocus"
@@ -67,7 +67,7 @@ import { useCustomStore } from "./../util/store";
 const store = useCustomStore();
 
 const emit = defineEmits();
-const omg = async (tokenCandidate: string) => {
+const checkToken = async (tokenCandidate: string) => {
   if (tokenCandidate.length > 5) {
     await store.validateToken(tokenCandidate);
     if (store.state.tokenValid) {
