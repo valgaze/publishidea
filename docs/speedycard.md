@@ -115,8 +115,7 @@ const handleSelected = async (codeSnippet) => {
       pageReady.value = true
   }
   if (editorRef) {
-    // await nextTick()
-    editorRef.setValue(codeSnippet)
+    setTimeout(() => editorRef.setValue(codeSnippet)) 
   }
 }
 </script>
