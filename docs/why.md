@@ -14,6 +14,18 @@ You may need some rad functionality, you should be able to do ENOUGH just with t
 
 Focus on content, FEATURES, integartion what the agent can do on the user's behalf that's useful + valuable
 
+SpeedyBot is like the picture frame-- you put took the photo or made the drawing or whatever and you put it on the wall. Now, the frame matters of course, you can decorate (the same way you can use SpeedyBot to fit into your existing workflows/systems)
+
+You can depend on SpeedyBot, but SpeedyBot doesn't depend on...anything
+
+SpeedyBot is MIT-licensed (the code's easy to read and you can just copy/paste it directly and ride off into the sunset) and has zero external depencies
+
+Without any additional 3rd-party packages
+
+## Is this an "official" product
+
+1000% no
+
 # Infra changed too
 
 Just throw it on a worker
