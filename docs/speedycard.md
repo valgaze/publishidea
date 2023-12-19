@@ -26,9 +26,7 @@ Note: Afer you send the card to someone, if you want to collect the data from <a
 <el-tab-pane label="JSON (output)" name="json">
 
 ```json-vue
-
 {{ typeof jsonData === 'object' ? JSON.stringify(jsonData, null, 2) : jsonData }}
-
 ```
 
 </el-tab-pane>
