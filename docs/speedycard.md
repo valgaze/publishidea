@@ -106,7 +106,9 @@ const initParent = (editor) => {
     const paramToIdx = cardRoster.findIndex(x => x === card)
     rootRef.value.rollDice(paramToIdx)
   }
+
   pageReady.value = true
+  console.log("##pageReady.value", pageReady.value)
 }
 const handleSelected = async (codeSnippet) => {
   if (editorRef) {
