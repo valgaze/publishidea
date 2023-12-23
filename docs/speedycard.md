@@ -58,7 +58,7 @@ Heads up-- a personal access token will self-destruct after 12 hours
 
 <script setup>
 import { SpeedyBot } from './../src/index.ts'
-import { defineAsyncComponent, ref, nextTick, watch, onMounted} from 'vue';
+import { defineAsyncComponent, ref, watch, onMounted} from 'vue';
 import { inBrowser } from 'vitepress';
 import { useData } from 'vitepress'
 import { SpeedyCard } from './../src/cards.ts'
@@ -108,15 +108,12 @@ const initParent = (editor) => {
     const paramToIdx = cardRoster.findIndex(x => x === card)
     rootRef.value.rollDice(paramToIdx)
   }
+
+  pageReady.value = true
 }
-const handleSelected = async (codeSnippet) => {
-  if (!pageReady.value) {
-    console.log('yar',pageReady.value)
-      pageReady.value = true
-  }
+const handleSelected = (codeSnippet) => {
   if (editorRef) {
-    //GHPAGES HACK
-    setTimeout(() => editorRef.setValue(codeSnippet), 0)
+    editorRef.setValue(codeSnippet)
   }
 }
 </script>
