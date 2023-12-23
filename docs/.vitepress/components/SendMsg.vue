@@ -15,7 +15,7 @@
 
     <slot v-if="!store.state.tokenValid"></slot>
 
-    <blur :should-blur="!store.state.tokenValid">
+    <Blur :should-blur="!store.state.tokenValid">
       <el-form label-position="left">
         <el-form-item label="Destination" prop="message">
           <CompactPicker
@@ -33,7 +33,7 @@
           </div>
         </el-form-item>
       </el-form>
-    </blur>
+    </Blur>
   </client-only>
 </template>
 

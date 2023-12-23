@@ -1,11 +1,9 @@
 <template>
-  <client-only>
-    <div
-      ref="editor"
-      id="boomy"
-      :style="{ width: config.width, height: config.height }"
-    ></div>
-  </client-only>
+  <div
+    ref="editor"
+    id="boomy"
+    :style="{ width: config.width, height: config.height }"
+  ></div>
 </template>
 
 <script lang="ts" setup>
