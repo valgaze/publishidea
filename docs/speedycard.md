@@ -26,7 +26,9 @@ Note: Afer you send the card to someone, if you want to collect the data from <a
 <el-tab-pane label="JSON (output)" name="json">
 
 ```json-vue
+
 {{ typeof jsonData === 'object' ? JSON.stringify(jsonData, null, 2) : jsonData }}
+
 ```
 
 </el-tab-pane>
@@ -56,7 +58,7 @@ Heads up-- a personal access token will self-destruct after 12 hours
 
 <script setup>
 import { SpeedyBot } from './../src/index.ts'
-import { defineAsyncComponent, ref, watch, onMounted} from 'vue';
+import { defineAsyncComponent, ref, nextTick, watch, onMounted} from 'vue';
 import { inBrowser } from 'vitepress';
 import { useData } from 'vitepress'
 import { SpeedyCard } from './../src/cards.ts'
@@ -106,13 +108,15 @@ const initParent = (editor) => {
     const paramToIdx = cardRoster.findIndex(x => x === card)
     rootRef.value.rollDice(paramToIdx)
   }
-
-  pageReady.value = true
-  console.log("##pageReady.value", pageReady.value)
 }
 const handleSelected = async (codeSnippet) => {
+  if (!pageReady.value) {
+    console.log('yar',pageReady.value)
+      pageReady.value = true
+  }
   if (editorRef) {
-    setTimeout(() => editorRef.setValue(codeSnippet)) 
+    //GHPAGES HACK
+    setTimeout(() => editorRef.setValue(codeSnippet), 0)
   }
 }
 </script>
