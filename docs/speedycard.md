@@ -24,9 +24,7 @@ Note: Afer you send the card to someone, if you want to collect the data from <a
 <el-tab-pane label="JSON (output)" name="json">
 
 ```json-vue
-
 {{ typeof jsonData === 'object' ? JSON.stringify(jsonData, null, 2) : jsonData }}
-
 ```
 
 </el-tab-pane>
@@ -59,7 +57,6 @@ import { inBrowser } from 'vitepress';
 import { useData } from 'vitepress'
 import { SpeedyCard } from './../src/cards.ts'
 import AdaptiveCardRender from './.vitepress/components/adaptivecard.vue'
-import Blur from './.vitepress/components/Blur.vue'
 import SendMsg from './.vitepress/components/SendMsg.vue'
 import CompactSelect from './.vitepress/components/CompactSelect.vue';
 import { getRandomSpeedyCard, samples, cardRoster} from './.vitepress/util/samples'
@@ -106,6 +103,7 @@ const initParent = (editor) => {
   }
 
   pageReady.value = true
+  console.log("##pageReady.value", pageReady.value)
 }
 const handleSelected = (codeSnippet) => {
   if (editorRef) {
