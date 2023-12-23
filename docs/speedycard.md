@@ -10,8 +10,6 @@ ref="rootRef"
 :labelValuePairs="samples"
 @selected="handleSelected"></compact-select>
 
-<Blur :shouldBlur="!pageReady" class="blur-transition">
-
 <el-tabs v-model="activeName" :class="{'is-dark': isDark}">
 <el-tab-pane label="SpeedyCard editor" name="editor">
 
@@ -53,8 +51,6 @@ Heads up-- a personal access token will self-destruct after 12 hours
 </SendMsg>
 </el-tab-pane>
 </el-tabs>
-
-</Blur>
 
 <script setup>
 import { SpeedyBot } from './../src/index.ts'
