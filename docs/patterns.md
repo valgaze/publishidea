@@ -2,7 +2,7 @@
 
 A SpeedyBot Listener is made up a sequence of steps, so if you want to add functionality to your Bot, you can just "snap-in" on a new step and then do whatever you want.
 
-Below are snippets which should get you up and running-- you just grab them and get going
+Below are snippets which should get you up and running-- you just grab them and drop into your bot.ts and get going
 
 Tip: you can copy/paste this document into a large language model to get better code suggestions
 
@@ -19,6 +19,8 @@ Tip: you can copy/paste this document into a large language model to get better 
 ```
 npm install speedybot
 ```
+
+See **[/new](./new.md)** for easy to follow instructions to go from zero to a bot you can extend and customize however you want
 
 ## Send a message, card (static file)
 
@@ -69,7 +71,7 @@ Note: here we are not responding to user data, but rather self-contained sending
 
 Below you can see how to restrict for specific swatchs of email domains, could target specific individuals or call out to another system for additional authentication/authorization checks, etc
 
-Tip: To put this at the front of your middleware stack, try `Bot.insertStepToFront`
+Tip: To make sure this triggers at the front front of your middleware stack, try swapping `Bot.addStep` with `Bot.insertStepToFront`
 
 ```ts
 import { SpeedyBot } from "speedybot";
@@ -105,6 +107,11 @@ Bot.addStep(async ($) => {
     console.log(`Access Request: ${JSON.stringify(payload)}`);
     return $.end;
   }
+  return $.next;
+});
+
+Bot.addStep(async ($) => {
+  await $.send("You're in!");
   return $.next;
 });
 ```

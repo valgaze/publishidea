@@ -59,7 +59,7 @@ async function validateToken(tokenCandidate: string): Promise<void | boolean> {
   });
 
   try {
-    const isValid = await BotInst.getSelf(tokenCandidate.trim());
+    const isValid = await BotInst.getSelf(tokenCandidate.trim()); // trim bc lots of people have newlines/spaces
     if (isValid.id) {
       store.tokenValid = true;
       if (store.tokenValid) {

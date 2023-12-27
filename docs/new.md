@@ -1,8 +1,8 @@
 # "I'm new here" 🐣
 
-Follow the quick 3-step setup below to go from zero to a SpeedyBot running on your machine (which you can later if necessary to deploy to any infrastructure you want)
+Follow the quick 3-step setup below to go from zero to a SpeedyBot running on your machine (which you can later to deploy to any infrastructure you want if needed)
 
-## Step I: Acquiring Your Access Token
+## Step I: Grab Your Access Token
 
 - You'll need a WebEx account to build bots— if you don't have one one, sign up for a new account **[here](https://signup.webex.com/sign-up)**
 
@@ -86,15 +86,13 @@ SpeedyBot does **NOT** log/persist or do anything (except what you tell it to do
 
 - In fact, any user interaction with {{ store.state.userData?.emails[0] ?? 'your bot'}} right now— be it a message, SpeedyCard submission, or file upload, results in icy radio silence
 
-- That's because there's nobody "home"-- what we'll do now is setup a "listener" so anytime someone messages your bot it will respond back automatically per your instructions
+- That's because there's nobody "home" to answer the request-- you can use SpeedyBot to "listen" so anytime someone interacts with your bot it will respond back automatically per your instructions
 
 ## Run your bot from your computer
 
-- You need SpeedyBot to "listen" for incoming messages (card, text, file, whatever) and to do that you'll need to turn on
+- Keeping things simple to start you'll run the bot from your machine (ie when your computer is off your bot is "off") but later if you need to, you can deploy it to virtually **[any standard server or scalable serverless cloud infrastructure you want](./examples/README.md)**
 
-- To keep things simple to start, we'll run the bot from your machine (ie when your computer is off your bot is off) but later if you need to, you can deploy it to virtually **[any standard server-ful or scalable serverless cloud infrastructure you want](#im-new-here-🐣d)**
-
-Copy the commands below.
+Copy the commands below to get up and running
 
 ::: code-group
 

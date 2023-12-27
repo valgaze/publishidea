@@ -603,6 +603,9 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
     return true;
   }
 
+  /**
+   * @hidden
+   */
   private resolveDestination(
     candidate: string | { personId: string }
   ): { toPersonEmail: string } | { roomId: string } | { toPersonId: string } {
@@ -1054,6 +1057,10 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
   }
 
   // Incoming webhook details
+
+  /**
+   * @hidden
+   */
   private async buildDetails(
     type: "card" | "text" | "file",
     envelope: ENVELOPES
@@ -1099,6 +1106,9 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
     return json;
   }
 
+  /**
+   * @hidden
+   */
   private async getData(
     type: EventTypes,
     envelope: ENVELOPES
@@ -1142,6 +1152,9 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
     return Math.random().toString(36).slice(2);
   }
 
+  /**
+   * @hidden
+   */
   private handleExtension(input = "") {
     const hasDot = input.indexOf(".") > -1;
     let fileName = "";
@@ -1345,6 +1358,7 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
     );
     return { url, ...this.extractFiledata(res as StubbedRes) };
   }
+
   /**
    * @hidden
    */
