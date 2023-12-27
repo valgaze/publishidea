@@ -1,6 +1,6 @@
 # "I'm new here" 🐣
 
-Before all that though, let's keep things straightforward with a quick 3-step setup:
+Follow the quick 3-step setup below to go from zero to a SpeedyBot running on your machine (which you can later if necessary to deploy to any infrastructure you want)
 
 ## Step I: Acquiring Your Access Token
 
@@ -62,7 +62,7 @@ SpeedyBot does **NOT** log/persist or do anything (except what you tell it to do
 
 - When you're ready, tap the **Send Message** tab and use the email you signed up with as the destination and hit Send-- in about a second you should receive a new message from your bot
 
-## Step III: Setup your bot listener
+## Step III: Setup your SpeedyBot Listener
 
 <el-alert
     title="⛔️ Nobody is listening"
@@ -141,135 +141,7 @@ You can customize this however you want by editing the file **[settings/bot.ts](
 
 Turn off your bot by tapping CTRL-C, to
 
-Follow the steps below to run a listener on your local machine
-
-::: details 📌 Sending Adaptive Cards: Personal Access Token
-
-Did you know there's a nifty way to send adaptive cards using a your own accont instead of your bot's?
-
-Check out the process here: <a href="https://developer.webex.com/docs/getting-your-personal-access-token" style="color:#646cff;text-decoration: bold;">https://developer.webex.com/docs/getting-your-personal-access-token</a>
-
-Heads up-- unlike your bot token we're using right now, a personal access token will self-destruct after 12 hours
-
-:::
-
-Follow the instructions in new.md to obtain your access token.
-Use the token to send yourself a SpeedyCard.
-Step II: Setting Up Your Bot
-
-Head over to new2.md and configure your own bot.
-Watch it spring to life, responding dynamically to user interactions.
-
-It doesn't matter if you're a rookie who's never written a line of code before or a seasoned pro just looking to build bots rather than just read docs, the quickstart guide below should get you squared away with everything you need.
-
-To keep things simple, setup is broken up into two steps:
-
-## Step 1: Get your bot's token
-
-- You'll need a WebEx account to build bots—— if you don't have one one, sign up for a new account **[here](https://signup.webex.com/sign-up)**
-
-- Create a new bot and copy its access token from here: **[https://developer.webex.com/my-apps/new/bot](https://developer.webex.com/my-apps/new/bot)**
-
-<img src="./assets/build_a_bot.gif" :style="{ filter: isDark ? 'invert(1)' : 'none' }" style="display: inline-block; max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding:10px;" />
-
-## Step 2: Validate your bot's token
-
-Once you have a token, you can validate it below:
-
-<img src="./assets/regen_token.gif" :style="{ filter: isDark ? 'invert(1)' : 'none' }" style="display: inline-block; max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding:10px;" />
-
-<TokenInput :showInfo="true" :autofocus="false"/>
-
-::: details Is this safe??
-
-Your bot token is a **highly** sensitive credential and should be protected with encryption and proper secrets management.
-
-SpeedyBot does **NOT** log/persist or do anything (except what you intstruct it to do) with your bot token.
-
-**REMEMBER:** If your agent's access token is ever compromised/exposed, you can always invalidate it + get a new one tapping "Regenerate Access Token" under the **[settings page](https://developer.webex.com/my-apps)**
-
-:::
-
-Tip: we sent the message as your bot to you.
-
-## Step 1: Get your bot's token
-
-If you don't have a bot token, go ahead and **[make one here 🔗](https://developer.webex.com/my-apps/new/bot)** But you need to be logged in blah blah blah
-
-Once you have token, you can validate it below:
-
-::: tip
-WHERE CAN AI.JSX RUN?
-
-SpeedyBot can run in serverless/edge functions, Bun/Deno/Vercel/ fixed server, anywhere you can run
-:::
-
-## Step 1: Get your bot's token
-
-If you don't have a bot token, go ahead and **[make one here 🔗](https://developer.webex.com/my-apps/new/bot)** But you need to be logged in blah blah blah
-
-Once you have token, you can validate it below:
-
-If you follow these instructions exactly you **should** have a working WebEx bot
-
-<div v-if="type === 2">
-
-## 1) Clone repo & install dependencies
-
-```
-git clone https://github.com/valgaze/speedybot-voiceflow
-cd speedybot-voiceflow
-npm install
-```
-
-</div>
-
-Step 0
-
-Get a token (you'll need this to make a bot)
-
-Step 1: Get Bun for your system
-
-```sh
-curl -fsSL https://bun.sh/install | bash
-```
-
-<div v-if="type === 1">
-Step 2: Get the code and load your token
-
-```sh
-bunx create-speedybot@latest --token=__PUT__YOUR__TOKEN__HERE
-```
-
-</div>
-
-<div v-if="type === 2">
-Step 2: Get the code and load your token
-
-```sh
-git clone https://github.com/valgaze/speedybot-starter speedybot-starter
-cd $_
-bun install
-bun run bot:token __PUT__YOUR__TOKEN__HERE
-```
-
-</div>
-
-Step 3: Turn on your bot
-
-```
-bun run bot:on
-```
-
-Step 4: Ask questions
-
-Step 5: Turn your bot "off" with CTRL-C
-
-You
-
-```
-bunx create-speedybot init --project=default --token=**REPLACE**WITH\_\_TOKEN --start=yes
-```
+Whether you're just starting out on your conversation design journey or a seasoned pro, SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](./docs/patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./docs/patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./docs/speedycard.md)**, **[ask for a user's location in a privacy-respecting way](./examples/location/README.md)**, and much more.
 
 <script setup>
 import { ref, watch } from 'vue'
