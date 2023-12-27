@@ -6,6 +6,9 @@ export default defineConfig({
   title: "SpeedyBot",
   description: "Rich conversation agents, the speedy and easy way",
   themeConfig: {
+    search: {
+      provider: "local",
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
