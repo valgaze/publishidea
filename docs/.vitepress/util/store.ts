@@ -59,7 +59,7 @@ async function validateToken(tokenCandidate: string): Promise<void | boolean> {
   });
 
   try {
-    const isValid = await BotInst.getSelf(tokenCandidate);
+    const isValid = await BotInst.getSelf(tokenCandidate.trim());
     if (isValid.id) {
       store.tokenValid = true;
       if (store.tokenValid) {
