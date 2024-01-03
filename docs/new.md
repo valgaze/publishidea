@@ -1,6 +1,8 @@
 # "I'm new here" 🐣
 
-Follow the quick 3-step setup below to go from zero to a SpeedyBot running on your machine (which you can later to deploy to any infrastructure you want if needed)
+tl;dr: SpeedyBot helps you efficiently design, deploy, and secure rich conversation systems in enterprises and large teams
+
+Follow the quick 3-step setup below to go from zero to a SpeedyBot running on your local machine (which you can later seamlessly deploy to any infrastructure you want if needed)
 
 ## Step I: Grab Your Access Token
 
@@ -139,7 +141,7 @@ You can customize this however you want by editing the file **[settings/bot.ts](
 
 Turn off your bot by tapping CTRL-C, to
 
-Whether you're just starting out on your conversation design journey or a seasoned pro, SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](./docs/patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./docs/patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./docs/speedycard.md)**, **[ask for a user's location in a privacy-respecting way](./examples/location/README.md)**, and much more.
+Whether you're just starting out on your conversation design journey or a seasoned pro, SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](./patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./speedycard.md)**, **[ask for a user's location in a privacy-respecting way](./examples/location/README.md)**, and much more.
 
 <script setup>
 import { ref, watch } from 'vue'

@@ -19,26 +19,6 @@ import {
 
 import { AttachedData, $Magic, SpeedyError, Webhook } from "./types";
 
-// import {
-//   Destination,
-//   ENVELOPES,
-//   EventTypes,
-//   MessageResponse,
-//   Room_Details,
-//   SelfData,
-//   SpeedyFile,
-//   SpeedyFileUtils,
-//   Submit_Details,
-//   ToMessage,
-// } from "./types";
-// import {
-//   CoreMakerequest,
-//   File_Details,
-//   Messsage,
-//   Message_Details,
-//   StubbedRes,
-// } from "./types";
-
 import {
   AbbreviatedSpeedyCard,
   HeaderConfig,

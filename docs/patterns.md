@@ -1,8 +1,8 @@
 ## Patterns
 
-A SpeedyBot Listener is made up a sequence of steps, so if you want to add functionality to your Bot, you can just "snap-in" on a new step and then do whatever you want.
+A SpeedyBot Listener is fundamentally made up a sequence of steps, so if you want to add functionality to your Bot, you can just "snap-in" on a new step and then do pretty much whatever you want with it.
 
-Below are snippets which should get you up and running-- you just grab them and drop into your bot.ts and get going
+Below are usable snippets which should get you up and running-- you just grab them and drop into your bot.ts and get going the speedy and easy way
 
 Tip: you can copy/paste this document into a large language model to get better code suggestions
 
@@ -214,51 +214,49 @@ import { SpeedyBot } from "speedybot";
 const Bot = new SpeedyBot();
 
 Bot.addStep(async ($) => {
-  const allowedDomains = ["allaboutfrogs.org", "geocities.com"];
-  const proceed = allowedDomains.include($.author.domain);
-  if (!proceed) {
-    await $.send("sorry, your email is not part of this agent");
-    return $.end;
+  if ($.file) {
+    const { name, extension, contentType } = $.file;
+    await $.send(
+      `You uploaded "${name}", a *.${extension} file [${contentType}]`
+    );
+    // Fetch raw bytes (which you can pass onto other systems, upload to database, etc)
+    const TheData = await $.file.getData(); // do something w/ the contents/bytes
+    console.log("Raw bytes", TheData);
   }
-
   return $.next;
 });
 ```
 
+**Important:** Files are automatically scanned for viruses. If you call the `getData` method before the scan finishes, you might encounter a **[423 File Locked status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/423)**. This can happen with large files (but generally not a common issue). Check out **[Speedybot-voiceflow example](./examples/voiceflow/README.md)** for more details on implementing a retry mechanism
+
 ## Handle "chips"
 
-Chips are a special feature of **[SpeedyCards](./speedycard.md)** where button taps will be interpreted
+"Chips" in SpeedyBot let users enter text by tapping buttons.
 
-````ts
+```ts
 import { SpeedyBot } from "speedybot";
 
 const Bot = new SpeedyBot();
 
-
 Bot.addStep(async ($) => {
   if ($.text) {
-      const lower = $.text.toLowerCase()
-      if (lower === 'pong') {
-        await $.send('ping')
-      }
-  }
-
-});
-
-**Note:** The getData method can error out if the file is large. See the **[repeat pattern here in the Speedybot-voiceflow repo](#)**
-
-### Bare minimum card handler
-
-```js
-export default {
-  data () {
-    return {
-      msg: 'Removed' // [!code  --]
-      msg: 'Added' // [!code  ++]
+    const lower = $.text.toLowerCase();
+    if (lower === "pong") {
+      await $.send("ping");
+    } else if (lower === "ping") {
+      await $.send("pong");
+    } else {
+      const chipCard = $.card()
+        .addText("Chip Card")
+        .addChips(["ping", { title: "Select Pong", value: "pong" }]);
+      await $.send(chipCard);
     }
   }
-}
-````
+  return $.next;
+});
+```
+
+## Card Handler
 
 ```ts
 Bot.addStep(async ($) => {
@@ -308,4 +306,8 @@ Bot.addStep(async ($) => {
 
   return $.next;
 });
+```
+
+```
+
 ```

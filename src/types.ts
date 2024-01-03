@@ -41,6 +41,24 @@ interface commonData {
   end: boolean;
   messageType: "card" | "file" | "text";
   id: string; // Message id
+
+  /**
+   * Author details
+   * 
+   * ```
+   
+    domain: string; (@bongo.co)
+    email: string; (joe@bongo.com)
+    id: string; (abcdefghijk123456789)
+    org: string; (lmnopqrstuv)
+    name: string;
+    type: "person" | "bot" | "appuser";
+    profilePic: string;
+
+    ```
+   * 
+   * 
+   */
   author: {
     domain: string;
     email: string;

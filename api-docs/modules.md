@@ -37,4 +37,4 @@
 
 #### Defined in
 
-[types.ts:152](https://github.com/valgaze/speedybot/blob/e56a630/src/types.ts#L152)
+[types.ts:170](https://github.com/valgaze/speedybot/blob/15e9e64/src/types.ts#L170)
