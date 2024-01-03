@@ -1,10 +1,8 @@
 ## Patterns
 
-A SpeedyBot Listener is fundamentally made up a sequence of steps, so if you want to add functionality to your Bot, you can just "snap-in" on a new step and then do pretty much whatever you want with it.
+A SpeedyBot Listener is essentially a set of sequential steps, so if you want to add functionality to your Bot, you can just "snap-in" a new step and be on your way.
 
-Below are usable snippets which should get you up and running-- you just grab them and drop into your bot.ts and get going the speedy and easy way
-
-Tip: you can copy/paste this document into a large language model to get better code suggestions
+Below are some comon copy/paste'able step "snippets" or patterns which should cover most common use cases-- just grab them and drop into your `bot.ts` and get going the speedy and easy way.
 
 [[toc]]
 
@@ -21,28 +19,6 @@ npm install speedybot
 ```
 
 See **[/new](./new.md)** for easy to follow instructions to go from zero to a bot you can extend and customize however you want
-
-## Send a message, card (static file)
-
-```ts
-import { SpeedyBot } from "speedybot";
-
-async function main(token) {
-  const Bot = new SpeedyBot(token);
-
-  const msg = await Bot.sendTo("targetEmail@account.com", "Hi there");
-  await Bot.reply(
-    msg,
-    "Also meant to remind you, you need to call back the ABC team!"
-  );
-
-  const card = Bot.card().setTitle("My Card");
-
-  await Bot.sendTo(card);
-}
-
-main("__REPLACE__ME__");
-```
 
 ## Handle submission from a card
 
@@ -78,7 +54,7 @@ import { SpeedyBot } from "speedybot";
 
 const Bot = new SpeedyBot();
 
-Bot.addStep(async ($) => {
+Bot.insertStepToFront(async ($) => {
   const allowedDomains = ["joe.com"];
   if (!allowedDomains.includes($.author.domain) && !$.data) {
     await $.send("You are not allowed sorry :( ");
@@ -231,7 +207,7 @@ Bot.addStep(async ($) => {
 
 ## Handle "chips"
 
-"Chips" in SpeedyBot let users enter text by tapping buttons.
+"Chips" in SpeedyBot let users enter text by tapping buttons. Your SpeedyBot will respond
 
 ```ts
 import { SpeedyBot } from "speedybot";
@@ -308,6 +284,26 @@ Bot.addStep(async ($) => {
 });
 ```
 
-```
+## Send a message, card (static file)
 
+SpeedyBot can be as big or as small a part of your agent as you want it to be. If you just want to send a few cards and messages and don't need to deal with webhooks (or consume them by a way unique to your team or organization) you can just use SpeedyBot directly
+
+```ts
+import { SpeedyBot } from "speedybot";
+
+async function main(token) {
+  const Bot = new SpeedyBot(token);
+
+  const msg = await Bot.sendTo("targetEmail@account.com", "Hi there");
+  await Bot.reply(
+    msg,
+    "Also meant to remind you, you need to call back the ABC team!"
+  );
+
+  const card = Bot.card().setTitle("My Card");
+
+  await Bot.sendTo(card);
+}
+
+main("__REPLACE__ME__");
 ```
