@@ -152,10 +152,6 @@ Bot.addStep(async ($) => {
    * @param middleware 
    * 
    */
-  go(middleware: Middleware): void {
-    this.addStep(middleware);
-  }
-
   addStep<T = AttachedData>(middleware: Middleware<T>): void {
     this.middlewares.push(middleware);
   }

@@ -11,11 +11,11 @@ hero:
   #   alt: SpeedyBot
   actions:
     - theme: brand
-      text: Get Started
+      text: 🚀 Get Started
       link: /new
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: 📚 API Docs
+      link: /api-docs/modules
 
 features:
   - title: Feature A

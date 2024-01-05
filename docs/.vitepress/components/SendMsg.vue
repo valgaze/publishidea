@@ -16,7 +16,7 @@
     <slot v-if="!store.state.tokenValid"></slot>
 
     <Blur :should-blur="!store.state.tokenValid">
-      <el-form label-position="left">
+      <el-form label-position="left" label-width="100px">
         <el-form-item label="Destination" prop="message">
           <CompactPicker
             :show-recents="showRecents"
@@ -24,8 +24,13 @@
             :roomList="store.state.roomList"
           ></CompactPicker>
         </el-form-item>
-        <el-form-item label="Message Content">
-          <el-input v-model="body" type="textarea" rows="6" />
+        <el-form-item label="Message">
+          <el-input
+            v-model="body"
+            type="textarea"
+            rows="6"
+            style="width: 100%"
+          />
         </el-form-item>
         <el-form-item>
           <div style="display: flex; justify-content: flex-end; width: 100%">
