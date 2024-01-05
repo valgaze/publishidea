@@ -163,6 +163,7 @@ export type SizeChoices =
   | "Large"
   | "ExtraLarge"
   | "Stretch";
+
 export type AlignmentChoices = "Left" | "Center" | "Right";
 
 export type BaseColors =
