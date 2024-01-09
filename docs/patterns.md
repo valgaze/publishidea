@@ -45,15 +45,16 @@ Note: here we are not responding to user data, but rather self-contained sending
 
 ## Restrict Access Pattern
 
-Below you can see how to restrict for specific swatchs of email domains, could target specific individuals or call out to another system for additional authentication/authorization checks, etc
+Below you can see how to restrict access to your agent to specific swaths of email domains. Once you've got the pattern in place, you could target specific individuals or call out to another system for additional authentication/authorization checks, etc
 
-Tip: To make sure this triggers at the front front of your middleware stack, try swapping `Bot.addStep` with `Bot.insertStepToFront`
+Tip: To make sure this triggers at the front front of your middleware stack, try the trick of replacing `Bot.addStep` with `Bot.insertStepToFront`
 
 ```ts
 import { SpeedyBot } from "speedybot";
 
 const Bot = new SpeedyBot();
 
+// Will make sure
 Bot.insertStepToFront(async ($) => {
   const allowedDomains = ["joe.com"];
   if (!allowedDomains.includes($.author.domain) && !$.data) {
