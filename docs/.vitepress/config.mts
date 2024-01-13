@@ -11,8 +11,15 @@ export default defineConfig({
     },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
+      { text: "🏡 Home", link: "/" },
+      { text: "📇 SpeedyCard Editor", link: "/speedycard" },
+      { text: "🆕 Start Here", link: "/new" },
+      { text: "🔧 Garage", link: "/garage" },
+      { text: "🌟 Examples", link: "/examples/README" },
+      { text: "📚 API Docs", link: "/../api-docs/modules" },
+      { text: "🐍 Python Version", link: "https://pypi.org/project/speedybot" },
+
+      // { text: "Examples", link: "/markdown-examples" },
     ],
 
     sidebar: [
