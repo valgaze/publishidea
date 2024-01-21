@@ -32,7 +32,7 @@ Note: There are many (better) ways to setup Deno, but for now we can just use th
 
 ![sb](./../../docs/assets/deno/set_secrets.png)
 
-Verify you hit save on each secret yo add
+Verify you hit save underneath each secret you add to the playground
 
 ![sb](./../../docs/assets/deno/set_secrets_saved.png)
 
