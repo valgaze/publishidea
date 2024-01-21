@@ -144,6 +144,32 @@ Bot.addStep(async ($) => {
 });
 ```
 
+## Error handling
+
+```ts
+import { SpeedyBot } from "speedybot";
+
+const Bot = new SpeedyBot();
+
+// some error
+Bot.addStep(($) => {
+  throw new Error("My error message here");
+  return $.next;
+});
+
+Bot.addStep(async ($) => {
+  await $.send(`helllllooo (${$.text}) `);
+  return $.next;
+});
+
+Bot.captureError(async (payload) => {
+  const { roomId } = payload;
+  if (roomId) {
+    await Bot.sendTo(roomId, `Whoops, there was a problem: ${payload.message}`);
+  }
+});
+```
+
 ## Debug and display snippets
 
 ```ts
