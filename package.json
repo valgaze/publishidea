@@ -1,6 +1,6 @@
 {
   "name": "speedybot",
-  "version": "2.0.0-beta.73",
+  "version": "2.0.0-beta.74",
   "main": "dist/cjs/src/index.js",
   "module": "dist/mjs/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -43,6 +43,7 @@
     "build": "npm run test:nowatch && tsc && npm run api-docs && npm run docs:build",
     "api-docs": "npm run docs",
     "docs": "rm -rf docs/api-docs 2>/dev/null && npx --yes typedoc --media docs/assets --plugin typedoc-plugin-markdown --out docs/api-docs src/docs.ts",
+    "publish:beta:hybrid": "npm run build && npm publish --tag beta",
     "publish:beta": "npm run build && npm publish --tag beta",
     "save": "git add . &2.0.0-beta.& git commit -m \"checkpt\" && git push draft deploy",
     "test": "vitest --reporter verbose",

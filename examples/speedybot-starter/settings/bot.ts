@@ -5,8 +5,6 @@ const Bot = new SpeedyBot();
 Bot.addStep(async ($) => {
   // handle text
   if ($.text) {
-    await $.send(`You said "${$.text}`);
-
     if ($.text.toLowerCase() === "showcard") {
       const card = $.card()
         .addTitle("Capture data")
@@ -26,8 +24,8 @@ Bot.addStep(async ($) => {
     // const TheData = await $.file.getData(); // do something w/ the contents/bytes
   }
 
-  // form/card submissions
-  if ($.data) {
+  // adaptive card/form submissions
+  if ($.data && !$.data.showCard) {
     const dataSnippet = $.buildDataSnippet($.data);
     await $.send(`This data was submitted:`);
     await $.send(dataSnippet);
@@ -73,10 +71,11 @@ Bot.addStep(async ($) => {
         "SpeedyCards make it easy to send rich, interactive cards to the user"
       );
       const { value } = Bot.pickRandom(cardChoices);
+      console.log("#", value);
       const card = cardHash[value].addSubcard(
         $.card()
           .addLink(
-            "https://speedybot.js.org/docs/speedybot?card=${value}",
+            "https://speedybot.js.org/docs/speedycard?card=${value}",
             "See the source for this card"
           )
           .addText("Pick a new card")
@@ -171,12 +170,10 @@ Bot.addStep(async ($) => {
     };
     await $.send($.fillTemplate(utterances, template));
 
-    Bot;
-
     const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo${$.pickRandom(
       1,
       34
-    )}.jpeg}`;
+    )}.jpeg`;
 
     const introCard = $.card()
       .addHeader("🤖 SpeedyBot")
@@ -226,20 +223,17 @@ Bot.addStep<Partial<{ showCard: string }>>(async ($) => {
   };
 
   if ($.data && isCardKey($.data.showCard)) {
-    cardHash[$.data.showCard].addSubcard(
+    console.log(`Selected:`, cardHash[$.data.showCard]);
+    const card = cardHash[$.data.showCard].addSubcard(
       $.card()
         .addLink(
-          $.ctx.isDev
-            ? `http://localhost:5173/vitepresspublish/docs/speedycard?card=${$.data.showCard}`
-            : `https://speedybot.js.org/docs/speedybot?card=${$.data.showCard}`,
+          "https://speedybot.js.org/speedycard?card=${$.data.showCard}",
           "See the source for this card"
         )
         .addText("Pick a new card")
         .addPickerDropdown(cardChoices, "showCard"),
       "Learn more"
     );
-
-    const card = cardHash[$.data.showCard] as SpeedyCard;
     await $.send(card);
   }
   return $.next;
@@ -247,15 +241,15 @@ Bot.addStep<Partial<{ showCard: string }>>(async ($) => {
 
 // ## ex. pass data/flags between steps during runs
 Bot.addStep(($) => {
-  $.ctx.isDev = false; // set to true on debug mode to trace incoming messages
+  $.ctx.isDev = true; // set to true on debug mode to trace incoming messages
   return $.next;
 });
 
 // ## read flags
 Bot.addStep(async ($) => {
-  if ($.ctx.isDev) {
-    await $.send($.buildDataSnippet($.debug()));
-  }
+  // if ($.ctx.isDev) {
+  //   await $.send($.buildDataSnippet($.debug()));
+  // }
   return $.next;
 });
 
@@ -287,7 +281,6 @@ export const cardChoices = [
   { title: "Banner Yellow 🟡", value: "banner-yellow" },
   { title: "Confirm ✔️", value: "confirm" },
   { title: "Image 🖼️", value: "image" },
-  { title: "Chips 🍟", value: "chips" },
   { title: "Old Survey", value: "old-survey" },
 ];
 
@@ -677,7 +670,7 @@ Bot.exact("$survey", async ($) => {
   ]);
 
   await $.send(surveyCard);
-  return $.next;
+  return $.end;
 });
 
 // "ping"/"pong"
@@ -688,11 +681,6 @@ Bot.addStep(async ($) => {
       await $.send("ping");
     } else if (lower === "ping") {
       await $.send("pong");
-    } else {
-      const chipCard = $.card()
-        .addText("Chip Card")
-        .addChips(["ping", { title: "Select Pong", value: "pong" }]);
-      await $.send(chipCard);
     }
   }
   return $.next;

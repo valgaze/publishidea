@@ -12,3 +12,5 @@ abc.ts
 bin/
 coverage/
 todo.md
+.github
+.vscode
