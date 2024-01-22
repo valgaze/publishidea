@@ -1,6 +1,6 @@
 {
   "name": "speedybot",
-  "version": "2.0.0-beta.741",
+  "version": "2.0.0-beta.742",
   "main": "dist/cjs/src/index.js",
   "module": "dist/mjs/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -10,8 +10,14 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/mjs/src/index.js",
-      "require": "./dist/cjs/src/index.js"
+      "import": {
+        "types": "./dist/mjs/src/index.ts",
+        "default": "./dist/mjs/src/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/src/index.ts",
+        "default": "./dist/cjs/src/index.js"
+      }
     }
   },
   "devDependencies": {
