@@ -20,7 +20,9 @@ npm install speedybot
 
 See **[/new](./new.md)** for easy to follow instructions to go from zero to a bot you can extend and customize however you want
 
-## Handle submission from a card
+## Send a simple message
+
+This is not an interactive agent, but you can use SpeedyBot to send messages + cards:
 
 ```ts
 import { SpeedyBot } from "speedybot";
@@ -42,6 +44,48 @@ main("__REPLACE__ME__");
 ```
 
 Note: here we are not responding to user data, but rather self-contained sending mesages
+
+## Simple Card Handler
+
+You can do a LOT of cool stuff with **[SpeedyCards](./speedycard.md)** but one ofs the most useful thing you can do is capture user data in a structured manner
+
+```ts
+Bot.addStep(async ($) => {
+  // if card submission
+  if ($.data) {
+    const dataSnippet = $.buildDataSnippet($.data);
+    await $.send(`This data was submitted:`);
+    await $.send(dataSnippet);
+    await $.send(`${JSON.stringify($.data)}`);
+    /**
+     {
+        "myPickerDropdown": "xx",
+        "myCheckboxes": "b,c",
+        "addTextarea_result": "free response data"
+     }
+    */
+  } else {
+    await $.send(
+      $.card()
+        .addTitle("Interactive Data Input")
+        .addSubtitle("Provide information in various formats")
+        .addText("Freeform Response")
+        .addTextarea("Feel free to share any details")
+        .addText("Multiple Selections")
+        .addMultiSelect(
+          ["Option A", "Option B", "Option C", "Option D"],
+          "myCheckboxes"
+        )
+        .addText("Single Selection")
+        .addPickerDropdown(
+          ["Option WW", "Option XX", "Option YY", "Option ZZ"],
+          "myPickerDropdown"
+        )
+    );
+  }
+  return $.end;
+});
+```
 
 ## Restrict Access Pattern
 
@@ -113,9 +157,36 @@ Bot.addStep(async ($) => {
 });
 ```
 
+## Handle "chips"
+
+"Chips" in SpeedyBot let users enter text by tapping buttons. Your SpeedyBot will respond as if the user typed the message dispatched in each tap of a chip. This is one of SpeedyBot's most useful but underrated features
+
+```ts
+import { SpeedyBot } from "speedybot";
+
+const Bot = new SpeedyBot();
+
+Bot.addStep(async ($) => {
+  if ($.text) {
+    const lower = $.text.toLowerCase();
+    if (lower === "pong") {
+      await $.send("ping");
+    } else if (lower === "ping") {
+      await $.send("pong");
+    } else {
+      const chipCard = $.card()
+        .addText("Chip Card")
+        .addChips(["ping", { title: "Select Pong", value: "pong" }]);
+      await $.send(chipCard);
+    }
+  }
+  return $.next;
+});
+```
+
 ## Support Multiple Environments
 
-You can use `$.ctx` to set flags
+You can use `$.ctx` to set flags to support different environments (ex dev/prod)
 
 ```ts
 import { SpeedyBot } from "speedybot";
@@ -146,6 +217,8 @@ Bot.addStep(async ($) => {
 
 ## Error handling
 
+Note that in `Bot.captureError` it is not auto-bound so you'll need to supply a room id if you want to supply a message to the user that something has gone wrong
+
 ```ts
 import { SpeedyBot } from "speedybot";
 
@@ -171,6 +244,8 @@ Bot.captureError(async (payload) => {
 ```
 
 ## Debug and display snippets
+
+SpeedyBot ships with a `$.debug()` method which will expose useful information about incoming messages. `$.buildDataSnippet()` is a convenience helper which will take any input data and display it in attractive markdown formatting in the chat client
 
 ```ts
 import { SpeedyBot } from "speedybot";
@@ -211,6 +286,10 @@ Bot.addStep(async ($) => {
 
 ## Handle File Uploads
 
+SpeedyBot takes care of much of the complexity around handling file uploads and exposes useful data for consumption by your application. Just upload a file and check for `$.file`
+
+If you want to access the raw file contents (bytes), try `$.file.getData()`
+
 ```ts
 import { SpeedyBot } from "speedybot";
 
@@ -231,66 +310,6 @@ Bot.addStep(async ($) => {
 ```
 
 **Important:** Files are automatically scanned for viruses. If you call the `getData` method before the scan finishes, you might encounter a **[423 File Locked status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/423)**. This can happen with large files (but generally not a common issue). Check out **[Speedybot-voiceflow example](./examples/voiceflow/README.md)** for more details on implementing a retry mechanism
-
-## Handle "chips"
-
-"Chips" in SpeedyBot let users enter text by tapping buttons. Your SpeedyBot will respond
-
-```ts
-import { SpeedyBot } from "speedybot";
-
-const Bot = new SpeedyBot();
-
-Bot.addStep(async ($) => {
-  if ($.text) {
-    const lower = $.text.toLowerCase();
-    if (lower === "pong") {
-      await $.send("ping");
-    } else if (lower === "ping") {
-      await $.send("pong");
-    } else {
-      const chipCard = $.card()
-        .addText("Chip Card")
-        .addChips(["ping", { title: "Select Pong", value: "pong" }]);
-      await $.send(chipCard);
-    }
-  }
-  return $.next;
-});
-```
-
-## Card Handler
-
-```ts
-Bot.addStep(async ($) => {
-  if ($.data) {
-    await Bot.sendTo("bongo", `Yay ${JSON.stringify($.data)}`); // [!code  --]
-    await $.send("yay${JSON}"); // [!code  ++]
-
-    await $.send(`Yay ${JSON.stringify($.data)}`);
-    /**
-         {
-            "myPickerDropdown": "xx",
-            "myCheckboxes": "b,c",
-            "addTextarea_result": "free response data"
-         }
-      */
-  } else {
-    await $.send(
-      $.card()
-        .addTitle("My Card")
-        .addSubtitle("Add some data below")
-        .addText("Free response")
-        .addTextarea("Please enter data")
-        .addText("Multi Select")
-        .addMultiSelect(["a", "b", "c", "d"], "myCheckboxes")
-        .addText("Single Select")
-        .addPickerDropdown(["zz", "yy", "xx", "ww"], "myPickerDropdown")
-    );
-  }
-  return $.next;
-});
-```
 
 ### Restrict emails
 

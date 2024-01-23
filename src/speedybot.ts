@@ -466,13 +466,6 @@ ${type === "json" ? JSON.stringify(data, null, 2) : data}
         async sendFile<T = unknown>(data: T, fileExtension: string) {
           return botInst.sendFileTo(roomId, data, fileExtension);
         },
-        async sendURL(url: string, fallbackText = "") {
-          return botInst._send({
-            files: [url],
-            text: fallbackText,
-            roomId,
-          });
-        },
         async getFile(
           url: string,
           opts?: { responseType?: "arraybuffer" | "json" }

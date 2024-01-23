@@ -129,7 +129,6 @@ export type $Magic<T = AttachedData> = {
     template: { [key: string]: string | number }
   ) => string;
   buildDMLink: (target: string, label?: string) => string;
-  sendURL: (url: string, fallbackText: string) => Promise<MessageResponse>;
   card: (config?: Partial<AbbreviatedSpeedyCard>) => SpeedyCard;
   edit: (m: MessageResponse, e: string) => Promise<MessageResponse>;
   pickRandom<P>(list: P[]): P;

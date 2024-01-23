@@ -139,8 +139,6 @@ Bot.addStep(async ($) => {
     ]);
 
     await $.send(`## Files`);
-    // send URL as file
-    await $.sendURL("https://speedybot.valgaze.com", "Send URL as a file");
 
     // Send data as a *.json file
     await $.send(`Send data to user (here as *.json or *.html)`);
