@@ -48,9 +48,7 @@ Bot.addStep(async ($) => {
           targetURL: "https://speedybot.js.org",
           size: "ExtraLarge",
         })
-        .addChips([
-          { title: "🤖 Show another SpeedyBot", value: "randomSpeedyBot" },
-        ])
+        .addButton("🤖 Show another SpeedyBot", "randomSpeedyBot")
     );
     return $.end;
   }

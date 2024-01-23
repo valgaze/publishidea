@@ -1,6 +1,59 @@
-import { SpeedyBot, SpeedyCard } from "../../../../../../src";
+import { SpeedyBot, SpeedyCard, SurveyQuestion } from "../../../../../../src";
 
 const Bot = new SpeedyBot();
+
+Bot.addStep(async ($) => {
+  // handle text
+  if ($.text) {
+    if ($.text.toLowerCase() === "showcard") {
+      const card = $.card()
+        .addTitle("Capture data")
+        .addTextarea("Submit data")
+        .addPickerDropdown(["option 1", "option 2", "option 3", "option 4"]);
+      await $.send(card);
+    }
+  }
+
+  // file handler
+  if ($.file) {
+    const { name, extension, contentType } = $.file;
+    await $.send(
+      `You uploaded "${name}", a *.${extension} file [${contentType}]`
+    );
+    // Fetch raw bytes (which you can pass onto other systems)
+    // const TheData = await $.file.getData(); // do something w/ the contents/bytes
+  }
+
+  // adaptive card/form submissions
+  if ($.data && !$.data.showCard && !$.data.randomSpeedyBot) {
+    const dataSnippet = $.buildDataSnippet($.data);
+    await $.send(`This data was submitted:`);
+    await $.send(dataSnippet);
+  }
+
+  return $.next;
+});
+
+Bot.addStep(async ($) => {
+  if ($.data && $.data.randomSpeedyBot) {
+    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo${$.pickRandom(
+      1,
+      33
+    )}.jpeg`;
+
+    await $.send(
+      $.card()
+        .addHeader("\u{1F916} SpeedyBot")
+        .addImage(randomImage, {
+          targetURL: "https://speedybot.js.org",
+          size: "ExtraLarge",
+        })
+        .addButton("🤖 Show another SpeedyBot", "randomSpeedyBot")
+    );
+    return $.end;
+  }
+  return $.next;
+});
 
 // ## File upload handler
 Bot.addStep(async ($) => {
@@ -9,6 +62,7 @@ Bot.addStep(async ($) => {
     await $.send(
       `You uploaded "${name}", a *.${extension} file [${contentType}]`
     );
+    // Fetch raw bytes (which you can send to database or send to external system)
     // const TheData = await $.file.getData(); // do something w/ the contents/bytes
   }
   return $.next;
@@ -38,12 +92,11 @@ Bot.addStep(async ($) => {
         "SpeedyCards make it easy to send rich, interactive cards to the user"
       );
       const { value } = Bot.pickRandom(cardChoices);
+      console.log("#", value);
       const card = cardHash[value].addSubcard(
         $.card()
           .addLink(
-            $.ctx.isDev
-              ? `http://localhost:5173/vitepresspublish/docs/speedycard?card=${$.data.showCard}`
-              : `https://speedybot.js.org/docs/speedybot?card=${$.data.showCard}`,
+            "https://speedybot.js.org/docs/speedycard?card=${value}",
             "See the source for this card"
           )
           .addText("Pick a new card")
@@ -57,7 +110,7 @@ Bot.addStep(async ($) => {
   return $.next; // pass through to rest of steps
 });
 
-// ## "files", show file capabilities (not upload file but sending data to the user as a file)
+// ## "files", show file capabilities (not upload file-- different idea-- but sending data to the user as a file)
 Bot.addStep(async ($) => {
   if ($.text && $.text.toLowerCase() === "files") {
     await $.send(
@@ -68,25 +121,6 @@ Bot.addStep(async ($) => {
     const fileData = $.debug();
     await $.sendFile(fileData, "json");
 
-    const makeHTML = (prefix: string, trigger: any) => {
-      return `
-              <html>
-              <head>
-              <title>${prefix}</title>
-              </head>
-              <body>
-              <fieldset>
-              <label> 
-              <h1>${prefix}</h1>
-              </label>
-              </fieldset>
-              <hr>
-              <pre>
-${JSON.stringify(trigger, null, 2)}
-              </pre>
-              </body>
-              </html>`;
-    };
     // Send HTML w/ dynamic data
     await $.sendFile(
       makeHTML(`Here's your generated file, ${$.author.name}`, fileData),
@@ -100,6 +134,7 @@ ${JSON.stringify(trigger, null, 2)}
 
 // ## "kitchensink", show everything
 Bot.addStep(async ($) => {
+  $.author;
   if ($.text && ["kitchen", "kitchensink"].includes($.text)) {
     await $.clearScreen();
     await $.send(`## Kitchen Sink`);
@@ -153,19 +188,11 @@ Bot.addStep(async ($) => {
       name: $.author.name,
     };
     await $.send($.fillTemplate(utterances, template));
-    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/${Bot.pickRandom(
-      [
-        "logo.jpeg",
-        "logo2.jpeg",
-        "logo3.jpeg",
-        "logo4.jpeg",
-        "logo5.jpeg",
-        "logo6.jpeg",
-        "logo7.jpeg",
-        "logo8.jpeg",
-        "logo9.jpeg",
-      ]
-    )}`;
+
+    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo${$.pickRandom(
+      1,
+      33
+    )}.jpeg`;
 
     const introCard = $.card()
       .addHeader("🤖 SpeedyBot")
@@ -180,13 +207,14 @@ Bot.addStep(async ($) => {
         { title: "🗂 files", value: "files" },
         { title: "🗂 Everything (warning: fast)", value: "kitchensink" },
       ])
+      .addButton("🤖 random", "randomSpeedyBot")
       .addSubcard(
         $.card()
-          .addTitle("Data card")
+          .addTitle("SpeedyCards")
           .addText(
-            "SpeedyBot makes it easy to craft interactive forms to captured structured data from users"
+            "**SpeedyCards** make it easy to build cards that deliver information in a visually attractive way or craft or cards with interactive forms that will let you capture structured data submitted from users"
           )
-          .addText("Pick a new card")
+          .addText("Pick a new card template")
           .addPickerDropdown(cardChoices, "showCard"),
         "See More "
       );
@@ -198,37 +226,26 @@ Bot.addStep(async ($) => {
 
 // ## Card utilities
 // SpeedyCard form submissions, check for $.data, can add generics for type assurance
-Bot.addStep(async ($) => {
-  if ($.data && !$.data.showCard) {
-    const dataSnippet = $.buildDataSnippet($.data);
-    await $.send(`This data was submitted:`);
-    await $.send(dataSnippet);
-  }
-  return $.next;
-});
 
-// handle card picks from dropdown, can happen from multiple cards + locations
+// handle card picks from dropdown, attach preview, this can happen from multiple cards + locations
 Bot.addStep<Partial<{ showCard: string }>>(async ($) => {
   type CardKey = keyof typeof cardHash;
-  const isCardKey = (key: string | undefined): key is CardKey => {
+  const isCardKey = (key: CardKey | undefined): key is CardKey => {
     return key !== undefined && key in cardHash;
   };
 
   if ($.data && isCardKey($.data.showCard)) {
-    cardHash[$.data.showCard].addSubcard(
+    console.log(`Selected:`, cardHash[$.data.showCard]);
+    const card = cardHash[$.data.showCard].addSubcard(
       $.card()
         .addLink(
-          $.ctx.isDev
-            ? `http://localhost:5173/vitepresspublish/docs/speedycard?card=${$.data.showCard}`
-            : `https://speedybot.js.org/docs/speedybot?card=${$.data.showCard}`,
+          "https://speedybot.js.org/speedycard?card=${$.data.showCard}",
           "See the source for this card"
         )
         .addText("Pick a new card")
         .addPickerDropdown(cardChoices, "showCard"),
       "Learn more"
     );
-
-    const card = cardHash[$.data.showCard] as SpeedyCard;
     await $.send(card);
   }
   return $.next;
@@ -236,15 +253,15 @@ Bot.addStep<Partial<{ showCard: string }>>(async ($) => {
 
 // ## ex. pass data/flags between steps during runs
 Bot.addStep(($) => {
-  $.ctx.isDev = false; // set to true on debug mode to trace incoming messages
+  $.ctx.isDev = true; // set to true on debug mode to trace incoming messages
   return $.next;
 });
 
 // ## read flags
 Bot.addStep(async ($) => {
-  if ($.ctx.isDev) {
-    await $.send($.buildDataSnippet($.debug()));
-  }
+  // if ($.ctx.isDev) {
+  //   await $.send($.buildDataSnippet($.debug()));
+  // }
   return $.next;
 });
 
@@ -265,20 +282,20 @@ export default Bot;
 
 // Bunch of cards
 export const cardChoices = [
+  { title: "Text Formatting 📄", value: "format-card" },
   { title: "Survey 📝", value: "survey" },
-  { title: "Old Survey", value: "old-survey" },
   { title: "Acai 🍇", value: "acai" },
   { title: "Appcard 💳", value: "appcard" },
-  { title: "Appcard RTL 💳", value: "appcard-rtl" },
+  { title: "Appcard RTL ⬅️", value: "appcard-rtl" },
   { title: "Red Danger 🔴", value: "red-danger" },
   { title: "Green Success ✅", value: "green-success" },
   { title: "Yellow Warning ⚠️", value: "yellow-warning" },
   { title: "Banner Yellow 🟡", value: "banner-yellow" },
   { title: "Confirm ✔️", value: "confirm" },
   { title: "Image 🖼️", value: "image" },
-  { title: "Chips 🍟", value: "chips" },
-  { title: "Format 📄", value: "format" },
+  { title: "Old Survey", value: "old-survey" },
 ];
+
 export const cardHash: { [key: string]: SpeedyCard } = {
   survey: Bot.card().survey([
     {
@@ -344,63 +361,44 @@ export const cardHash: { [key: string]: SpeedyCard } = {
       id: "communication_method",
     },
   ]),
-  "old-survey": Bot.card()
-    .addTitle("Business Improvement Survey 📈")
-    .addSubtitle("Help Us Enhance Our Business Operations!")
+  "format-card": Bot.card()
+    .addHeader("🌟 Formatted Card 🌟")
+    .addTitle("SpeedyCards can fit a lot of text + visual formatting")
+    .addText("You do lots of fun things with text", { size: "Large" })
+    .addText("You can change colors", { size: "Large", color: "green" })
+    .addText("...also mess with alignment + sizes", {
+      size: "Stretch",
+      color: "red",
+      align: "Right",
+    })
+    .addText("Change background colors", {
+      size: "Medium",
+      color: "red",
+      backgroundColor: "blue",
+    })
+    .addText("Change background + foreground", {
+      size: "Medium",
+      align: "Right",
+      color: "green",
+      backgroundColor: "yellow",
+    })
+    .addText("Align in the middle", {
+      size: "Medium",
+      align: "Center",
+      backgroundColor: "red",
+    })
+    .addText("More fun like other colors + images", {
+      size: "Large",
+      color: "red",
+      backgroundColor: "yellow",
+    })
     .addText(
-      "Your insights are crucial for our continuous improvement. Please take a moment to complete this survey."
+      "By the way, text blocks support simple markdown like **bolding**, *italics*, and even **[links](https://speedybot.js.org/new)**"
     )
-    .addText("1. Company Name:")
-    .addTextInput("Enter Your Company's Name")
-    .addText("2. Your Position/Role:")
-    .addTextInput("Enter Your Position/Role")
-    .addText("3. Please select your department:")
-    .addPickerDropdown(
-      ["Select Department"].concat([
-        "Sales",
-        "Marketing",
-        "Customer Support",
-        "Finance",
-        "Product Development",
-      ])
-    )
-    .addText(
-      "4. On a scale of 1-5, how satisfied are you with our products/services? (1 being very dissatisfied, 5 being very satisfied)"
-    )
-    .addSingleSelect([
-      "1 (Very Dissatisfied)",
-      "2",
-      "3",
-      "4",
-      "5 (Very Satisfied)",
-    ])
-    .addText(
-      "5. What aspects of our products/services do you appreciate the most?"
-    )
-    .addTextarea(
-      "Please share what you appreciate the most about our offerings."
-    )
-    .addText(
-      "6. Are there any specific areas where you believe we can improve?"
-    )
-    .addTextarea(
-      "Please provide details on areas where we can enhance our products/services."
-    )
-    .addText(
-      "7. How likely are you to recommend our company to others? (1 being highly unlikely, 5 being highly likely)"
-    )
-    .addSingleSelect([
-      "1 (Highly Unlikely)",
-      "2",
-      "3",
-      "4",
-      "5 (Highly Likely)",
-    ])
-    .addText("8. Any additional comments or suggestions?")
-    .addTextarea(
-      "Feel free to share any additional comments or suggestions you may have."
-    )
-    .setSubmitButtonTitle("Submit Survey"),
+    .addImage(
+      "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo4.jpeg",
+      { align: "Center" }
+    ),
   appcard: Bot.appCard(
     "Design News",
     "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/figma_logo.png"
@@ -409,7 +407,7 @@ export const cardHash: { [key: string]: SpeedyCard } = {
       "Tap the button to learn about new plugins + integration options",
       { color: "red", backgroundColor: "blue" }
     )
-    .addLinkButton("https://www.figma.com/community/plugins", "🚀 Learn More"),
+    .addLinkButton("https://www.figma.com/community/plugins", "🚀 Let's go"),
   "appcard-rtl": Bot.appCard(
     "ڈیزائن پر اپ ڈیٹ",
     "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/figma_logo.png",
@@ -520,37 +518,63 @@ export const cardHash: { [key: string]: SpeedyCard } = {
         size: "ExtraLarge",
       }
     ),
-  "format-card": Bot.card()
-    .addHeader("🌟 Formatted Card 🌟")
-    .addTitle("SpeedyBot can do a lot of text + visual formatting")
-    .addText("You do fun things with text", { size: "Large" })
-    .addText("You can change colors", { size: "Large", color: "green" })
-    .addText("Mess with alignment + sizes", {
-      size: "Small",
-      color: "red",
-      align: "Right",
-    })
-    .addText("Change background colors", {
-      size: "Medium",
-      color: "red",
-      backgroundColor: "blue",
-    })
-    .addText("Change background colors", {
-      size: "Medium",
-      color: "red",
-      align: "Right",
-      backgroundColor: "blue",
-    })
-    .addText("Woo", {
-      size: "Medium",
-      align: "Right",
-      backgroundColor: "red",
-    })
-    .addText("More fun", {
-      size: "Large",
-      color: "red",
-      backgroundColor: "yellow",
-    }),
+  "old-survey": Bot.card()
+    .addTitle("Business Improvement Survey 📈")
+    .addSubtitle("Help Us Enhance Our Business Operations!")
+    .addText(
+      "Your insights are crucial for our continuous improvement. Please take a moment to complete this survey."
+    )
+    .addText("1. Company Name:")
+    .addTextInput("Enter Your Company's Name")
+    .addText("2. Your Position/Role:")
+    .addTextInput("Enter Your Position/Role")
+    .addText("3. Please select your department:")
+    .addPickerDropdown(
+      ["Select Department"].concat([
+        "Sales",
+        "Marketing",
+        "Customer Support",
+        "Finance",
+        "Product Development",
+      ])
+    )
+    .addText(
+      "4. On a scale of 1-5, how satisfied are you with our products/services? (1 being very dissatisfied, 5 being very satisfied)"
+    )
+    .addSingleSelect([
+      "1 (Very Dissatisfied)",
+      "2",
+      "3",
+      "4",
+      "5 (Very Satisfied)",
+    ])
+    .addText(
+      "5. What aspects of our products/services do you appreciate the most?"
+    )
+    .addTextarea(
+      "Please share what you appreciate the most about our offerings."
+    )
+    .addText(
+      "6. Are there any specific areas where you believe we can improve?"
+    )
+    .addTextarea(
+      "Please provide details on areas where we can enhance our products/services."
+    )
+    .addText(
+      "7. How likely are you to recommend our company to others? (1 being highly unlikely, 5 being highly likely)"
+    )
+    .addSingleSelect([
+      "1 (Highly Unlikely)",
+      "2",
+      "3",
+      "4",
+      "5 (Highly Likely)",
+    ])
+    .addText("8. Any additional comments or suggestions?")
+    .addTextarea(
+      "Feel free to share any additional comments or suggestions you may have."
+    )
+    .setSubmitButtonTitle("Submit Survey"),
 };
 
 export const makeHTML = (prefix: string, trigger: any) => {
@@ -572,3 +596,104 @@ ${JSON.stringify(trigger, null, 2)}
           </body>
           </html>`;
 };
+
+Bot.exact("$survey", async ($) => {
+  const companyNameQuestion: SurveyQuestion = {
+    type: "text",
+    question: "What is the name of your company?",
+    id: "company_name",
+  };
+
+  const serviceTypeQuestion: SurveyQuestion = {
+    type: "text",
+    question: "Describe the service performed by the vendor.",
+    id: "service_type",
+  };
+
+  const serviceDateQuestion: SurveyQuestion = {
+    type: "picker-date",
+    question: "When was the service provided?",
+    id: "service_date",
+  };
+
+  const serviceQualityQuestion: SurveyQuestion = {
+    type: "single-select",
+    question: "How would you rate the quality of service?",
+    choices: ["Excellent", "Good", "Average", "Poor", "Very poor"],
+    id: "service_quality",
+  };
+
+  const highlightsQuestion: SurveyQuestion = {
+    type: "multi-select",
+    question: "What were the highlights of the service?",
+    choices: [
+      "Communication",
+      "Punctuality",
+      "Time to Resolution",
+      "Friendliness",
+      "Cost",
+    ],
+    id: "service_highlights",
+  };
+
+  const futureUseQuestion: SurveyQuestion = {
+    type: "single-select",
+    question: "Would you consider using our services again in the future?",
+    choices: [
+      "Definitely",
+      "Probably",
+      "Not sure",
+      "Probably not",
+      "Definitely not",
+    ],
+    id: "future_use",
+  };
+
+  const otherCommentsQuestion: SurveyQuestion = {
+    type: "textarea",
+    question:
+      "Please provide any other comments or suggestions for improvement.",
+    id: "other_comments",
+  };
+
+  const preferredContactTimeQuestion: SurveyQuestion = {
+    type: "picker-time",
+    question: "What time of day is preferable for future contact?",
+    id: "preferred_contact_time",
+  };
+
+  const communicationMethodQuestion: SurveyQuestion = {
+    type: "picker-dropdown",
+    question: "Preferred method of communication for future updates?",
+    choices: ["Email", "Phone", "Text"],
+    id: "communication_method",
+  };
+
+  const surveyCard = $.card().survey([
+    companyNameQuestion,
+    serviceTypeQuestion,
+    serviceDateQuestion,
+    serviceQualityQuestion,
+    highlightsQuestion,
+    futureUseQuestion,
+    otherCommentsQuestion,
+    preferredContactTimeQuestion,
+    communicationMethodQuestion,
+  ]);
+
+  await $.send(surveyCard);
+  return $.end;
+});
+
+// "ping"/"pong"
+Bot.addStep(async ($) => {
+  if ($.text) {
+    const lower = $.text.toLowerCase();
+    if (lower === "pong") {
+      await $.send("ping");
+    } else if (lower === "ping") {
+      await $.send("pong");
+    }
+  }
+  return $.next;
+});
