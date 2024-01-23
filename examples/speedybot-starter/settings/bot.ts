@@ -25,12 +25,35 @@ Bot.addStep(async ($) => {
   }
 
   // adaptive card/form submissions
-  if ($.data && !$.data.showCard) {
+  if ($.data && !$.data.showCard && !$.data.randomSpeedyBot) {
     const dataSnippet = $.buildDataSnippet($.data);
     await $.send(`This data was submitted:`);
     await $.send(dataSnippet);
   }
 
+  return $.next;
+});
+
+Bot.addStep(async ($) => {
+  if ($.data && $.data.randomSpeedyBot) {
+    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo${$.pickRandom(
+      1,
+      33
+    )}.jpeg`;
+
+    await $.send(
+      $.card()
+        .addHeader("\u{1F916} SpeedyBot")
+        .addImage(randomImage, {
+          targetURL: "https://speedybot.js.org",
+          size: "ExtraLarge",
+        })
+        .addChips([
+          { title: "🤖 Show another SpeedyBot", value: "randomSpeedyBot" },
+        ])
+    );
+    return $.end;
+  }
   return $.next;
 });
 
@@ -170,7 +193,7 @@ Bot.addStep(async ($) => {
 
     const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo${$.pickRandom(
       1,
-      34
+      33
     )}.jpeg`;
 
     const introCard = $.card()
@@ -186,6 +209,7 @@ Bot.addStep(async ($) => {
         { title: "🗂 files", value: "files" },
         { title: "🗂 Everything (warning: fast)", value: "kitchensink" },
       ])
+      .addButton("🤖 random", "randomSpeedyBot")
       .addSubcard(
         $.card()
           .addTitle("SpeedyCards")
@@ -204,14 +228,6 @@ Bot.addStep(async ($) => {
 
 // ## Card utilities
 // SpeedyCard form submissions, check for $.data, can add generics for type assurance
-Bot.addStep(async ($) => {
-  if ($.data && !$.data.showCard) {
-    const dataSnippet = $.buildDataSnippet($.data);
-    await $.send(`This data was submitted:`);
-    await $.send(dataSnippet);
-  }
-  return $.next;
-});
 
 // handle card picks from dropdown, attach preview, this can happen from multiple cards + locations
 Bot.addStep<Partial<{ showCard: string }>>(async ($) => {
