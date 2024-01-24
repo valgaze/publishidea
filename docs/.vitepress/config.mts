@@ -37,7 +37,7 @@ export default defineConfig({
           { text: "💬 Messsages", link: "/garage" },
         ],
       },
-      { text: "📚 API Docs", link: "/../api-docs/modules" },
+      { text: "📚 Reference", link: "/../api-docs/modules" },
       { text: "🐍 Python Version", link: "https://pypi.org/project/speedybot" },
 
       // { text: "Examples", link: "/markdown-examples" },
