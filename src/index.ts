@@ -47,12 +47,17 @@ export const mainRequester = async (
   body: any,
   opts: RequestOps = {}
 ) => {
+  // escape hatch to pass init directly to fetch
   if ("rawInit" in opts) {
     try {
       const response = await fetch(url, opts.rawInit);
       if (!response.ok) {
         throw new RequestError(
-          `The request to ${url} failed with status ${response.status}`,
+          `The request to ${url} failed with status ${response.status}${
+            response.status === 401
+              ? " (You may need to double-check your access token)"
+              : ""
+          }`,
           response.status,
           url
         );
@@ -92,10 +97,13 @@ export const mainRequester = async (
   }
   try {
     const response = await fetch(url, init);
-
     if (!response.ok) {
       throw new RequestError(
-        `The request to ${url} failed with status ${response.status}`,
+        `The request to ${url} failed with status ${response.status}${
+          response.status === 401
+            ? " (You may need to double-check your access token)"
+            : ""
+        }`,
         response.status,
         url
       );
