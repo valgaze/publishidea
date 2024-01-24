@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandlerV2 } from "aws-lambda";
-import { ENVELOPES } from "./../../../../../src/types"; // relace w/ speedybot
+import { ENVELOPES } from "speedybot"; // relace w/ speedybot
 import Bot from "./settings/bot";
 import { validateSignature } from "./validate_webhook";
 import "cross-fetch/polyfill"; // for node <18, need Blob + FormData

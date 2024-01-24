@@ -11,11 +11,32 @@ export default defineConfig({
     },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: "🏡 Home", link: "/" },
-      { text: "📇 SpeedyCard Editor", link: "/speedycard" },
       { text: "🆕 Start Here", link: "/new" },
+      { text: "🏡 Home", link: "/" },
+      { text: "📇 SpeedyCard", link: "/speedycard" },
       { text: "🔧 Garage", link: "/garage" },
-      { text: "🌟 Examples", link: "/examples/README" },
+      {
+        text: "🌟 Examples",
+        items: [
+          {
+            text: "🐣 Run a bot locally",
+            link: "/new",
+          },
+          {
+            text: "📲 LLM streaming responses",
+            link: "/examples/llm-stream/README",
+          },
+          {
+            text: "🦖 Deploy to Deno",
+            link: "/examples/deno/README",
+          },
+          {
+            text: "💻 Langchain ",
+            link: "/examples/openai-embeddings-langchain/README.md",
+          },
+          { text: "💬 Messsages", link: "/garage" },
+        ],
+      },
       { text: "📚 API Docs", link: "/../api-docs/modules" },
       { text: "🐍 Python Version", link: "https://pypi.org/project/speedybot" },
 

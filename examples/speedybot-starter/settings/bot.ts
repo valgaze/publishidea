@@ -239,7 +239,7 @@ Bot.addStep<Partial<{ showCard: string }>>(async ($) => {
     const card = cardHash[$.data.showCard].addSubcard(
       $.card()
         .addLink(
-          "https://speedybot.js.org/speedycard?card=${$.data.showCard}",
+          `https://speedybot.js.org/speedycard?card=${$.data.showCard}`,
           "See the source for this card"
         )
         .addText("Pick a new card")
