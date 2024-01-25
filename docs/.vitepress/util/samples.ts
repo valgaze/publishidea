@@ -307,6 +307,24 @@ const card = Bot.card()
                 .addText('If you add a chip, when the user clicks it your bot will react as if the user uttered that phrase')
 `,
   },
+  {
+    name: "table_card",
+    label: "Tabular Data 🐸",
+    value: `const Bot = new SpeedyBot();
+    const card = Bot.card()
+      .addTitle(
+        "Ribbit! Check out the hop-tastic details below from FrogBot industries"
+      )
+      .addTable([
+        ["Frog Species", "Population"],
+        ["Green Tree Frog", "2,500"],
+        ["Red-eyed Tree Frog", "1,800"],
+        ["Poison Dart Frog", "700"],
+        ["Fire-bellied Toad", "1,200"],
+      ])
+      .addLinkButton("http://allaboutfrogs.org/froglnd.shtml", "🐸 Explore Frogs");
+    `,
+  },
 ];
 
 export const footer = `
