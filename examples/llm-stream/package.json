@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "bot:dev": "tsnd --respawn --watch src,settings,.env settings/launch",
+    "bot:dev": "tsx watch settings/launch",
     "serve": "npm run bot:dev",
     "start": "npm run bot:dev",
     "dev": "npm run bot:dev",
@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@axflow/models": "^0.0.25",
-    "speedybot": "^2.0.0-beta.72"
+    "speedybot": "latest"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

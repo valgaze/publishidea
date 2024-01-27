@@ -61,4 +61,6 @@ BOT_TOKEN=__REPLACE__ME__
 
 ## Boot it up
 
+Greet your agent and attempt a generation
+
 Note: this example happens to use OpenAI, but you can swap-in HuggingFace, **[Anthropic](https://docs.axflow.dev/documentation/models/anthropic-completion.html)** or **[roll your own](https://docs.axflow.dev/guides/models/bring-your-own-models.html)**

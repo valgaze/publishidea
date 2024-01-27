@@ -1,6 +1,8 @@
-## SpeedyBot on AWS Lambda
+# SpeedyBot on AWS Lambda
 
-Note: This example uses the **[Serverless Stack (SST)](https://serverless-stack.com/)** toolchain for provisioning, deployment of infrastructure. SST is built on top of a version **[AWS Cloud Development Kit (cdk)](https://aws.amazon.com/cdk/)** let's you express your infrastructure needs as spec/code. SST is definitely not required but is the quickest route to a serverless deployment.
+Note: This example uses the **[Serverless Stack (SST)](https://serverless-stack.com/)** toolchain for provisioning, deployment of infrastructure. SST is built on top of a version **[AWS Cloud Development Kit (cdk)](https://aws.amazon.com/cdk/)** and makes it possible to express your infrastructure needs as spec/code. SST is definitely not required, but is the quickest route to a serverless deployment.
+
+SpeedyBot has been built with serverless in mind from the beginning-- serverless infrastructure is "asleep" until you need it. Start-up times are fast enough to interact with the chat client withot timing out.
 
 ## 1) Fetch repo & install dependencies
 
@@ -24,9 +26,9 @@ WEBHOOK_SECRET=__REPLACE__ME__
 BOT_TOKEN=__REPLACE__ME__
 ```
 
-Note: WEBHOOK_SECRET is up to you, incoming requests will be hashed with it, if hash is present on the incoming request & `WEBHOOK_SECRET` is present, the lambda will attempt to validate the request. If it fails to match the request will be rejected
+Note: WEBHOOK_SECRET is up to you, incoming requests will be hashed with it, if the hash is present on the incoming request & `WEBHOOK_SECRET` is present, the lambda will attempt to validate the request. If it fails to match the request will be rejected
 
-Note: The `.env` file musts never be aded to source control
+Note: The `.env` file musts never be aded to source control (and there are may ways to supply sensitive data to lambda functions with SST)
 
 ## 3) Set up your AWS credentials on your machine
 
@@ -48,13 +50,9 @@ If deployment is successful, you should find that your url that looks something 
 
 ## 4) Register webhooks
 
-```
-npm init speedybot webhook create
-```
+Hop on over to the **[Webhooks Section](https://speedybot.js.org/webhooks)** to register your webhooks and secret
 
 Note:
 This uses SST but any deployment mechanism/structure you prefer works fine
 
-Note: This SST configuration is setup to capture incoming WebEx requests on the `/speedybot` route, you can change all the behavior in **[the stack config](./stacks/MyStack.ts)**
-
-SpeedyBot has been built with serverless in mind from the beginning-- serverless infrastructure is "asleep" until you need it. Start-up times are fast enough to interact with the chat client withot timing out.
+Note: This SST configuration is setup to capture incoming WebEx requests on the `/speedybot` route, you can change any/all the behavior in **[the stack config](./stacks/MyStack.ts)**
