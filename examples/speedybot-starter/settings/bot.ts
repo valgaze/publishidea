@@ -161,7 +161,6 @@ Bot.addStep(async ($) => {
     await $.send(`-----------`);
     await $.send($.buildDMLink("speedybot@webex.bot", "🤖 Talk to SpeedyBot"));
     await $.send(`-----------`);
-    return $.next;
 
     await $.send(`## Files`);
 

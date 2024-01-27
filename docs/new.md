@@ -135,13 +135,15 @@ If all went well, you should see something like this in your terminal:
 
 Now send a message to your bot and you'll see a welcome screen with buttons and cards
 
-<img src="https://raw.githubusercontent.com/valgaze/speedybot-hub/deploy/docs/assets/first_spin.gif" />
+<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/autocomplete.gif?raw=true" />
 
-You can customize this however you want by editing the file **[settings/bot.ts](https://github.com/valgaze/speedybot-starter/blob/deploy/settings/bot.ts)**
+You can customize this however you want by editing the file **[settings/bot.ts](https://github.com/valgaze/speedybot-local-server/blob/deploy/settings/bot.ts)**
 
 Turn off your bot by tapping CTRL-C, to
 
 Whether you're just starting out on your conversation design journey or a seasoned pro, SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](./patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./speedycard.md)**, ask for a user's location in a privacy-respecting way, and much more.
+
+When you're ready to deploy it to a server, serverless function or virtually any infrastructure/device, **[check out the examples](./examples.md)**
 
 <script setup>
 import { ref, watch } from 'vue'

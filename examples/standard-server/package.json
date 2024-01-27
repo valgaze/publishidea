@@ -1,5 +1,5 @@
 {
-  "name": "speedybot-simple-server",
+  "name": "speedybot-local-server",
   "version": "2.0.0",
   "description": "The speedy and easy way to build rich bots + conversation experiences",
   "scripts": {
@@ -15,10 +15,6 @@
     "bot:help": "ts-node util/cli help",
     "help": "npm run bot:help",
     "bot:addsecret": "ts-node util/cli addsecret"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/valgaze/speedybot-starter.git"
   },
   "keywords": [
     "bot",
