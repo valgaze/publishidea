@@ -72,7 +72,7 @@ SpeedyCards make it (yep) speedy and easy to build **[Adaptive Cards](https://ad
 
 ## LLM Token Streaming
 
-SpeedyBot makes it speedy & easy to build serverless bots for the LLM era. See the **[LLM steam example](https://github.com/valgaze/publishidea/blob/v2/examples/llm-stream/README.md)**
+SpeedyBot makes it speedy & easy to build serverless bots for the LLM era. See the **[LLM steam example](https://speedybot.js.org/examples/llm-stream)**
 
 <img src="https://github.com/valgaze/speedybot-utils/blob/main/assets/various/llm_stream.gif?raw=true" />
 
