@@ -1,6 +1,6 @@
-# [QUICKSTART]
+# Add your bot on a Workers
 
-Note: The steps below assume you have a working WebEx account & **[Nodejs](https://nodejs.org/en/download/)** 16.7+
+Note: The steps below assume you have a working WebEx account + a Cloudflare account with permission to create Workers
 
 ## 1) Fetch repo & install deps
 
@@ -52,25 +52,17 @@ npm run deploy
 
 - Make a note the URL of the deployed function (ie http://speedybot-mini.username.workers.dev)
 
-Unlike the **[websockets example](./../speedybot-starter/README.md)**, you will need to deploy this serve or use a secure mechanism to expose it to the internet and then register the webhooks
+Unlike the **[websockets example](https://speedybot.js.org/examples/speedybot-starter/README)**, you will need to deploy this serve or use a secure mechanism to expose it to the internet and then register the webhooks
 
-You can register webhooks with:
-
-```sh
-npm init speedybot webhook create
-```
+Hop on over to the **[Webhooks Section](https://speedybot.js.org/webhooks)** to register your webhooks and secret
 
 ## 7) Take it for a spin
 
 - After connecting webhooks, take it for a spin
 
-<!-- ![image](./../../docs/assets/first_spin.gif) -->
+<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/first_spin.gif" />
 
-## Webhook Secret
-
-- Use a webhook secret to secure your agent, **[webhook details here](./../../docs/webhooks.md#webhook-secrets)**
-
-- Register your webhooks using a secret with **[speedybot bot-garage 🔧🤖](https://codepen.io/valgaze/full/MWVjEZV)**
+## Webhook secrets
 
 - From the same directory as the repo run the following command to add a secret called `WEBHOOK_SECRET` and use the same secret value used when registering webhooks:
 
