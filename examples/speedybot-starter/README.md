@@ -29,7 +29,7 @@ BOT_TOKEN=__REPLACE__ME__
 
 - Start up your agent
 
-Note: By default your agent will communicate using websockets, so you won't need to worry about details like deployment or webhooks. Later down the line if you need to deploy your agent on a traditional server or ephemeral/serverless function infrastructure **[see here](./lambda/README.md)**
+Note: By default your agent will communicate using websockets, so you won't need to worry about details like deployment or webhooks. Later down the line if you need to deploy your agent on a traditional server or ephemeral/serverless function infrastructure **[see the examples](https://speedybot.js.org/examples)**
 
 ```
 npm run bot:dev
