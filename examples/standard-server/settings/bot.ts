@@ -1,5 +1,4 @@
-import { SpeedyBot, SpeedyCard, SurveyQuestion } from "../../../src";
-
+import { SpeedyBot, SpeedyCard, SurveyQuestion } from "speedybot";
 const Bot = new SpeedyBot();
 
 // ## File upload handler

@@ -1,10 +1,10 @@
-## Speedybot Starter
+## Standard Server
 
 ## 1) Clone repo & install dependencies
 
 ```
 git clone https://github.com/valgaze/speedybot
-cd examples/speedybot-starter
+cd examples/standard-server
 npm install
 ```
 
@@ -28,7 +28,7 @@ BOT_TOKEN=__REPLACE__ME__
 
 ## 3) Boot it up!
 
-- Start up your agent
+- Start up your agent w/ `npm run bot:dev`
 
 ```
 npm run bot:dev
@@ -42,7 +42,7 @@ To test just the incoming webhook, edit the **[/incoming_webhook](./src/index.ts
 curl -X POST -H "Content-Type: application/json" -d '{"id": 1234567890987654321}' http://localhost:8000/incoming_webhook
 ```
 
-Unlike the **[websockets example](./../speedybot-starter/README.md)**, you will need to deploy this serve or use a secure mechanism to expose it to the internet and then register the webhooks
+Unlike the **[websockets example](https://speedybot.js.org/examples/speedybot-starter/README)**, you will need to deploy this serve or use a secure mechanism to expose it to the internet and then register the webhooks
 
 You can register webhooks with:
 
@@ -67,7 +67,3 @@ All you'll probably need are `npm run bot:dev` + maybe `npm run bot:reset`
 | `npm run bot:help`      | Displays help information for the bot          |
 | `npm run help`          | Alias for npm run bot:help                     |
 | `npm run bot:addsecret` | Adds a secret to the bot's configuration       |
-
-```
-
-```
