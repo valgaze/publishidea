@@ -15,16 +15,12 @@
     }
   },
   "devDependencies": {
-    "@types/jest": "^29.1.2",
-    "@types/minimist": "^1.2.5",
     "@types/node": "^18.8.4",
     "@vitest/coverage-v8": "^0.32.2",
     "@vitest/ui": "^0.32.2",
     "adaptivecards": "2.11.1",
     "element-plus": "^2.3.10",
-    "fs-extra": "^11.2.0",
     "monaco-editor": "^0.41.0",
-    "ts-jest": "^29.0.3",
     "tsx": "^3.10.1",
     "typedoc": "^0.22.18",
     "typedoc-plugin-markdown": "3.12.1",
