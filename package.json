@@ -1,6 +1,6 @@
 {
   "name": "speedybot",
-  "version": "2.0.0-beta.747",
+  "version": "2.0.0-beta.748",
   "main": "dist/cjs/src/index.js",
   "module": "dist/mjs/src/index.js",
   "types": "dist/mjs/src/index.d.ts",

@@ -14,7 +14,7 @@
 
 <img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg?raw=true" />
 
-tl;dr: SpeedyBot helps you efficiently design, deploy, and secure rich conversation systems in enterprises and large teams
+tl;dr: SpeedyBot helps you efficiently design, deploy, and secure rich conversation systems
 
 ## Setup
 
@@ -32,11 +32,11 @@ npm install speedybot
 
 ## SpeedyBot basics
 
-You can see fleshed-out examples at **[https://speedybot.js.org/examples](https://speedybot.js.org/examples)** and see how SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](https://speedybot.js.org/patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./speedycard.md)**, ask for a user's location in a privacy-respecting way and lots more.
+You can see fleshed-out examples at **[https://speedybot.js.org/examples/](https://speedybot.js.org/examples/)** and see how SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](https://speedybot.js.org/patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./patterns.md#restrict-emails)**, create + manage **[SpeedyCards](https://speedybot.js.org/speedycard)**, ask for a user's location in a privacy-respecting way and lots more.
 
 ### Auto-binding
 
-As a convenience, SpeedyBot's "magic" $ parameter will auto-bind to the incoming message and give you access to all kinds of useful
+As a convenience, SpeedyBot's "magic" $ parameter will auto-bind to the incoming message and give you access to all kinds of useful features
 
 ```js
 const Bot = new SpeedyBot();
@@ -55,6 +55,10 @@ Bot.addStep(async ($) => {
   return $.next;
 });
 ```
+
+There's also a lot more you can do
+
+<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/autocomplete.gif?raw=true" />
 
 ## SpeedyCards
 

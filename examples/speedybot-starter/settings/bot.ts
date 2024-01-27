@@ -247,6 +247,7 @@ Bot.addStep<Partial<{ showCard: string }>>(async ($) => {
     );
     await $.send(card);
   }
+
   return $.next;
 });
 
@@ -710,5 +711,13 @@ Bot.addStep(async ($) => {
       await $.send("pong");
     }
   }
+  return $.next;
+});
+
+Bot.addStep(async ($) => {
+  await $.send(`Hi there, ${$.author.name}!`);
+
+  $.
+
   return $.next;
 });
