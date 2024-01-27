@@ -1,8 +1,8 @@
 ## LLM-Stream
 
-This was the major inspiration for SpeedyBot 2.0-- how to efficiently allocate the edits to "stream in" responses from an LLM.
+This was the major inspiration for SpeedyBot 2.0-- how to efficiently allocate the edits to "stream in" responses from an LLM eendpoint.
 
-- You can make up to 10 edits on a WebEx message which can approximate the "stream-in" effect on some LLM applications
+- You can make up to 10 edits on a WebEx message which can approximate the "stream-in" effect on some LLM applications (otherwise the latency involved with "just waiting" for a generation is an awful user experience)
 
 - With unknown chunk-length & unknown number of chunks, need a reasonable way to "smoothly" stream in edits so the user isn't left hanging
 
