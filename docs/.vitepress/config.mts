@@ -12,15 +12,16 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "🆕 Start Here", link: "/new" },
-      { text: "🏡 Home", link: "/" },
-      { text: "📇 SpeedyCard", link: "/speedycard" },
-      { text: "🔧 Garage", link: "/garage" },
       {
         text: "🌟 Examples",
         items: [
           {
             text: "🐣 Run a bot locally",
             link: "/new",
+          },
+          {
+            text: "🎨 Common Patterns",
+            link: "/patterns",
           },
           {
             text: "📲 LLM streaming responses",
@@ -37,8 +38,11 @@ export default defineConfig({
           { text: "💬 Messsages", link: "/garage" },
         ],
       },
+      { text: "📇 SpeedyCard", link: "/speedycard" },
+      { text: "🔧 Garage", link: "/garage" },
       { text: "📚 Reference", link: "/../api-docs/modules" },
       { text: "🐍 Python Version", link: "https://pypi.org/project/speedybot" },
+      // { text: "🏡 Home", link: "/" },
 
       // { text: "Examples", link: "/markdown-examples" },
     ],
