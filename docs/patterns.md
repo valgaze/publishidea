@@ -311,7 +311,7 @@ Bot.addStep(async ($) => {
 });
 ```
 
-**Important:** Files are automatically scanned for viruses. If you call the `getData` method before the scan finishes, you might encounter a **[423 File Locked status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/423)**. This can happen with large files (but generally not a common issue). Check out **[Speedybot-voiceflow example](./examples/voiceflow/README.md)** for more details on implementing a retry mechanism
+**Important:** Files are automatically scanned for viruses. If you call the `getData` method before the scan finishes, you might encounter a **[423 File Locked status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/423)**. This can happen with large files (but generally not a common issue). You can implement a retry mechanism using an adpative card w/ the uploaded url.
 
 ### Restrict emails
 

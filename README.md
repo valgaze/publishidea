@@ -32,7 +32,7 @@ npm install speedybot
 
 ## SpeedyBot basics
 
-You can see fleshed-out examples at **[https://speedybot.js.org/examples/](https://speedybot.js.org/examples/)** and see how SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](https://speedybot.js.org/patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./patterns.md#restrict-emails)**, create + manage **[SpeedyCards](https://speedybot.js.org/speedycard)**, ask for a user's location in a privacy-respecting way and lots more.
+You can see fleshed-out examples at **[https://speedybot.js.org/examples/](https://speedybot.js.org/examples/)** and see how SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](https://speedybot.js.org/patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](https://speedybot.js.org/patterns.md#restrict-emails)**, create + manage **[SpeedyCards](https://speedybot.js.org/speedycard)**, ask for a user's location in a privacy-respecting way and lots more.
 
 ### Auto-binding
 

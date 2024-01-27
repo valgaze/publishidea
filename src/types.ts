@@ -128,7 +128,7 @@ export type $Magic<T = AttachedData> = {
     utterances: string[],
     template: { [key: string]: string | number }
   ) => string;
-  buildDMLink: (target: string, label?: string) => string;
+  buildDMLink: (target: string, label: string) => string;
   card: (config?: Partial<AbbreviatedSpeedyCard>) => SpeedyCard;
   edit: (m: MessageResponse, e: string) => Promise<MessageResponse>;
   pickRandom<P>(list: P[]): P;

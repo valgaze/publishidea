@@ -72,3 +72,5 @@ volta install node
 However you set up your system, make sure to run `node -v` in your terminal to verify node is correctly installed and you can take advantage of its rich ecoysten
 
 </details>
+
+If you see an error that reads somnething like `Forbidden: User has excessive device registrations` you can run `npm run bot:reset`, wait a few minutes and try again

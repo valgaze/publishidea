@@ -374,9 +374,9 @@ export class SpeedyBot<S extends string = string> {
         file: filePayload,
         data: attachedData,
         ctx: startingCtx,
-        buildDMLink(target: string, label?: string): string {
+        buildDMLink(target: string, label: string): string {
           const url = `webexteams://im?email=${target}`;
-          return this.buildLink(url, url ?? label);
+          return this.buildLink(url, label ?? url);
         },
         debug() {
           return {

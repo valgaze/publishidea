@@ -92,7 +92,7 @@ SpeedyBot does **NOT** log/persist or do anything (except what you tell it to do
 
 ## Run your bot from your computer
 
-- Keeping things simple to start you'll run the bot from your machine (ie when your computer is off your bot is "off") but later if you need to, you can deploy it to virtually **[any standard server or scalable serverless cloud infrastructure you want](./examples/README.md)**
+- Keeping things simple to start you'll run the bot from your machine (ie when your computer is off your bot is "off") but later if you need to, you can deploy it to virtually **[any standard server or scalable serverless cloud infrastructure you want](./examples/index)**
 
 Copy the commands below to get up and running
 
@@ -141,7 +141,7 @@ You can customize this however you want by editing the file **[settings/bot.ts](
 
 Turn off your bot by tapping CTRL-C, to
 
-Whether you're just starting out on your conversation design journey or a seasoned pro, SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](./patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./speedycard.md)**, **[ask for a user's location in a privacy-respecting way](./examples/location/README.md)**, and much more.
+Whether you're just starting out on your conversation design journey or a seasoned pro, SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](./patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./speedycard.md)**, ask for a user's location in a privacy-respecting way, and much more.
 
 <script setup>
 import { ref, watch } from 'vue'

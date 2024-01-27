@@ -36,7 +36,7 @@ Bot.addStep(async ($) => {
 
 Bot.addStep(async ($) => {
   if ($.data && $.data.randomSpeedyBot) {
-    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo${$.pickRandom(
+    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo${$.pickRandom(
       1,
       33
     )}.jpeg`;
@@ -92,7 +92,6 @@ Bot.addStep(async ($) => {
         "SpeedyCards make it easy to send rich, interactive cards to the user"
       );
       const { value } = Bot.pickRandom(cardChoices);
-      console.log("#", value);
       const card = cardHash[value].addSubcard(
         $.card()
           .addLink(
@@ -159,6 +158,11 @@ Bot.addStep(async ($) => {
       "thread item 5",
     ]);
 
+    await $.send(`-----------`);
+    await $.send($.buildDMLink("speedybot@webex.bot", "🤖 Talk to SpeedyBot"));
+    await $.send(`-----------`);
+    return $.next;
+
     await $.send(`## Files`);
 
     // Send data as a *.json file
@@ -189,7 +193,7 @@ Bot.addStep(async ($) => {
     };
     await $.send($.fillTemplate(utterances, template));
 
-    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo${$.pickRandom(
+    const randomImage = `https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo${$.pickRandom(
       1,
       33
     )}.jpeg`;
@@ -397,7 +401,7 @@ export const cardHash: { [key: string]: SpeedyCard } = {
       "By the way, text blocks support simple markdown like **bolding**, *italics*, and even **[links](https://speedybot.js.org/new)**"
     )
     .addImage(
-      "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/memes/logo4.jpeg",
+      "https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg",
       { align: "Center" }
     ),
   appcard: Bot.appCard(
@@ -503,32 +507,32 @@ export const cardHash: { [key: string]: SpeedyCard } = {
     .addSubtitle("Cards can have images too")
     .addText("Small")
     .addImage(
-      "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/speedybot_logo.png",
+      "https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg",
       { size: "Small" }
     )
     .addText("Medium")
     .addImage(
-      "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/speedybot_logo.png",
+      "https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg",
       { size: "Medium" }
     )
     .addText("Large")
     .addImage(
-      "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/speedybot_logo.png",
+      "https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg",
       { size: "Large" }
     )
     .addText("ExtraLarge")
     .addImage(
-      "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/speedybot_logo.png",
+      "https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg",
       { size: "ExtraLarge" }
     )
     .addText("Stretch")
     .addImage(
-      "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/speedybot_logo.png",
+      "https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg",
       { size: "Stretch" }
     )
     .addText("TIP: Images can be links too", { color: "Attention" })
     .addImage(
-      "https://raw.githubusercontent.com/valgaze/speedybot-mini/deploy/docs/assets/speedybot_logo.png",
+      "https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg",
       {
         targetURL: "https://speedybot.js.org",
         size: "ExtraLarge",
