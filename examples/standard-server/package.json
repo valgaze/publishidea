@@ -1,26 +1,48 @@
 {
-  "name": "express-incoming-webhook",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "speedybot-simple-server",
+  "version": "2.0.0",
+  "description": "The speedy and easy way to build rich bots + conversation experiences",
   "scripts": {
-    "dev": "tsnd --respawn --watch src,settings src/index",
-    "start": "ts-node src/index.ts",
-    "build": "tsc"
+    "bot:on": "ts-node settings/launch",
+    "serve": "npm run bot:dev",
+    "dev": "npm run bot:dev",
+    "bot:debug": "npx -y envinfo@7.11.0",
+    "bot:serve": "npm run bot:dev",
+    "bot:dev": "tsnd --respawn --watch src,settings,.env settings/launch",
+    "bot:reset": "ts-node util/cli reset",
+    "bot:setup": "ts-node util/cli setup",
+    "bot:token": "npm run bot:setup",
+    "bot:help": "ts-node util/cli help",
+    "help": "npm run bot:help",
+    "bot:addsecret": "ts-node util/cli addsecret"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valgaze/speedybot-starter.git"
+  },
+  "keywords": [
+    "bot",
+    "scaffold",
+    "continerless",
+    "speedybot",
+    "serverless"
+  ],
+  "author": "valgaze@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.1",
     "ts-node": "^8.10.1",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.10"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "cross-fetch": "^3.1.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
-    "speedybot-mini": "^2.0.6"
+    "speedybot": "latest"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

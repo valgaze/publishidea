@@ -38,7 +38,7 @@ To secure your webhooks with a secret set a secret:
 npx wrangler secret put WEBHOOK_SECRET
 ```
 
-![image](https://raw.githubusercontent.com/valgaze/speedybot-utils/main/ui/worker_secret.gif)
+![image](https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/worker_secret.gif)
 
 ## 5) Deploy your agent
 
@@ -77,9 +77,3 @@ npm init speedybot webhook create
 ```sh
 npx wrangler secret put WEBHOOK_SECRET
 ```
-
-<!--
-<script setup>
-
-    const store = useStore()
-</script> -->

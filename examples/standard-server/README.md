@@ -1,86 +1,73 @@
-## Webhooks example
+## Speedybot Starter
 
-Take incoming webhooks + process them. This is running on a persistent, very server-full (definitely not server-less) Express instance
-
-tl;dr: edit **[./settings/bot.ts](./settings/config.ts)** and pass in your token and boot with `npm start` (or `npm run dev` to activate reload on code changes)
-
-## Quickstart
-
-Do you want your bot to tell someone (or a group of someones) whenever something happens on an external service like Jira? This is what you need to get up and running fast-- just edit **[./settings/webhooks.ts](./settings/webhooks.ts)** to create a notifer/alert'ing experience using incoming webhooks (ex from a Jira system, support queue, etc)
-
-Note: The steps below assume you have a working WebEx account & **[Nodejs](https://nodejs.org/en/download/)** 12+
-
-## 1) Fetch repo & install dependencies
+## 1) Clone repo & install dependencies
 
 ```
 git clone https://github.com/valgaze/speedybot
-cd speedybot
-cd examples/simple-server
+cd examples/speedybot-starter
 npm install
 ```
 
 ## 2) Set your bot access token
 
-- If you have an existing bot, get its token here: **[https://developer.webex.com/my-apps](https://developer.webex.com/my-apps)**
+- Make a new bot and note its access token from here: **[https://developer.webex.com/my-apps/new/bot](https://developer.webex.com/my-apps/new/bot)**
 
-- If you don't have a bot, create one and save the token from here: **[https://developer.webex.com/my-apps/new/bot](https://developer.webex.com/my-apps/new/bot)**
+You can set your `BOT_TOKEN` by running this script in the project directory:
 
-Once you have the bot's token, save it to **[settings/config.ts](./settings/config.ts)** under the `token` field
+`npm run bot:setup <your_token_here>`
 
-## 3) Boot your "tunnel"
+<details><summary>Set token by hand</summary>
 
-For local dev purposes, you will need to (1) sign up for a (free-tier-eligible) "ngrok" account
-
-Follow the steps here: https://dashboard.ngrok.com/get-started/setup
-
-**WARNING:** nGrok may not be supported by your organization's security posture, as an alternative just can deploy your server to any cloud provider & use its publically-accessible URL for webhooks
+Copy the file **[.env.example](.env.example)** as `.env` in the root of your project and save your access token under the `BOT_TOKEN` field, ex
 
 ```
-./ngrok http 8000
+BOT_TOKEN=__REPLACE__ME__
 ```
 
-Note the forwarding URL (you'll need it in a moment), it will look something like this: **https://5a5b-34-567-789-100.ngrok.io**
+</details>
 
-## 4) Register webhooks
+## 3) Boot it up!
 
-You can use **[speedybot garage 🔧🤖](https://codepen.io/valgaze/pen/MWVjEZV)** to register incoming webhooks
-
-The final URL should have /speedybot appended to the end so the final endpoint should look like this: **https://5a5b-34-567-789-100.ngrok.io/speedybot**
-
-![image](./../aws-lambda/assets/speedybot_garage_demo.gif)
-
-## 5) Boot your bot
+- Start up your agent
 
 ```
-npm start
+npm run bot:dev
 ```
 
-## 6) Take it for a spin
+## 4) Run a test
 
-Add your bot from Step 1 in a 1-1 chat session take it for a spin & say "hi" or "healthcheck"-- if everything is configured properly you should get a rich response
-
-![image](./../../docs/assets/first_spin.gif)
-
-## 7) Make a POST request to your bot's incoming webhook
-
-- /incoming_webhook
-- / is for chat traffic
-
-Post to `/incoming_webhook` with the following payload
+To test just the incoming webhook, edit the **[/incoming_webhook](./src/index.ts)** route & run this command to send a test paylaod
 
 ```
-{
-	"msg": "this would come from a 3rd-party tool reaching your chat-server",
-	"id": "5"
-}
+curl -X POST -H "Content-Type: application/json" -d '{"id": 1234567890987654321}' http://localhost:8000/incoming_webhook
 ```
 
-- You can make as many other webhooks as you need and alert people & rooms
+Unlike the **[websockets example](./../speedybot-starter/README.md)**, you will need to deploy this serve or use a secure mechanism to expose it to the internet and then register the webhooks
 
-## Webhook Secret
+You can register webhooks with:
 
-- Use a webhook secret to secure your agent, **[webhook details here](./../../docs/webhooks.md#webhook-secrets)**
+```sh
+npm init speedybot webhook create
+```
 
-- Register your webhooks using a secret with **[speedybot bot-garage 🔧🤖](https://codepen.io/valgaze/full/MWVjEZV)**
+## NPM Run Scripts
 
-- In **[index.ts](./index.ts)** find the variable `webhookSecret` and pass in your webhook secret in whatever manner you prefer for your infrastructure (ie **[dotenv](https://www.npmjs.com/package/dotenv)** or any number of secrets managers.)
+All you'll probably need are `npm run bot:dev` + maybe `npm run bot:reset`
+
+| Script                  | Description                                    |
+| ----------------------- | ---------------------------------------------- |
+| `npm run bot:on`        | Launches the SpeedyBot                         |
+| `npm run serve`         | Alias for npm run bot:dev                      |
+| `npm run dev`           | Alias for npm run bot:dev                      |
+| `npm run bot:debug`     | Displays environment information for debugging |
+| `npm run bot:dev`       | Launches the bot in development mode           |
+| `npm run bot:reset`     | Resets the bot's configuration                 |
+| `npm run bot:setup`     | Sets up the bot for the first time             |
+| `npm run bot:token`     | Alias for npm run bot:setup                    |
+| `npm run bot:help`      | Displays help information for the bot          |
+| `npm run help`          | Alias for npm run bot:help                     |
+| `npm run bot:addsecret` | Adds a secret to the bot's configuration       |
+
+```
+
+```

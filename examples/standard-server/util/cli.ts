@@ -1,9 +1,9 @@
 // #!/usr/bin/env node
 import * as fs from "fs/promises";
 import * as readline from "readline";
-import { resetDevices } from "./utils";
 import { resolve } from "path";
 import * as dotenv from "dotenv";
+import "cross-fetch/polyfill"; // for non-tech environment for reset devices
 
 import { botTokenKey, logoRoll } from "../../../src";
 
@@ -39,17 +39,6 @@ async function promptUser(msg) {
   });
 }
 
-async function resetBot(token) {
-  let finalToken = token || process.env[botTokenKey];
-  if (!finalToken) {
-    finalToken = await promptUser(
-      "Enter your token, [Usage: npm run bot:reset <token>]"
-    );
-  }
-  await resetDevices(finalToken);
-  console.log("Reset attempted");
-}
-
 async function writeToken(token) {
   let finalToken = token;
   if (!token) {
@@ -70,13 +59,6 @@ async function writeToken(token) {
  * @param keyValue: keyName=TheValue
  */
 async function writeSecret(keyValue: string) {
-  if (!keyValue || (keyValue && !keyValue.includes("="))) {
-    console.log(`❌[ERROR] You need to add a secret, ex`);
-    console.log(`
-    npm run bot:addsecret SECRETNAME=secret12345678
-    `);
-    process.exit(1);
-  }
   // appends .env as key=value
   const [key, value] = keyValue.split("=");
   const envObject = { [key]: value };
@@ -87,9 +69,6 @@ async function writeSecret(keyValue: string) {
 }
 async function run(command, ...args) {
   switch (command) {
-    case "reset":
-      await resetBot(args[0]);
-      break;
     case "setup":
       await writeToken(args[0]);
       break;

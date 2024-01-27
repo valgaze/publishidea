@@ -1,14 +1,14 @@
-import "cross-fetch/polyfill";
-import bodyParser from "body-parser";
-import dotenv from "dotenv";
-import express from "express";
-import { finale } from "speedybot-mini";
+import * as bodyParser from "body-parser";
+import { config } from "dotenv";
+import * as express from "express";
 import { resolve } from "path";
-import CultureBot from "./../settings/config";
+import Bot from "./../settings/bot";
 import { validateWebhook } from "./validateWebhook";
+import { announceReady } from "../util";
+import { SpeedyBot } from "../../../src";
 
 // Expects .env to get token on BOT_TOKEN
-dotenv.config({ path: resolve(__dirname, "..", ".env") });
+config({ path: resolve(__dirname, "..", ".env") });
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -19,7 +19,10 @@ if (!token) {
   console.log("\n## Token missing (check .env file)");
   process.exit(0);
 }
-CultureBot.setToken(token);
+Bot.setToken(token);
+
+// Replace TARGET below with an email address of room id
+const TARGET = "joe@joe.com";
 
 app.post("/speedybot", async (req, res) => {
   const json = req.body;
@@ -29,7 +32,7 @@ app.post("/speedybot", async (req, res) => {
   const signature = req.header("x-spark-signature");
   const webhookSecret = process.env.WEBHOOK_SECRET;
 
-  // Validate webhook
+  // Validate webhook & other checks you might need
   if (webhookSecret && signature) {
     const proceed = validateWebhook(json, webhookSecret, signature);
     if (proceed === false) {
@@ -37,45 +40,38 @@ app.post("/speedybot", async (req, res) => {
     }
   }
 
-  const proceed = CultureBot.isEnvelope(json);
-  if (proceed) {
-    await CultureBot.processIncoming(json);
-  }
-  res.status(200).send(finale());
+  await Bot.runMiddleware(json);
+
+  res.status(200).send("ok");
 });
 
 app.post("/incoming_webhook", async (req, res) => {
   const data = req.body;
-  const bot = CultureBot.IncomingWebhooks();
-  if (String(data.id) === "5") {
-    // bot.sendRoom('roomId123456', `The data was 5`)
 
-    // Send text
-    bot.dm("valgaze@cisco.com", "A webhook just hit the server!");
+  //  here you could validate on the req, req.body, etc
+  // Send text
+  Bot.sendTo(TARGET, "A webhook just hit the server!");
 
-    // Send a card
-    bot.dm(
-      "valgaze@cisco.com",
-      bot
-        .card()
-        .setTitle("Attention!")
-        .setText("Youha ve been identified as data 5")
-    );
-
-    // Send a file with data
-    bot.dmDataAsFile(
-      "valgaze@cisco.com",
-      {
-        message: "Data report",
-        id: data.id,
-        stamp: new Date().toISOString(),
-      },
-      "json"
-    );
-  }
-  res.send(
-    `Register your bot's with Speedybot Garage: https://codepen.io/valgaze/full/MWVjEZV`
+  // Send a card
+  Bot.sendTo(
+    TARGET,
+    Bot.card()
+      .addTitle("Attention!")
+      .addText(`Data submitted: ${JSON.stringify(data)}`)
   );
+
+  // Send a file with data
+  Bot.sendFileTo(
+    TARGET,
+    {
+      message: "Data report",
+      id: data.id,
+      stamp: new Date().toISOString(),
+    },
+    "json"
+  );
+
+  res.send(`ok`);
 });
 
 app.get("/", (_, res) => {
@@ -84,6 +80,31 @@ app.get("/", (_, res) => {
   );
 });
 
-app.listen(port, () => {
-  console.log(`Listening + tunneled on port ${port}`);
-});
+export async function startServer(
+  BotRef: SpeedyBot,
+  cb?: (data?: { email: string; name?: string }) => any
+) {
+  return app.listen(port, async () => {
+    const token = BotRef.getToken();
+    if (!token) {
+      throw new Error(
+        `SpeedyBot must have token specified before launching websockets, set with Bot.setToken()`
+      );
+    }
+
+    try {
+      const data = await Bot.getSelf();
+      const { displayName } = data;
+      const [email] = data.emails;
+      if (!cb) {
+        announceReady(String(port), email, displayName);
+      } else {
+        return cb({ email, name: displayName });
+      }
+    } catch (e) {
+      throw e;
+    }
+  });
+}
+
+export { app };

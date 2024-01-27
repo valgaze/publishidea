@@ -7,7 +7,10 @@
     "serve": "npm run bot:dev",
     "start": "npm run bot:dev",
     "dev": "npm run bot:dev",
-    "bot:debug": "npx envinfo@7.11.0"
+    "bot:setup": "tsx util/cli setup",
+    "bot:debug": "npx envinfo@7.11.0",
+    "bot:addsecret": "tsx util/cli addsecret",
+    "bot:help": "tsx util/cli help"
   },
   "keywords": [],
   "author": "",
@@ -18,11 +21,12 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "@types/node": "^20.10.1",
-    "cross-fetch": "^4.0.0",
-    "dotenv": "^16.3.1",
-    "ts-node": "^8.10.1",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^3.9.10"
+    "@babel/runtime-corejs2": "^7.20.1",
+    "@types/node": "^16.18.3",
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.3",
+    "tsx": "^4.7.0",
+    "typescript": "^3.8.3",
+    "webex": "^2.31.0"
   }
 }

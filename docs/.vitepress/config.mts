@@ -28,12 +28,16 @@ export default defineConfig({
             link: "/examples/lambda/README",
           },
           {
-            text: "🦖 Deploy to Deno",
-            link: "./examples/deno/README",
+            text: "🔥 Deploy to Worker ",
+            link: "/examples/worker/README",
           },
           {
-            text: "🔥 Deploy to Worker ",
-            link: "/examples/openai-embeddings-langchain/README.md",
+            text: "🦖 Deploy to Deno",
+            link: "/examples/deno/README",
+          },
+          {
+            text: "🌐 Deploy to Server ",
+            link: "/examples/standard-server/README",
           },
           {
             text: "📲 LLM streaming responses",
