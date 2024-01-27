@@ -119,18 +119,18 @@ export type Destination =
 export type NestedData = string | number | boolean | AttachedData;
 
 export type $Magic<T = AttachedData> = {
-  buildDataSnippet: (data: any, type?: string) => string;
-  debug: () => DebugInfo;
-  send: (m: Message) => Promise<MessageResponse>;
-  reply: (message: string) => Promise<MessageResponse>;
-  clearScreen: (c?: number) => Promise<MessageResponse>;
-  fillTemplate: (
+  buildDataSnippet(data: any, type?: string): string;
+  debug(): DebugInfo;
+  send(m: Message): Promise<MessageResponse>;
+  reply(message: string): Promise<MessageResponse>;
+  clearScreen(c?: number): Promise<MessageResponse>;
+  fillTemplate(
     utterances: string[],
     template: { [key: string]: string | number }
-  ) => string;
-  buildDMLink: (target: string, label: string) => string;
-  card: (config?: Partial<AbbreviatedSpeedyCard>) => SpeedyCard;
-  edit: (m: MessageResponse, e: string) => Promise<MessageResponse>;
+  ): string;
+  buildDMLink(target: string, label: string): string;
+  card(config?: Partial<AbbreviatedSpeedyCard>): SpeedyCard;
+  edit(m: MessageResponse, e: string): Promise<MessageResponse>;
   pickRandom<P>(list: P[]): P;
   pickRandom<P>(min: number, max: number): number;
   pickRandom<P>(listOrMin: P[] | number, max?: number): P | number;
@@ -138,10 +138,10 @@ export type $Magic<T = AttachedData> = {
     data: T,
     fileExtension: string
   ) => Promise<MessageResponse>;
-  getFile: (
+  getFile(
     url: string,
     opts?: { responseType?: "arraybuffer" | "json" }
-  ) => Promise<{
+  ): Promise<{
     getData<T = unknown>(): Promise<T>;
     url: string;
     name: string;
@@ -153,11 +153,7 @@ export type $Magic<T = AttachedData> = {
       length: 1 | 2 | 3 | 4 | 5 | 6;
     }
   );
-  buildLink: (
-    destinationURL: string,
-    label?: string,
-    noBold?: boolean
-  ) => string;
+  buildLink(destinationURL: string, label?: string, noBold?: boolean): string;
 } & IncomingItem<T>;
 
 export type Middleware<T = AttachedData> = (

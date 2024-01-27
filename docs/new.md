@@ -135,9 +135,11 @@ If all went well, you should see something like this in your terminal:
 
 Now send a message to your bot and you'll see a welcome screen with buttons and cards
 
-<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/autocomplete.gif?raw=true" />
+<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/first_spin.gif" />
 
 You can customize this however you want by editing the file **[settings/bot.ts](https://github.com/valgaze/speedybot-local-server/blob/deploy/settings/bot.ts)**
+
+<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/autocomplete.gif?raw=true" />
 
 Turn off your bot by tapping CTRL-C, to
 
