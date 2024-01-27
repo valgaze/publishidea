@@ -235,7 +235,6 @@ Bot.addStep<Partial<{ showCard: string }>>(async ($) => {
   };
 
   if ($.data && isCardKey($.data.showCard)) {
-    console.log(`Selected:`, cardHash[$.data.showCard]);
     const card = cardHash[$.data.showCard].addSubcard(
       $.card()
         .addLink(
@@ -283,6 +282,7 @@ export default Bot;
 // Bunch of cards
 export const cardChoices = [
   { title: "Text Formatting 📄", value: "format-card" },
+  { title: "Tabular Data 🐸", value: "table-card" },
   { title: "Survey 📝", value: "survey" },
   { title: "Acai 🍇", value: "acai" },
   { title: "Appcard 💳", value: "appcard" },
@@ -482,6 +482,21 @@ export const cardHash: { [key: string]: SpeedyCard } = {
     .addTitle("Do you want to proceed")
     .addButton("❌ Cancel", "shouldProceed", { data: false })
     .addButton("✅ OK", "shouldProceed", { data: true }),
+  "table-card": Bot.card()
+    .addTitle(
+      "Ribbit! Check out the hop-tastic details below from FrogBot industries"
+    )
+    .addTable([
+      ["Frog Species", "Population"],
+      ["Green Tree Frog", "2,500"],
+      ["Red-eyed Tree Frog", "1,800"],
+      ["Poison Dart Frog", "700"],
+      ["Fire-bellied Toad", "1,200"],
+    ])
+    .addLinkButton(
+      "http://allaboutfrogs.org/froglnd.shtml",
+      "🐸 Explore Frogs"
+    ),
   image: Bot.card()
     .addTitle("Images")
     .addSubtitle("Cards can have images too")
