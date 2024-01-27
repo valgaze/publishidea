@@ -13,23 +13,32 @@ export default defineConfig({
     nav: [
       { text: "🆕 Start Here", link: "/new" },
       {
-        text: "🌟 Examples",
+        text: "🚀 Examples",
         items: [
+          {
+            text: "🎨 Common Patterns",
+            link: "/patterns",
+          },
           {
             text: "🐣 Run a bot locally",
             link: "/new",
           },
           {
-            text: "🎨 Common Patterns",
-            link: "/patterns",
+            text: "λ Deploy to AWS Lamda",
+            link: "/examples/lambda/README",
           },
+
           {
             text: "📲 LLM streaming responses",
             link: "/examples/llm-stream/README",
           },
           {
             text: "🦖 Deploy to Deno",
-            link: "/examples/deno/README",
+            link: "./examples/deno/README",
+          },
+          {
+            text: "🔥 Deploy to Worker ",
+            link: "/examples/openai-embeddings-langchain/README.md",
           },
           {
             text: "💻 Langchain ",

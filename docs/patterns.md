@@ -18,11 +18,11 @@ Below are some comon copy/paste'able step "snippets" or patterns which should co
 npm install speedybot
 ```
 
-See **[/new](./new.md)** for easy to follow instructions to go from zero to a bot you can extend and customize however you want
+See **[/new](./new.md)** for easy to follow instructions to go from zero to a bot you can extend and customize however you want. With SpeedyBot is all you need to focus on when building your bot is `bot.ts.` If you need to deploy it to a highly controlled server or a serverless function or any infra you want you just need to pop your `bot.ts` and you're good to go.
 
-## Send a simple message
+## Send a simple message from ascript
 
-This is not an interactive agent, but you can use SpeedyBot to send messages + cards:
+The pattern below is not an interactive agent, but you can use SpeedyBot in a script to send messages + cards:
 
 ```ts
 import { SpeedyBot } from "speedybot";
@@ -43,11 +43,11 @@ async function main(token) {
 main("__REPLACE__ME__");
 ```
 
-Note: here we are not responding to user data, but rather self-contained sending mesages
+Note: You could run this from a script, a CI/CD environment, an existing server sending a notification in response to an event or incoming webhook, etc
 
 ## Simple Card Handler
 
-You can do a LOT of cool stuff with **[SpeedyCards](./speedycard.md)** but one ofs the most useful thing you can do is capture user data in a structured manner
+You can do a LOT of cool stuff with **[SpeedyCards](./speedycard.md)** but one of the most useful things you can do is capture user data in a structured manner. Below we'll send the user a **[SpeedyCard](./speedycard.md)** and then when they tap submit it will be displayed back to the user
 
 ```ts
 Bot.addStep(async ($) => {
@@ -59,9 +59,9 @@ Bot.addStep(async ($) => {
     await $.send(`${JSON.stringify($.data)}`);
     /**
      {
-        "myPickerDropdown": "xx",
+        "addTextarea_result": "free response data here"
         "myCheckboxes": "b,c",
-        "addTextarea_result": "free response data"
+        "myPickerDropdown": "YY",
      }
     */
   } else {
@@ -217,7 +217,7 @@ Bot.addStep(async ($) => {
 
 ## Error handling
 
-Note that in `Bot.captureError` it is not auto-bound so you'll need to supply a room id if you want to supply a message to the user that something has gone wrong
+Note that `Bot.captureError` doesn't automatically connect to the message's original room (like the $ symbol does in `$.send` or `$.reply`). So you'll need to supply a target destination (room id or email address) if you want to provide a message to the user that something has gone wrong
 
 ```ts
 import { SpeedyBot } from "speedybot";
@@ -231,7 +231,7 @@ Bot.addStep(($) => {
 });
 
 Bot.addStep(async ($) => {
-  await $.send(`helllllooo (${$.text}) `);
+  await $.send(`helllllooo (${$.text})`);
   return $.next;
 });
 
@@ -245,7 +245,7 @@ Bot.captureError(async (payload) => {
 
 ## Debug and display snippets
 
-SpeedyBot ships with a `$.debug()` method which will expose useful information about incoming messages. `$.buildDataSnippet()` is a convenience helper which will take any input data and display it in attractive markdown formatting in the chat client
+SpeedyBot comes with a built-in `$.debug()` helper method which will return useful information about incoming messages if you ever need to peek under the hood at what's going on. `$.buildDataSnippet()` is a convenience helper which will take any input data and display it in attractive markdown formatting in the chat client
 
 ```ts
 import { SpeedyBot } from "speedybot";
