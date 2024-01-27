@@ -47,6 +47,10 @@ export default defineConfig({
             text: "🔐 Secure Webhooks ",
             link: "/webhooks",
           },
+          {
+            text: "💡 Get help",
+            link: "/help",
+          },
         ],
       },
       { text: "📇 SpeedyCard", link: "/speedycard" },
@@ -112,6 +116,10 @@ export default defineConfig({
           {
             text: "📚 API Docs",
             link: "/../api-docs/modules",
+          },
+          {
+            text: "💡 Get help",
+            link: "/help",
           },
           // {
           //   text: "🗣 Voiceflow Integration",

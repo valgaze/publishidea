@@ -18,12 +18,12 @@ hero:
 features:
   - title: Speedy AND Easy
     icon: 🏝
-    details: "SpeedyBot offers a buttery-smooth developer experience to keep you building bots not scouring docs. There's full local live-reload updates on code changes (WITHOUT tunneling tools), zero external dependencies, built-in type hints, autocomplete, + other DX goodness"
+    details: "SpeedyBot offers lots of DX goodness-- live-reload on code-changes (without tunneling), zero external dependencies, built-in type hints to keep you building bots not scouring docs"
     link: /new
 
   - title: Portable AND Deployable
     icon: 🧳
-    details: "SpeedyBot can run in serverless/edge functions, Bun/Deno/Vercel/friends, fixed server, CI/CD script-- anyplace with power + internet you can probably stash SpeedyBot  anywhere you can run"
+    details: "SpeedyBot can run in serverless/edge functions, Bun/Deno/Vercel/friends, fixed server, CI/CD script, whatever ya wants"
     # details: "With SpeedyBot, effortlessly deploy your projects to a variety of infrastructures, be it serverless, CI/CD pipelines, script-hosted servers, global CDNs or aligning to your preferences."
     link: ./examples/
 

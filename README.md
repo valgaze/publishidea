@@ -24,13 +24,11 @@ npm install speedybot
 
 ## Speedy & Easy
 
-SpeedyBot offers a buttery-smooth developer experience to keep you building bots rather than scouring docs. There's zero external dependencies, support for ESM + CommonJS, written in typescript + built-in type hints with autocomplete, + lots of other DX goodness that makes building bots a breeze like local development with live-reload (see **[here for details](https://github.com/valgaze/speedybot/tree/deploy/examples/speedybot-local-server)**).
+- SpeedyBot offers a buttery-smooth developer experience to keep you building your bots rather than scouring the docs. It's written in typescript + built-in type hints with autocomplete, has zero external dependencies, supports ESM + CommonJS, provides lots of other DX goodness that makes building bots a breeze like local development with live-reload (see **[here for details](https://github.com/valgaze/speedybot/tree/deploy/examples/speedybot-local-server)**).
 
-SpeedyBot shrinks away all the complexity and makes it a breeze to handle user input regardless of the source/modality-- text, file uploads, form submission from SpeedyCards, etc
+- SpeedyBot shrinks away all the complexity and makes it a breeze to handle user input regardless of the source/modality-- text, file uploads, form submission from SpeedyCards, etc
 
-## Portable & Deployable
-
-SpeedyBot seamlessly operates across diverse environments, encompassing serverless setups, platforms like Bun, Deno, Vercel, and similar alternatives, as well as conventional fixed servers and within CI/CD scripts. As long as there is power and internet connectivity, SpeedyBot functions seamlessly. Analogous to a picture frame, it serves as a vessel for your creations—be it a photo, drawing, or any other content—enabling you, the conversation designer or engineer, to effortlessly integrate it into your desired setting. Just as the choice of frame can enhance aesthetics, SpeedyBot can elegantly blend into your existing workflows and systems.
+- SpeedyBot seamlessly operates across diverse severless/container-less platforms (Lambda/Deno/Workers/etc) as well as conventional fixed servers and even within CI/CD scripts. As long you've got internet connectivity, SpeedyBot functions seamlessly
 
 ## SpeedyBot basics
 
