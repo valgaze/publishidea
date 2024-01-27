@@ -99,7 +99,7 @@ Copy the commands below to get up and running
 ::: code-group
 
 ```sh-vue [🥺 New (recommended)]
-npm init speedybot {{ store.state.tokenValid ? store.state.token : '' }} setup --project default
+npm init speedybot setup {{ store.state.tokenValid ? `--token ${store.state.token}` : '' }} --project default
 ```
 
 ```sh-vue [👹 Experienced]

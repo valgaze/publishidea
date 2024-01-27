@@ -1,7 +1,4 @@
-import {
-  SpeedyBot,
-  logoRoll,
-} from "https://cdn.skypack.dev/speedybot@2.0.0-beta.73";
+import { SpeedyBot, logoRoll } from "https://cdn.skypack.dev/speedybot@latest";
 
 Deno.serve(async (req: Request) => {
   if (req.method === "GET") {
