@@ -14,6 +14,8 @@
 
 <img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/memes/logo4.jpeg?raw=true" />
 
+tl;dr: SpeedyBot helps you efficiently design, deploy, and secure rich conversation systems in enterprises and large teams
+
 ## Setup
 
 ```
@@ -24,7 +26,7 @@ npm install speedybot
 
 SpeedyBot offers a buttery-smooth developer experience to keep you building bots rather than scouring docs. There's zero external dependencies, support for ESM + CommonJS, written in typescript + built-in type hints with autocomplete, + lots of other DX goodness that makes building bots a breeze like local development with live-reload (see **[here for details](https://github.com/valgaze/speedybot/tree/deploy/examples/speedybot-local-server)**).
 
-SpeedyBot compresses makes it a breeze to handle user input regardless of the source/modality-- text, file uploads, form submission from SpeedyCards/, etc
+SpeedyBot shrinks away all the complexity and makes it a breeze to handle user input regardless of the source/modality-- text, file uploads, form submission from SpeedyCards, etc
 
 ## Portable & Deployable
 
@@ -56,15 +58,19 @@ Bot.addStep(async ($) => {
 });
 ```
 
+## SpeedyCards
+
+SpeedyCards make it (yep) speedy and easy to build **[Adaptive Cards](https://adaptivecards.io)** where its to add colors, "chips", formatting and other visual embellishments.
+
+<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/speedycard.gif?raw=true" />
+
+<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/demo_chips.gif?raw=true" />
+
 ## LLM Token Streaming
 
 SpeedyBot makes it speedy & easy to build serverless bots for the LLM era. See the **[LLM steam example](https://github.com/valgaze/publishidea/blob/v2/examples/llm-stream/README.md)**
 
-<img src="https://github.com/valgaze/speedybot-utils/blob/main/assets/memes/demos/llm_stream.gif?raw=true" />
-
-## SpeedyCards
-
-SpeedyCards make it (yep) speedy and easy to build **[Adaptive Cards](https://adaptivecards.io)** where its to add colors, formatting and other visual embellishments.
+<img src="https://github.com/valgaze/speedybot-utils/blob/main/assets/various/llm_stream.gif?raw=true" />
 
 ## SpeedyBot "listener"
 
@@ -117,4 +123,4 @@ export default Bot;
 
 ## 🐍 Speedybot-Python
 
-If you want to build bots with Python rather than Typescript, you can access [🐍Speedybot-Python🐍](https://pypi.org/project/speedybot) here
+If you want to build bots with Python rather than Typescript, you can check out [🐍Speedybot-Python🐍](https://pypi.org/project/speedybot)
