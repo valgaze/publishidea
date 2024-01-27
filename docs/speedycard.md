@@ -42,7 +42,7 @@ Did you know there's a nifty way to send adaptive cards using a your own accont 
 
 Check out the process here: <a href="https://developer.webex.com/docs/getting-your-personal-access-token" style="color:#646cff;text-decoration: bold;">https://developer.webex.com/docs/getting-your-personal-access-token</a>
 
-Heads up-- a personal access token will self-destruct after 12 hours
+Heads up-- unlike a bot token, a personal access token will self-destruct after 12 hours
 
 :::
 

@@ -54,22 +54,75 @@ export default defineConfig({
       { text: "📚 Reference", link: "/../api-docs/modules" },
       { text: "🐍 Python Version", link: "https://pypi.org/project/speedybot" },
       // { text: "🏡 Home", link: "/" },
-
-      // { text: "Examples", link: "/markdown-examples" },
     ],
 
     sidebar: [
       {
-        text: "Examples",
+        text: "🤖 Bot Utils ",
+        link: "/garage",
+        collapsed: true,
         items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
+          { text: "🔧 Garage", link: "/garage" },
+          { text: "📇 SpeedyCard Editor", link: "/speedycard" },
+          { text: "🌐 Webhooks", link: "/webhooks" },
+        ],
+      },
+      {
+        text: "🚀 Quickstarts",
+        collapsed: true,
+        items: [
+          {
+            text: "🐣 Run a bot locally",
+            link: "/new",
+          },
+          {
+            text: "λ Deploy to AWS Lamda",
+            link: "/examples/lambda/README",
+          },
+          {
+            text: "🔥 Deploy to Worker ",
+            link: "/examples/worker/README",
+          },
+          {
+            text: "🦖 Deploy to Deno",
+            link: "/examples/deno/README",
+          },
+          {
+            text: "🌐 Deploy to Server ",
+            link: "/examples/standard-server/README",
+          },
+          {
+            text: "📲 LLM streaming responses",
+            link: "/examples/llm-stream/README",
+          },
+        ],
+      },
+      {
+        text: "🌟 Learn",
+        // collapsed: true,
+        items: [
+          {
+            text: "🎨 Common Patterns",
+            link: "/patterns",
+          },
+          {
+            text: `💻 Secure Webhooks with a "secret"`,
+            link: "webhooks.html#securing-webhooks",
+          },
+          {
+            text: "📚 API Docs",
+            link: "/../api-docs/modules",
+          },
+          // {
+          //   text: "🗣 Voiceflow Integration",
+          //   link: "../examples/express-incoming-webhook/README.md",
+          // },
         ],
       },
     ],
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      { icon: "github", link: "https://github.com/valgaze/speedybot " },
     ],
   },
   vite: {

@@ -184,6 +184,8 @@ Bot.addStep(async ($) => {
 });
 ```
 
+<img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/demo_chips.gif?raw=true" />
+
 ## Support Multiple Environments
 
 You can use `$.ctx` to set flags to support different environments (ex dev/prod)

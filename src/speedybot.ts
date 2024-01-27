@@ -131,26 +131,23 @@ export class SpeedyBot<S extends string = string> {
   }
 
   /**
-   * Core middleware, it MUST return true (continues chain) or false
-   * 
-   * ```
+   * Core part of SpeedyBot Listener, it MUST return `$.next` (continues chain) or `$.end`
+   *
+   * The $ parameter's `$.send` and `$.reply` methods will be autobound to incoming message
+   *
+   * ```ts
    * const Bot = new SpeedyBot();
-
-Bot.addStep(async ($) => {
-  await Bot.sendTo($.author.email, "my message");
-
-  const parentMessageID = $.id;
-  await Bot.replyTo(parentMessageID, $.author.email, "my great reply message");
-
-  await $.send("Hello the right person"); 
-  await $.reply("Reply to the right message"); 
-
-  return $.next;
-});
-
+   * Bot.addStep(async ($) => {
+   *  await Bot.sendTo($.author.email, "my message");
+   *  const parentMessageID = $.id;
+   *  await Bot.replyTo(parentMessageID, $.author.email, "my great reply message");
+   *  await $.send("Hello the right person");
+   *  await $.reply("Reply to the right message");
+   *  return $.next;
+   * });
+   *
    * ```
-   * @param middleware 
-   * 
+   *
    */
   addStep<T = AttachedData>(middleware: Middleware<T>): void {
     this.middlewares.push(middleware);
