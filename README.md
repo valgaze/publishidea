@@ -22,15 +22,43 @@ npm install speedybot
 
 ## Speedy & Easy
 
-SpeedyBot offers a buttery-smooth developer experience to keep you building bots rather than scouring docs. There's zero external dependencies, support for ESM + CommonJS, built-in type hints with autocomplete, + lots of other DX goodness like local development with live-reload (see **[here for details](https://github.com/valgaze/speedybot/tree/deploy/examples/speedybot-starter)**). SpeedyBot makes it a breeze to handle user input regardless of the source/modality-- text, file uploads, form submission from SpeedyCards/, etc
+SpeedyBot offers a buttery-smooth developer experience to keep you building bots rather than scouring docs. There's zero external dependencies, support for ESM + CommonJS, written in typescript + built-in type hints with autocomplete, + lots of other DX goodness that makes building bots a breeze like local development with live-reload (see **[here for details](https://github.com/valgaze/speedybot/tree/deploy/examples/speedybot-local-server)**).
+
+SpeedyBot compresses makes it a breeze to handle user input regardless of the source/modality-- text, file uploads, form submission from SpeedyCards/, etc
 
 ## Portable & Deployable
 
-SpeedyBot can run anywhere-- serverless environments, Bun/Deno/Vercel/friends, fixed server, CI/CD script-- if there's power and internet SpeedyBot should run happily without incident
+SpeedyBot seamlessly operates across diverse environments, encompassing serverless setups, platforms like Bun, Deno, Vercel, and similar alternatives, as well as conventional fixed servers and within CI/CD scripts. As long as there is power and internet connectivity, SpeedyBot functions seamlessly. Analogous to a picture frame, it serves as a vessel for your creations—be it a photo, drawing, or any other content—enabling you, the conversation designer or engineer, to effortlessly integrate it into your desired setting. Just as the choice of frame can enhance aesthetics, SpeedyBot can elegantly blend into your existing workflows and systems.
+
+## SpeedyBot basics
+
+You can see fleshed-out examples at **[https://speedybot.js.org/examples](https://speedybot.js.org/examples)** and see how SpeedyBot has you covered for crafting bots that can do it all-- securely integrate w/ LLMs + content management systems, **[process file-uploads](https://speedybot.js.org/patterns.md#handle-file-uploads)**, **[segment content based on user data + behavior](./patterns.md#restrict-emails)**, create + manage **[SpeedyCards](./speedycard.md)**, ask for a user's location in a privacy-respecting way and lots more.
+
+### Auto-binding
+
+As a convenience, SpeedyBot's "magic" $ parameter will auto-bind to the incoming message and give you access to all kinds of useful
+
+```js
+const Bot = new SpeedyBot();
+
+// You get an incoming messsage
+Bot.addStep(async ($) => {
+  await $.send("Hello the originating person/room");
+  await $.reply("Reply to the originating person/room");
+
+  // The same as the following
+  await Bot.sendTo($.author.email, "my message");
+
+  const parentMessageID = $.id;
+  await Bot.replyTo(parentMessageID, $.author.email, "my great reply message");
+
+  return $.next;
+});
+```
 
 ## LLM Token Streaming
 
-SpeedyBot makes it speedy & easy to build serverless bots for the LLM era. See the **[LLM steam example](https://github.com/valgaze/speedybot/tree/deploy/examples)**
+SpeedyBot makes it speedy & easy to build serverless bots for the LLM era. See the **[LLM steam example](https://github.com/valgaze/publishidea/blob/v2/examples/llm-stream/README.md)**
 
 <img src="https://github.com/valgaze/speedybot-utils/blob/main/assets/memes/demos/llm_stream.gif?raw=true" />
 

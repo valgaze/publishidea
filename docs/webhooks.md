@@ -29,7 +29,7 @@ If you add a secret when creating a webhook on each incoming request will receiv
 
 **Bottom line:** DO THIS. With your webhook secret you can take the SHA-1 representation of the request body and if it matches the signature on the header proceed otherwise simply discard the request.
 
-Note: All of the samples in the **[examples directory](./examples/README.md)** of the SpeedyBot repo have reference implementations of validating webhooks appropriate for each platform.
+Note: All of the samples in the **[examples directory](./examples/index)** of the SpeedyBot repo have reference implementations of validating webhooks appropriate for each platform.
 
 ## Reference implementations
 

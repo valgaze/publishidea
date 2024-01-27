@@ -25,4 +25,4 @@ Note: this example happens to use OpenAI, but you can swap-in HuggingFace, **[An
 
 Example Stream:
 
-<img src="./../../docs/assets/llm_stream.gif" />
+<img src="https://github.com/valgaze/speedybot-utils/blob/main/assets/memes/demos/llm_stream.gif?raw=true" />

@@ -27,11 +27,6 @@ export default defineConfig({
             text: "λ Deploy to AWS Lamda",
             link: "/examples/lambda/README",
           },
-
-          {
-            text: "📲 LLM streaming responses",
-            link: "/examples/llm-stream/README",
-          },
           {
             text: "🦖 Deploy to Deno",
             link: "./examples/deno/README",
@@ -41,10 +36,13 @@ export default defineConfig({
             link: "/examples/openai-embeddings-langchain/README.md",
           },
           {
-            text: "💻 Langchain ",
-            link: "/examples/openai-embeddings-langchain/README.md",
+            text: "📲 LLM streaming responses",
+            link: "/examples/llm-stream/README",
           },
-          { text: "💬 Messsages", link: "/garage" },
+          {
+            text: "🔐 Secure Webhooks ",
+            link: "/webhooks",
+          },
         ],
       },
       { text: "📇 SpeedyCard", link: "/speedycard" },
