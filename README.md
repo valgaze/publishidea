@@ -72,6 +72,8 @@ You can use SpeedyBot to only send messages + cards and nothing more. But if you
 
 Ex. Here is a minimal handler that will echo back information if a user transmits data via text, file, and adaptive card. Write "show card" to display a card. You can chain multiple addSteps if you need to, but in this era you probably don't need/want to be doing much logic in code.
 
+See full example applications here: **[https://speedybot.js.org/examples](https://speedybot.js.org/examples)**
+
 ```ts
 import { SpeedyBot } from "speedybot";
 
