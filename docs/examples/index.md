@@ -13,3 +13,4 @@ Grab an example and see the included README for instructions on how to quickly g
 | **[λ Deploy to AWS Lamda](./lambda/README.md)** using **[SST](https://sst.dev/)** | ❌            | ✅              |
 | **[🔥 Deploy to Worker](./worker/README.md)**                                     | ❌            | ✅              |
 | **[🦖 Deploy to Deno](./deno/README.md)**                                         | ❌            | ✅              |
+| **[📲 LLM Stream](./llm-stream/README.md)**                                       | ❌            | ❌              |

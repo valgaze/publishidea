@@ -12,7 +12,7 @@ This was the major inspiration for SpeedyBot 2.0-- how to efficiently allocate t
 
 Example Stream:
 
-<img src="https://github.com/valgaze/speedybot-utils/blob/main/assets/memes/demos/llm_stream.gif?raw=true" />
+<img src="https://github.com/valgaze/speedybot-utils/blob/main/assets/various/llm_stream.gif?raw=true" />
 
 ## Setup
 

@@ -62,7 +62,7 @@ There's also a lot more you can do
 
 ## SpeedyCards
 
-SpeedyCards make it (yep) speedy and easy to build **[Adaptive Cards](https://adaptivecards.io)** where its to add colors, "chips", formatting and other visual embellishments.
+SpeedyCards make it (yep) speedy and easy to build **[Adaptive Cards](https://adaptivecards.io)** where you can easily collect structured data from users and add colors, "chips", formatting and other visual embellishments.
 
 <img src="https://raw.githubusercontent.com/valgaze/speedybot-utils/main/assets/various/speedycard.gif?raw=true" />
 

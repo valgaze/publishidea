@@ -713,11 +713,3 @@ Bot.addStep(async ($) => {
   }
   return $.next;
 });
-
-Bot.addStep(async ($) => {
-  await $.send(`Hi there, ${$.author.name}!`);
-
-  $.
-
-  return $.next;
-});
