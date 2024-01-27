@@ -99,14 +99,14 @@ Copy the commands below to get up and running
 ::: code-group
 
 ```sh-vue [🥺 New (recommended)]
-npm init speedybot {{ store.state.tokenValid ? store.state.token : 'setup --project default' }}
+npm init speedybot {{ store.state.tokenValid ? store.state.token : '' }} setup --project default
 ```
 
 ```sh-vue [👹 Experienced]
 git clone https://github.com/valgaze/speedybot-local-server
 cd speedybot-local-server
 npm i
-npm run bot:setup {{ store.state.tokenValid ? store.state.token : '__ACCESS__TOKEN__HERE__' }} // this will create .env
+npm run bot:setup {{ store.state.tokenValid ? store.state.token : '__ACCESS__TOKEN__HERE__' }}
 ```
 
 :::
