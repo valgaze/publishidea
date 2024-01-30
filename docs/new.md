@@ -1,4 +1,4 @@
-# Send a SpeedyCard
+# "I'm new here" 🐣
 
 tl;dr: SpeedyBot helps you efficiently design, deploy, and secure rich conversation systems-- especially in enterprises and large teams with complex requirements
 

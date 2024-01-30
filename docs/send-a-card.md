@@ -79,7 +79,7 @@ ref="rootRef"
 
 - In fact, any user interaction with a card sent from {{ store.state.userData?.emails[0] ?? 'your account'}} right now results in icy radio silence, the data doesn't "go" anywhere
 
-- If you want to collect the data from a SpeedyCard, you'll need a SpeedyBot for that. You can set one up in about 20 seconds (really) by **[clicking here](./new.md)**
+- If you want to collect the data from a SpeedyCard, you'll need a SpeedyBot for that. You can set one up in about 20 seconds (really) by <a href="https://speedybot.js.org/new" target="_blank">clicking here</a>
 
 <img
     src="./assets/card_nosubmit.gif"
@@ -160,3 +160,9 @@ const handleSelected = (codeSnippet) => {
   }
 }
 </script>
+
+<style>
+.VPSidebar, .VPNav {
+  display: none !important;
+}
+</style>
